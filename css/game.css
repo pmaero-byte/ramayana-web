@@ -106,8 +106,13 @@ font-family: inherit; text-transform: uppercase; display: block; width: 100%;
 background: linear-gradient(180deg, #4a8050, #2a5a30);
 color: #e8f0e8;
 }
+.btn-delete {
+  background: linear-gradient(180deg, #804040, #502020);
+  color: #f0c8c8;
+}
 .btn-start:hover { filter: brightness(1.08); }
 .fine { margin-top: 1rem; font-size: 0.7rem; opacity: 0.45; }
+.high-score { margin: 0.25rem 0; font-size: 0.82rem; color: var(--gold); }
 
 #hit-flash {
   position: fixed; inset: 0; z-index: 25; pointer-events: none;

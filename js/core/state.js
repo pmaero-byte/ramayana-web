@@ -41,6 +41,7 @@ export function setHpBar(hp, maxHp) {
 }
 
 const SAVE_KEY = 'ramayana_web_save';
+const HIGH_KEY = 'ramayana_web_high';
 
 export function saveGame(actId, kills, hp, maxHp, objectiveTitle) {
   try {
@@ -55,4 +56,26 @@ export function loadGame() {
     const raw = window.localStorage.getItem(SAVE_KEY);
     return raw ? JSON.parse(raw) : null;
   } catch { return null; }
+}
+
+export function deleteSave() {
+  try { window.localStorage.removeItem(SAVE_KEY); } catch {}
+}
+
+export function getHighScore() {
+  try {
+    const raw = window.localStorage.getItem(HIGH_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+export function setHighScore(kills, waves) {
+  try {
+    const current = getHighScore();
+    if (!current || kills > current.kills) {
+      window.localStorage.setItem(HIGH_KEY, JSON.stringify({ kills, waves, ts: Date.now() }));
+      return true;
+    }
+    return false;
+  } catch { return false; }
 }

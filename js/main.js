@@ -9,6 +9,7 @@ import { createCameraRig } from './world/camera.js';
 import { createWaveController, createArcher } from './combat/wave.js';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn } from './ui/dialogue.js';
+import { setHighScore } from './core/state.js';
 
 async function boot() {
   const canvas = document.getElementById('c');
@@ -100,6 +101,7 @@ async function boot() {
     const dKills = kills;
     const dWave = waves?.wave || 0;
     setHud({ obj: `Fallen at wave ${dWave} — ${dKills} slain`, wave: 'Respawning…' });
+    setHighScore(dKills, dWave);
     showDialogue('Valmiki', 'Even the greatest heroes rise again. Hold fast to dharma.', 2.5);
     deathTimer = 2.4;
   }
@@ -184,6 +186,7 @@ async function boot() {
       showDialogue('Valmiki', 'Thus ends this kāṇḍa. Returning to the kāṇḍa picker…', 3.2);
       sfxWin();
       waves?.stop();
+      setHighScore(kills, 3);
       saveGame(state.actId, kills, state.hp, state.maxHp, '✓ Complete');
       setTimeout(() => returnToTitle(), 3400);
     });

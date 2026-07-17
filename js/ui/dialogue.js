@@ -1,4 +1,5 @@
 import { portraitUrl } from '../story/moments.js';
+import { getHighScore, deleteSave } from '../core/state.js';
 
 let hideTimer = 0;
 
@@ -25,22 +26,41 @@ export function buildTitle(corpus, onSelect, onStart, onContinue) {
   const list = document.getElementById('act-list');
   const btn = document.getElementById('btn-start');
   const cont = document.getElementById('btn-continue');
+  const delBtn = document.getElementById('btn-delete-save');
+  const scoreEl = document.getElementById('high-score');
   if (!list || !corpus?.acts) return;
   list.innerHTML = '';
   let selected = corpus.acts.find((a) => a.actId === 'yuddhakanda-war')?.actId || corpus.acts[0]?.actId;
 
-  // Show continue button if there's saved progress
+  // High score
+  const hs = getHighScore();
+  if (scoreEl && hs) scoreEl.textContent = `🏆 Best: ${hs.kills} kills · ${hs.waves || '-'} waves`;
+
+  // Continue / Delete buttons
   try {
     const saved = JSON.parse(window.localStorage.getItem('ramayana_web_save') || 'null');
-    if (saved && saved.actId && cont) {
+    if (saved && saved.actId) {
       const act = corpus.acts.find(a => a.actId === saved.actId);
-      cont.style.display = '';
-      cont.textContent = `▶ Continue · ${act?.title || saved.actId}`;
-      cont.onclick = () => onContinue?.(saved);
-    } else if (cont) {
-      cont.style.display = 'none';
+      if (cont) {
+        cont.style.display = '';
+        cont.textContent = `▶ Continue · ${act?.title || saved.actId}`;
+        cont.onclick = () => onContinue?.(saved);
+      }
+      if (delBtn) delBtn.style.display = '';
+    } else {
+      if (cont) cont.style.display = 'none';
+      if (delBtn) delBtn.style.display = 'none';
     }
-  } catch { if (cont) cont.style.display = 'none'; }
+  } catch {
+    if (cont) cont.style.display = 'none';
+    if (delBtn) delBtn.style.display = 'none';
+  }
+  delBtn?.addEventListener('click', () => {
+    deleteSave();
+    if (cont) cont.style.display = 'none';
+    delBtn.style.display = 'none';
+    if (scoreEl && !getHighScore()) scoreEl.textContent = '';
+  });
 
   for (const act of corpus.acts) {
     const el = document.createElement('div');
@@ -64,6 +84,22 @@ export function hideTitle() {
 export function showTitle() {
   document.getElementById('title')?.classList.remove('hidden');
   hideDialogue();
+  // Refresh high score + continue on show
+  const hs = getHighScore();
+  const se = document.getElementById('high-score');
+  if (se) se.textContent = hs ? `🏆 Best: ${hs.kills} kills · ${hs.waves || '-'} waves` : '';
+  try {
+    const cont = document.getElementById('btn-continue');
+    const del = document.getElementById('btn-delete-save');
+    const saved = JSON.parse(window.localStorage.getItem('ramayana_web_save') || 'null');
+    if (saved && saved.actId) {
+      if (cont) { cont.style.display = ''; cont.textContent = `▶ Continue · ${saved.actId}`; }
+      if (del) del.style.display = '';
+    } else {
+      if (cont) cont.style.display = 'none';
+      if (del) del.style.display = 'none';
+    }
+  } catch {}
 }
 
 export function updateContinueBtn() {
