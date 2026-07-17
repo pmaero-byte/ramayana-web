@@ -1,14 +1,14 @@
 import * as THREE from 'three';
-import { state, setHud, setHpBar } from './core/state.js';
+import { state, setHud, setHpBar, saveGame } from './core/state.js';
 import { createInput } from './core/input.js';
 import { createTouchPad } from './core/touch.js';
-import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin } from './core/audio.js';
+import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, startDrone, stopDrone } from './core/audio.js';
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js';
 import { createCameraRig } from './world/camera.js';
 import { createWaveController, createArcher } from './combat/wave.js';
 import { createStory } from './story/moments.js';
-import { showDialogue, buildTitle, hideTitle, showTitle } from './ui/dialogue.js';
+import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn } from './ui/dialogue.js';
 
 const ACT_MOOD = {
   'bala-birth': ['#4f8cff', '#1a2840'],
@@ -40,6 +40,7 @@ async function boot() {
   let last = performance.now();
   let flash = 0;
   let deathTimer = 0;
+  let autoSaveTimer = 0;
 
   let flashEl = document.getElementById('hit-flash');
   if (!flashEl) {
@@ -48,13 +49,17 @@ async function boot() {
     document.getElementById('app')?.appendChild(flashEl);
   }
 
-  // HUD chrome
   document.getElementById('btn-fullscreen')?.addEventListener('click', () => {
     const el = document.documentElement;
     if (!document.fullscreenElement) el.requestFullscreen?.();
     else document.exitFullscreen?.();
   });
   document.getElementById('btn-menu')?.addEventListener('click', () => returnToTitle());
+  document.getElementById('btn-save')?.addEventListener('click', () => {
+    const ok = saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
+    setHud({ wave: ok ? 'Game saved ✓' : 'Save failed' });
+    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+  });
 
   buildTitle(
     corpus,
@@ -65,6 +70,10 @@ async function boot() {
     (id) => {
       unlockAudio();
       startGame(id);
+    },
+    (saved) => {
+      unlockAudio();
+      startGame(saved.actId, saved);
     }
   );
 
@@ -84,7 +93,9 @@ async function boot() {
     player.setLocked(false);
     setHpBar(state.maxHp, state.maxHp);
     setHud({ title: 'Rāmāyaṇa', obj: '—', wave: 'Wave —' });
+    updateContinueBtn();
     showTitle();
+    stopDrone();
   }
 
   function onPlayerDeath() {
@@ -103,7 +114,6 @@ async function boot() {
     player.setLocked(false);
     setHpBar(state.maxHp, state.maxHp);
     setHud({ obj: state.objectiveTitle || 'Continue the fight' });
-    // restart current wave set mid-act
     waves?.start(3);
   }
 
@@ -117,17 +127,19 @@ async function boot() {
     if (hp <= 0) onPlayerDeath();
   }
 
-  function startGame(actId) {
+  function startGame(actId, saved = null) {
     hideTitle();
     unlockAudio();
+    startDrone();
     state.running = true;
     state.dead = false;
     state.actId = actId || state.selectedActId;
-    kills = 0;
+    kills = saved?.kills ?? 0;
     deathTimer = 0;
+    autoSaveTimer = 0;
     player.reset();
     player.setLocked(false);
-    setHpBar(state.maxHp, state.maxHp);
+    setHpBar(saved?.hp ?? state.maxHp, saved?.maxHp ?? state.maxHp);
     applyActMood(state.actId);
 
     waves?.stop();
@@ -168,6 +180,7 @@ async function boot() {
     story.on('complete', (obj) => {
       const cl = obj.completedLine;
       if (cl) showDialogue(cl.speaker || 'Narrator', cl.text || '', 3.0);
+      saveGame(state.actId, kills, state.hp, state.maxHp, story?.current?.title || '');
       setTimeout(() => story.advance(), 3200);
     });
     story.on('actDone', () => {
@@ -175,6 +188,7 @@ async function boot() {
       showDialogue('Valmiki', 'Thus ends this kāṇḍa. Returning to the kāṇḍa picker…', 3.2);
       sfxWin();
       waves?.stop();
+      saveGame(state.actId, kills, state.hp, state.maxHp, '✓ Complete');
       setTimeout(() => returnToTitle(), 3400);
     });
 
@@ -198,6 +212,12 @@ async function boot() {
         player.update(dt, input, input.yaw);
         waves?.update(dt);
         archer?.update(dt);
+        // auto-save every ~30s of active play
+        autoSaveTimer += dt;
+        if (autoSaveTimer > 30) {
+          autoSaveTimer = 0;
+          saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
+        }
       }
       camRig.update(dt, player, input.yaw, input.pitch);
     } else {

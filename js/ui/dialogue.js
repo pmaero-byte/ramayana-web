@@ -21,12 +21,27 @@ export function hideDialogue() {
   document.getElementById('dialogue')?.classList.add('hidden');
 }
 
-export function buildTitle(corpus, onSelect, onStart) {
+export function buildTitle(corpus, onSelect, onStart, onContinue) {
   const list = document.getElementById('act-list');
   const btn = document.getElementById('btn-start');
+  const cont = document.getElementById('btn-continue');
   if (!list || !corpus?.acts) return;
   list.innerHTML = '';
   let selected = corpus.acts.find((a) => a.actId === 'yuddhakanda-war')?.actId || corpus.acts[0]?.actId;
+
+  // Show continue button if there's saved progress
+  try {
+    const saved = JSON.parse(window.localStorage.getItem('ramayana_web_save') || 'null');
+    if (saved && saved.actId && cont) {
+      const act = corpus.acts.find(a => a.actId === saved.actId);
+      cont.style.display = '';
+      cont.textContent = `▶ Continue · ${act?.title || saved.actId}`;
+      cont.onclick = () => onContinue?.(saved);
+    } else if (cont) {
+      cont.style.display = 'none';
+    }
+  } catch { if (cont) cont.style.display = 'none'; }
+
   for (const act of corpus.acts) {
     const el = document.createElement('div');
     el.className = 'act-card' + (act.actId === selected ? ' selected' : '');
@@ -49,6 +64,18 @@ export function hideTitle() {
 export function showTitle() {
   document.getElementById('title')?.classList.remove('hidden');
   hideDialogue();
+}
+
+export function updateContinueBtn() {
+  const cont = document.getElementById('btn-continue');
+  if (cont) cont.style.display = 'none';
+  try {
+    const saved = JSON.parse(window.localStorage.getItem('ramayana_web_save') || 'null');
+    if (saved && saved.actId && cont) {
+      cont.style.display = '';
+      cont.textContent = `▶ Continue · ${saved.actId}`;
+    }
+  } catch {}
 }
 
 function esc(s) {

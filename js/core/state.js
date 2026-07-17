@@ -39,3 +39,20 @@ export function setHpBar(hp, maxHp) {
   }
   if (label) label.textContent = `HP ${hp}/${maxHp}`;
 }
+
+const SAVE_KEY = 'ramayana_web_save';
+
+export function saveGame(actId, kills, hp, maxHp, objectiveTitle) {
+  try {
+    const data = { actId, kills, hp, maxHp, objectiveTitle, ts: Date.now() };
+    window.localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+    return true;
+  } catch { return false; }
+}
+
+export function loadGame() {
+  try {
+    const raw = window.localStorage.getItem(SAVE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}

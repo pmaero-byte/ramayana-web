@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Rāmāyaṇa — Web</title>
-  <link rel="stylesheet" href="css/game.css?v=4" />
+  <link rel="stylesheet" href="css/game.css?v=5" />
 </head>
 <body>
   <div id="app">
@@ -24,6 +24,7 @@
       <div id="hud-hint" class="hud-hint">WASD · Shift run · RMB orbit · Auto-bow · Esc menu</div>
     </div>
     <div class="chrome" data-role="hud">
+      <button type="button" id="btn-save" class="chrome-btn" title="Save">💾</button>
       <button type="button" id="btn-menu" class="chrome-btn" title="Kāṇḍa menu">☰</button>
       <button type="button" id="btn-fullscreen" class="chrome-btn" title="Fullscreen">⛶</button>
     </div>
@@ -41,6 +42,7 @@
         <p class="sub">Browser action slice · open stack · no Unity</p>
         <div id="act-list" class="act-list"></div>
         <button id="btn-start" class="btn-start" type="button">Begin Yuddha</button>
+        <button id="btn-continue" class="btn-start btn-continue" type="button" style="display:none">▶ Continue</button>
         <p class="fine">Three.js + vanilla JS · corpus-driven · WASD / touch</p>
       </div>
     </div>
@@ -52,6 +54,6 @@
     }
   }
   </script>
-  <script type="module" src="js/main.js?v=5"></script>
+  <script type="module" src="js/main.js?v=6"></script>
 </body>
 </html>
