@@ -67,6 +67,11 @@ async function boot() {
         setHud({ wave: `All waves cleared · ${kills} kills` });
         sfxWin();
         story?.completeCurrent();
+      },
+      (dmg) => {
+        // melee chip — visual only for now (flash + sfx)
+        flash = 0.08;
+        sfxHit();
       }
     );
     archer = createArcher(world.scene, player, waves, {

@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { createRakshasa } from './rakshasa.js';
 import { spawnPoints, kindForWave } from './formation.js';
 
-export function createWaveController(scene, player, onWave, onAllDone) {
+export function createWaveController(scene, player, onWave, onAllDone, onMelee) {
   let alive = [];
   let wave = 0;
   let total = 3;
@@ -41,11 +41,14 @@ export function createWaveController(scene, player, onWave, onAllDone) {
 
   function update(dt) {
     if (!running) return;
+    const ppos = player.position;
     alive = alive.filter((r) => {
       if (r.isDead) {
         r.dispose();
         return false;
       }
+      const hit = r.update?.(dt, ppos);
+      if (hit) onMelee?.(1);
       return true;
     });
     if (alive.length === 0) {
