@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 export function createCameraRig(camera) {
-  const offset = new THREE.Vector3(0, 2.35, 7.2);
+  const offset = new THREE.Vector3(0, 2.35, -7.2);
   const look = new THREE.Vector3(0, 1.15, 0);
   const pos = new THREE.Vector3();
   const lookAt = new THREE.Vector3();
