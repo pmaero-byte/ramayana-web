@@ -37,18 +37,25 @@ async function boot() {
     flashEl.id = 'hit-flash';
     document.getElementById('app')?.appendChild(flashEl);
   }
+  // HUD chrome
+    document.getElementById('btn-fullscreen')?.addEventListener('click', toggleFullscreen);
+    document.getElementById('btn-menu')?.addEventListener('click', () => returnToTitle());
+    document.getElementById('btn-save')?.addEventListener('click', () => {
+      const ok = saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
+      setHud({ wave: ok ? 'Game saved ✓' : 'Save failed' });
+      setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+    });
+    // keyboard shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+      if (e.key === 'm' || e.key === 'M') { if (state.running) returnToTitle(); }
+    });
 
-  document.getElementById('btn-fullscreen')?.addEventListener('click', () => {
-    const el = document.documentElement;
-    if (!document.fullscreenElement) el.requestFullscreen?.();
-    else document.exitFullscreen?.();
-  });
-  document.getElementById('btn-menu')?.addEventListener('click', () => returnToTitle());
-  document.getElementById('btn-save')?.addEventListener('click', () => {
-    const ok = saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
-    setHud({ wave: ok ? 'Game saved ✓' : 'Save failed' });
-    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
-  });
+    function toggleFullscreen() {
+      const el = document.documentElement;
+      if (!document.fullscreenElement) el.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
 
   buildTitle(
     corpus,
@@ -90,7 +97,9 @@ async function boot() {
     state.dead = true;
     player.setLocked(true);
     waves?.stop();
-    setHud({ obj: 'Fallen — respawning…' });
+    const dKills = kills;
+    const dWave = waves?.wave || 0;
+    setHud({ obj: `Fallen at wave ${dWave} — ${dKills} slain`, wave: 'Respawning…' });
     showDialogue('Valmiki', 'Even the greatest heroes rise again. Hold fast to dharma.', 2.5);
     deathTimer = 2.4;
   }

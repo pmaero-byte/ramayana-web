@@ -142,3 +142,25 @@ color: #e8f0e8;
   #touch-pad { opacity: 0.35; }
   .stick-base { left: 2vw; bottom: 8vh; transform: scale(0.85); }
 }
+
+/* Small screens / mobile portrait */
+@media (max-width: 600px) {
+  .hud-title { font-size: 0.82rem; }
+  .hud-obj { font-size: 0.75rem; max-width: 85vw; }
+  .hud-wave { font-size: 0.68rem; }
+  .hud-hint { font-size: 0.6rem; bottom: 9vh; }
+  .hp-wrap { width: min(140px, 50vw); }
+  .chrome { top: 9vh; right: 1.5vw; }
+  .chrome-btn { width: 34px; height: 34px; font-size: 0.85rem; }
+  .dialogue { left: 4%; right: 4%; bottom: 10vh; padding: 0.6rem 0.8rem; min-height: 5.5rem; }
+  .dialogue .portrait { width: 60px; height: 60px; }
+  .dialogue .speaker { font-size: 0.85rem; }
+  .dialogue .line { font-size: 0.82rem; }
+  .title-inner { padding: 1rem; max-width: 95vw; }
+  .title-inner h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  .letterbox .bar { height: 6vh; }
+  .stick-base { width: 90px; height: 90px; left: 4vw; bottom: 12vh; }
+  .stick-knob { width: 38px; height: 38px; margin: -19px 0 0 -19px; }
+  .touch-btn { width: 52px; height: 52px; font-size: 1.1rem; }
+  .touch-btn.jump { bottom: 15vh; }
+}
