@@ -78,9 +78,7 @@ async function boot() {
   );
 
   function applyActMood(actId) {
-    const mood = ACT_MOOD[actId];
-    if (mood) world.setMood?.(mood[0], mood[1]);
-    else world.setMood?.('#b85a3a', '#2a1008');
+    world.buildArena?.(actId);
   }
 
   function returnToTitle() {
