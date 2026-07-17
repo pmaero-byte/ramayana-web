@@ -10,17 +10,6 @@ import { createWaveController, createArcher } from './combat/wave.js';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn } from './ui/dialogue.js';
 
-const ACT_MOOD = {
-  'bala-birth': ['#4f8cff', '#1a2840'],
-  'ayodhya-dharma': ['#f0bd5e', '#3a2810'],
-  'panchavati-golden-deer': ['#5fd1a5', '#0e2a1c'],
-  'kishkindha-alliance': ['#e46445', '#2a1410'],
-  'sundarakanda-leap': ['#6c4dc2', '#1a1030'],
-  'yuddhakanda-war': ['#b85a3a', '#2a1008'],
-  'return-ayodhya': ['#d4a843', '#2a2010'],
-  'uttara-earth-return': ['#5d6fb7', '#101828'],
-};
-
 async function boot() {
   const canvas = document.getElementById('c');
   const res = await fetch('data/corpus_data.json');
