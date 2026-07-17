@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { state, setHud } from './core/state.js';
+import { state, setHud, setHpBar } from './core/state.js';
 import { createInput } from './core/input.js';
 import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin } from './core/audio.js';
@@ -8,7 +8,18 @@ import { createPlayer } from './world/player.js';
 import { createCameraRig } from './world/camera.js';
 import { createWaveController, createArcher } from './combat/wave.js';
 import { createStory } from './story/moments.js';
-import { showDialogue, buildTitle, hideTitle } from './ui/dialogue.js';
+import { showDialogue, buildTitle, hideTitle, showTitle } from './ui/dialogue.js';
+
+const ACT_MOOD = {
+  'bala-birth': ['#4f8cff', '#1a2840'],
+  'ayodhya-dharma': ['#f0bd5e', '#3a2810'],
+  'panchavati-golden-deer': ['#5fd1a5', '#0e2a1c'],
+  'kishkindha-alliance': ['#e46445', '#2a1410'],
+  'sundarakanda-leap': ['#6c4dc2', '#1a1030'],
+  'yuddhakanda-war': ['#b85a3a', '#2a1008'],
+  'return-ayodhya': ['#d4a843', '#2a2010'],
+  'uttara-earth-return': ['#5d6fb7', '#101828'],
+};
 
 async function boot() {
   const canvas = document.getElementById('c');
@@ -28,14 +39,22 @@ async function boot() {
   let kills = 0;
   let last = performance.now();
   let flash = 0;
+  let deathTimer = 0;
 
-  // hit flash overlay
   let flashEl = document.getElementById('hit-flash');
   if (!flashEl) {
     flashEl = document.createElement('div');
     flashEl.id = 'hit-flash';
     document.getElementById('app')?.appendChild(flashEl);
   }
+
+  // HUD chrome
+  document.getElementById('btn-fullscreen')?.addEventListener('click', () => {
+    const el = document.documentElement;
+    if (!document.fullscreenElement) el.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  });
+  document.getElementById('btn-menu')?.addEventListener('click', () => returnToTitle());
 
   buildTitle(
     corpus,
@@ -49,18 +68,75 @@ async function boot() {
     }
   );
 
+  function applyActMood(actId) {
+    const mood = ACT_MOOD[actId];
+    if (mood) world.setMood?.(mood[0], mood[1]);
+    else world.setMood?.('#b85a3a', '#2a1008');
+  }
+
+  function returnToTitle() {
+    waves?.stop();
+    archer = null;
+    story = null;
+    state.running = false;
+    state.dead = false;
+    player.reset();
+    player.setLocked(false);
+    setHpBar(state.maxHp, state.maxHp);
+    setHud({ title: 'Rāmāyaṇa', obj: '—', wave: 'Wave —' });
+    showTitle();
+  }
+
+  function onPlayerDeath() {
+    if (state.dead) return;
+    state.dead = true;
+    player.setLocked(true);
+    waves?.stop();
+    setHud({ obj: 'Fallen — respawning…' });
+    showDialogue('Valmiki', 'Even the greatest heroes rise again. Hold fast to dharma.', 2.5);
+    deathTimer = 2.4;
+  }
+
+  function respawn() {
+    state.dead = false;
+    player.reset();
+    player.setLocked(false);
+    setHpBar(state.maxHp, state.maxHp);
+    setHud({ obj: state.objectiveTitle || 'Continue the fight' });
+    // restart current wave set mid-act
+    waves?.start(3);
+  }
+
+  function damagePlayer(n = 1) {
+    if (state.dead || !state.running) return;
+    if (!player.hurt(n)) return;
+    const hp = Math.max(0, state.hp - n);
+    setHpBar(hp, state.maxHp);
+    flash = 0.14;
+    sfxHit();
+    if (hp <= 0) onPlayerDeath();
+  }
+
   function startGame(actId) {
     hideTitle();
     unlockAudio();
     state.running = true;
+    state.dead = false;
     state.actId = actId || state.selectedActId;
     kills = 0;
+    deathTimer = 0;
+    player.reset();
+    player.setLocked(false);
+    setHpBar(state.maxHp, state.maxHp);
+    applyActMood(state.actId);
+
+    waves?.stop();
     story = createStory(corpus);
     waves = createWaveController(
       world.scene,
       player,
       (w, total, kind, n) => {
-        setHud({ wave: `Wave ${w}/${total} · ${kind} · ${n} rakshasas · ${kills} kills` });
+        setHud({ wave: `Wave ${w}/${total} · ${kind} · ${n} · ${kills} kills` });
         sfxWave();
       },
       () => {
@@ -68,18 +144,14 @@ async function boot() {
         sfxWin();
         story?.completeCurrent();
       },
-      (dmg) => {
-        // melee chip — visual only for now (flash + sfx)
-        flash = 0.08;
-        sfxHit();
-      }
+      () => damagePlayer(1)
     );
     archer = createArcher(world.scene, player, waves, {
       onFire: () => sfxBow(),
       onHit: () => {
         kills += 1;
         sfxHit();
-        flash = 0.12;
+        flash = 0.1;
         setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills` });
       },
     });
@@ -100,8 +172,10 @@ async function boot() {
     });
     story.on('actDone', () => {
       setHud({ obj: 'Act complete — dharma upheld' });
-      showDialogue('Valmiki', 'Thus ends this kāṇḍa. Reload the page to choose another act.', 4);
+      showDialogue('Valmiki', 'Thus ends this kāṇḍa. Returning to the kāṇḍa picker…', 3.2);
       sfxWin();
+      waves?.stop();
+      setTimeout(() => returnToTitle(), 3400);
     });
 
     const ok = story.loadAct(state.actId);
@@ -117,10 +191,15 @@ async function boot() {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
     if (state.running) {
-      player.update(dt, input, input.yaw);
+      if (state.dead) {
+        deathTimer -= dt;
+        if (deathTimer <= 0) respawn();
+      } else {
+        player.update(dt, input, input.yaw);
+        waves?.update(dt);
+        archer?.update(dt);
+      }
       camRig.update(dt, player, input.yaw, input.pitch);
-      waves?.update(dt);
-      archer?.update(dt);
     } else {
       const t = now * 0.00015;
       world.camera.position.set(Math.sin(t) * 10, 4, Math.cos(t) * 10);
@@ -137,7 +216,7 @@ async function boot() {
   }
   requestAnimationFrame(frame);
 
-  window.RamaWeb = { state, startGame, THREE };
+  window.RamaWeb = { state, startGame, returnToTitle, THREE };
 }
 
 boot().catch((err) => {

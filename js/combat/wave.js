@@ -23,6 +23,12 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee) 
     nextWave();
   }
 
+  function stop() {
+    running = false;
+    pause = 0;
+    clearAlive();
+  }
+
   function nextWave() {
     if (!running) return;
     wave += 1;
@@ -81,6 +87,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee) 
 
   return {
     start,
+    stop,
     update,
     findTarget,
     get alive() { return alive; },

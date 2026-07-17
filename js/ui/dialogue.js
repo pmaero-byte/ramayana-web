@@ -46,6 +46,11 @@ export function hideTitle() {
   document.getElementById('title')?.classList.add('hidden');
 }
 
+export function showTitle() {
+  document.getElementById('title')?.classList.remove('hidden');
+  hideDialogue();
+}
+
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',

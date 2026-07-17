@@ -93,5 +93,16 @@ export function createWorld(canvas) {
   }
   window.addEventListener('resize', onResize);
 
-  return { renderer, scene, camera, ground };
+  /** Soft palette shift per kāṇḍa (hex like #4f8cff). */
+  function setMood(hex, fogHex) {
+    try {
+      if (hex) scene.background = new THREE.Color(hex).multiplyScalar(0.12);
+      if (fogHex || hex) {
+        const f = new THREE.Color(fogHex || hex).multiplyScalar(0.35);
+        scene.fog.color.copy(f);
+      }
+    } catch (_) { /* ignore bad hex */ }
+  }
+
+  return { renderer, scene, camera, ground, setMood };
 }
