@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Rāmāyaṇa — Web</title>
+  <link rel="stylesheet" href="css/game.css?v=2" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="c"></canvas>
+    <div id="letterbox" class="letterbox" aria-hidden="true">
+      <div class="bar top"></div>
+      <div class="bar bot"></div>
+    </div>
+    <div id="hud" class="hud" data-role="hud">
+      <div id="hud-title" class="hud-title">Yuddha Kāṇḍa</div>
+      <div id="hud-obj" class="hud-obj">—</div>
+      <div id="hud-wave" class="hud-wave">Wave —</div>
+      <div id="hud-hint" class="hud-hint">WASD move · Shift run · RMB orbit · Auto-bow</div>
+    </div>
+    <div id="dialogue" class="dialogue hidden" data-role="hud">
+      <div class="accent"></div>
+      <img id="dlg-portrait" class="portrait" alt="" />
+      <div class="dlg-text">
+        <div id="dlg-speaker" class="speaker"></div>
+        <div id="dlg-line" class="line"></div>
+      </div>
+    </div>
+    <div id="title" class="title-screen" data-role="hud">
+      <div class="title-inner">
+        <h1>RĀMĀYAṆA</h1>
+        <p class="sub">Browser action slice · open stack · no Unity</p>
+        <div id="act-list" class="act-list"></div>
+        <button id="btn-start" class="btn-start" type="button">Begin Yuddha</button>
+        <p class="fine">Three.js + vanilla JS · corpus-driven</p>
+      </div>
+    </div>
+  </div>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.160.0"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js?v=2"></script>
+</body>
+</html>
