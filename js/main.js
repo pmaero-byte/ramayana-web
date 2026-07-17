@@ -238,7 +238,7 @@ async function boot() {
   window.RamaWeb = { state, startGame, returnToTitle, THREE };
 }
 
-boot().catch((err) => {
+boot().then(() => { window.RAMA_BOOT.loaded = true; }).catch((err) => {
   console.error(err);
   const t = document.getElementById('hud-obj');
   if (t) t.textContent = 'Boot failed — see console (serve via http, not file://)';
