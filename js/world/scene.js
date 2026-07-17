@@ -11,7 +11,7 @@ export function createWorld(canvas) {
   scene.fog = new THREE.Fog(0x2a1810, 18, 85);
 
   const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200);
-  camera.position.set(0, 3.2, 7.5);
+  camera.position.set(0, 3.2, -7.5);
 
   const sun = new THREE.DirectionalLight(0xffe0b8, 1.35);
   sun.position.set(12, 22, 8);
