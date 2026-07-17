@@ -12,6 +12,7 @@ export const state = {
   alive: 0,
   corpus: null,
   selectedActId: 'yuddhakanda-war',
+  selectedCharacter: 'rama',
   maxHp: 5,
   hp: 5,
   kills: 0,
@@ -40,26 +41,48 @@ export function setHpBar(hp, maxHp) {
   if (label) label.textContent = `HP ${hp}/${maxHp}`;
 }
 
-const SAVE_KEY = 'ramayana_web_save';
 const HIGH_KEY = 'ramayana_web_high';
+const SLOTS_KEY = 'ramayana_web_slots';
+const SLOT_COUNT = 4;
+
+function readSlots() {
+  try { return JSON.parse(window.localStorage.getItem(SLOTS_KEY) || '{}') || {}; }
+  catch { return {}; }
+}
+function writeSlots(o) {
+  try { window.localStorage.setItem(SLOTS_KEY, JSON.stringify(o)); return true; }
+  catch { return false; }
+}
+
+export function saveSlot(slot, data) {
+  const all = readSlots();
+  all[`slot_${slot}`] = { ...data, ts: Date.now() };
+  return writeSlots(all);
+}
+export function loadSlot(slot) {
+  const all = readSlots();
+  return all[`slot_${slot}`] || null;
+}
+export function deleteSlot(slot) {
+  const all = readSlots();
+  delete all[`slot_${slot}`];
+  return writeSlots(all);
+}
+export function listSlots() {
+  const all = readSlots();
+  const out = [];
+  for (let i = 0; i < SLOT_COUNT; i++) out.push(all[`slot_${i}`] || null);
+  return out;
+}
 
 export function saveGame(actId, kills, hp, maxHp, objectiveTitle) {
-  try {
-    const data = { actId, kills, hp, maxHp, objectiveTitle, ts: Date.now() };
-    window.localStorage.setItem(SAVE_KEY, JSON.stringify(data));
-    return true;
-  } catch { return false; }
+  return saveSlot('auto', { actId, kills, hp, maxHp, objectiveTitle });
 }
-
 export function loadGame() {
-  try {
-    const raw = window.localStorage.getItem(SAVE_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch { return null; }
+  return loadSlot('auto');
 }
-
 export function deleteSave() {
-  try { window.localStorage.removeItem(SAVE_KEY); } catch {}
+  return deleteSlot('auto');
 }
 
 export function getHighScore() {

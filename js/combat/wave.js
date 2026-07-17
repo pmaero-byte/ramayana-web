@@ -96,7 +96,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee) 
   };
 }
 
-/** Kinematic arrows */
+/** Kinematic arrows + ember trail */
 export function createArcher(scene, player, waves, hooks = {}) {
   const arrows = [];
   let cd = 0;
@@ -117,12 +117,27 @@ export function createArcher(scene, player, waves, hooks = {}) {
 
     const mesh = new THREE.Mesh(
       new THREE.CylinderGeometry(0.04, 0.04, 0.7, 6),
-      new THREE.MeshStandardMaterial({ color: 0xd9b44a, metalness: 0.4, roughness: 0.4 })
+      new THREE.MeshStandardMaterial({ color: 0xd9b44a, metalness: 0.4, roughness: 0.4, emissive: 0x331a00, emissiveIntensity: 0.4 })
     );
     mesh.position.copy(origin);
     mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), to);
     scene.add(mesh);
-    arrows.push({ mesh, dir: to, life: 2.2, hit: false });
+
+    // ember trail: short-lived Points behind each arrow
+    const trailCount = 12;
+    const trailGeo = new THREE.BufferGeometry();
+    const tpos = new Float32Array(trailCount * 3);
+    for (let i = 0; i < trailCount; i++) {
+      tpos[i * 3] = origin.x;
+      tpos[i * 3 + 1] = origin.y;
+      tpos[i * 3 + 2] = origin.z;
+    }
+    trailGeo.setAttribute('position', new THREE.BufferAttribute(tpos, 3));
+    const trailMat = new THREE.PointsMaterial({ color: 0xffb060, size: 0.12, transparent: true, opacity: 0.85 });
+    const trail = new THREE.Points(trailGeo, trailMat);
+    scene.add(trail);
+
+    arrows.push({ mesh, trail, trailGeo, trailMat, dir: to, life: 2.2, hit: false, tIdx: 0, tAcc: 0 });
     hooks.onFire?.();
   }
 
@@ -136,6 +151,21 @@ export function createArcher(scene, player, waves, hooks = {}) {
       const a = arrows[i];
       a.life -= dt;
       a.mesh.position.addScaledVector(a.dir, speed * dt);
+
+      // ember trail update (every 2 frames ~ 30hz)
+      a.tAcc += dt;
+      if (a.tAcc > 0.033) {
+        a.tAcc = 0;
+        const p = a.trailGeo.attributes.position.array;
+        const idx = a.tIdx % 12;
+        p[idx * 3] = a.mesh.position.x - a.dir.x * 0.15;
+        p[idx * 3 + 1] = a.mesh.position.y - a.dir.y * 0.15;
+        p[idx * 3 + 2] = a.mesh.position.z - a.dir.z * 0.15;
+        a.tIdx++;
+        a.trailGeo.attributes.position.needsUpdate = true;
+        a.trailMat.opacity = Math.max(0, 0.85 * (a.life / 2.2));
+      }
+
       if (!a.hit) {
         for (const r of waves.alive) {
           if (r.isDead) continue;
@@ -155,6 +185,9 @@ export function createArcher(scene, player, waves, hooks = {}) {
         scene.remove(a.mesh);
         a.mesh.geometry.dispose();
         a.mesh.material.dispose();
+        scene.remove(a.trail);
+        a.trailGeo.dispose();
+        a.trailMat.dispose();
         arrows.splice(i, 1);
       }
     }

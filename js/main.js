@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { state, setHud, setHpBar, saveGame } from './core/state.js';
+import { state, setHud, setHpBar, saveSlot, loadSlot, deleteSlot, listSlots, saveGame, setHighScore } from './core/state.js';
 import { createInput } from './core/input.js';
 import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, startDrone, stopDrone } from './core/audio.js';
@@ -8,8 +8,7 @@ import { createPlayer } from './world/player.js';
 import { createCameraRig } from './world/camera.js';
 import { createWaveController, createArcher } from './combat/wave.js';
 import { createStory } from './story/moments.js';
-import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn } from './ui/dialogue.js';
-import { setHighScore } from './core/state.js';
+import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
 
 async function boot() {
   const canvas = document.getElementById('c');
@@ -38,25 +37,35 @@ async function boot() {
     flashEl.id = 'hit-flash';
     document.getElementById('app')?.appendChild(flashEl);
   }
-  // HUD chrome
-    document.getElementById('btn-fullscreen')?.addEventListener('click', toggleFullscreen);
-    document.getElementById('btn-menu')?.addEventListener('click', () => returnToTitle());
-    document.getElementById('btn-save')?.addEventListener('click', () => {
-      const ok = saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
-      setHud({ wave: ok ? 'Game saved ✓' : 'Save failed' });
-      setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
-    });
-    // keyboard shortcuts
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'f' || e.key === 'F') toggleFullscreen();
-      if (e.key === 'm' || e.key === 'M') { if (state.running) returnToTitle(); }
-    });
 
-    function toggleFullscreen() {
-      const el = document.documentElement;
-      if (!document.fullscreenElement) el.requestFullscreen?.();
-      else document.exitFullscreen?.();
-    }
+  // expose slot helpers for slots UI
+  state.__getSlots = () => {
+    const out = {};
+    try { Object.assign(out, JSON.parse(window.localStorage.getItem('ramayana_web_slots') || '{}')); } catch {}
+    return out;
+  };
+
+  function toggleFullscreen() {
+    const el = document.documentElement;
+    if (!document.fullscreenElement) el.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+
+  document.getElementById('btn-fullscreen')?.addEventListener('click', toggleFullscreen);
+  document.getElementById('btn-menu')?.addEventListener('click', () => returnToTitle());
+  document.getElementById('btn-save')?.addEventListener('click', () => {
+    const ok = saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
+    setHud({ wave: ok ? 'Saved to autoslot ✓' : 'Save failed' });
+    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+  });
+  document.getElementById('btn-slots')?.addEventListener('click', () => toggleSlotsPanel(true));
+  document.getElementById('btn-slots-close')?.addEventListener('click', () => toggleSlotsPanel(false));
+  document.getElementById('btn-slots-hud')?.addEventListener('click', () => toggleSlotsPanel(true));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+    if (e.key === 'm' || e.key === 'M') { if (state.running) returnToTitle(); }
+    if (e.key === 'Escape') toggleSlotsPanel(false);
+  });
 
   buildTitle(
     corpus,
@@ -66,13 +75,52 @@ async function boot() {
     },
     (id) => {
       unlockAudio();
+      toggleSlotsPanel(false);
       startGame(id);
     },
     (saved) => {
       unlockAudio();
+      toggleSlotsPanel(false);
       startGame(saved.actId, saved);
     }
   );
+
+  buildCharacterSelect(corpus, state.selectedCharacter, (id) => {
+    state.selectedCharacter = id;
+    const c = corpus.characters.find(x => x.characterId === id);
+    player.setCharacter?.(id, c?.color);
+  });
+
+  buildSlotsUi(
+    (i, s) => { unlockAudio(); toggleSlotsPanel(false); startGame(s.actId, s); },
+    (i) => { deleteSlot(i); refreshSlotsPanel(); },
+    (i) => saveToSlot(i)
+  );
+
+  function refreshSlotsPanel() {
+    buildSlotsUi(
+      (ii, s) => { unlockAudio(); toggleSlotsPanel(false); startGame(s.actId, s); },
+      (ii) => { deleteSlot(ii); refreshSlotsPanel(); },
+      (ii) => saveToSlot(ii)
+    );
+  }
+
+  function saveToSlot(i) {
+    const ok = saveSlot(i, {
+      actId: state.actId, kills, hp: state.hp, maxHp: state.maxHp,
+      objectiveTitle: state.objectiveTitle, characterId: state.selectedCharacter,
+    });
+    setHud({ wave: ok ? `Saved to slot ${i} ✓` : 'Save failed' });
+    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+    refreshSlotsPanel();
+  }
+
+  function toggleSlotsPanel(show) {
+    const p = document.getElementById('slots-panel');
+    if (!p) return;
+    p.classList.toggle('hidden', !show);
+    if (show) refreshSlotsPanel();
+  }
 
   function applyActMood(actId) {
     world.buildArena?.(actId);
@@ -138,6 +186,13 @@ async function boot() {
     player.reset();
     player.setLocked(false);
     setHpBar(saved?.hp ?? state.maxHp, saved?.maxHp ?? state.maxHp);
+    if (saved?.characterId) {
+      const c = corpus.characters.find(x => x.characterId === saved.characterId);
+      player.setCharacter?.(saved.characterId, c?.color);
+    } else {
+      const c = corpus.characters.find(x => x.characterId === state.selectedCharacter);
+      player.setCharacter?.(state.selectedCharacter, c?.color);
+    }
     applyActMood(state.actId);
 
     waves?.stop();
@@ -211,7 +266,6 @@ async function boot() {
         player.update(dt, input, input.yaw);
         waves?.update(dt);
         archer?.update(dt);
-        // auto-save every ~30s of active play
         autoSaveTimer += dt;
         if (autoSaveTimer > 30) {
           autoSaveTimer = 0;
@@ -235,7 +289,7 @@ async function boot() {
   }
   requestAnimationFrame(frame);
 
-  window.RamaWeb = { state, startGame, returnToTitle, THREE };
+  window.RamaWeb = { state, startGame, returnToTitle, THREE, listSlots, saveSlot, loadSlot };
 }
 
 boot().then(() => { window.RAMA_BOOT.loaded = true; }).catch((err) => {

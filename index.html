@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Rāmāyaṇa — Web</title>
-  <link rel="stylesheet" href="css/game.css?v=8" />
+  <link rel="stylesheet" href="css/game.css?v=9" />
 </head>
 <body>
   <div id="app">
@@ -25,6 +25,7 @@
     </div>
     <div class="chrome" data-role="hud">
       <button type="button" id="btn-save" class="chrome-btn" title="Save">💾</button>
+      <button type="button" id="btn-slots-hud" class="chrome-btn" title="Save slots">📂</button>
       <button type="button" id="btn-menu" class="chrome-btn" title="Kāṇḍa menu">☰</button>
       <button type="button" id="btn-fullscreen" class="chrome-btn" title="Fullscreen">⛶</button>
     </div>
@@ -40,13 +41,22 @@
       <div class="title-inner">
         <h1>RĀMĀYAṆA</h1>
         <p class="sub">Browser action slice · open stack · no Unity</p>
+        <div class="char-section-title">Choose your avatar</div>
+        <div id="char-grid"></div>
+        <div class="char-section-title">Choose your kāṇḍa</div>
         <div id="act-list" class="act-list"></div>
         <button id="btn-start" class="btn-start" type="button">Begin Yuddha</button>
         <button id="btn-continue" class="btn-start btn-continue" type="button" style="display:none">▶ Continue</button>
         <button id="btn-delete-save" class="btn-start btn-delete" type="button" style="display:none">✕ Delete Save</button>
+        <button id="btn-slots" class="btn-start" type="button">📂 Save Slots</button>
         <p id="high-score" class="high-score"></p>
         <p class="fine">Three.js + vanilla JS · corpus-driven · WASD / touch</p>
       </div>
+    </div>
+    <div id="slots-panel" class="hidden" data-role="hud">
+      <h2>SAVE SLOTS</h2>
+      <div id="slot-list" class="slot-list"></div>
+      <button id="btn-slots-close" class="btn-start" type="button">Close</button>
     </div>
   </div>
   <script type="importmap">
@@ -56,7 +66,7 @@
     }
   }
   </script>
-  <script type="module" src="js/main.js?v=8"></script>
+  <script type="module" src="js/main.js?v=9"></script>
   <script>window.RAMA_BOOT = { loaded: false }; setTimeout(() => { if (!window.RAMA_BOOT.loaded) { document.getElementById('hud-obj') && (document.getElementById('hud-obj').textContent = 'Boot failed — check console (need http, not file://)'); console.error('RamaWeb boot did not complete'); } }, 200); </script>
 </body>
 </html>

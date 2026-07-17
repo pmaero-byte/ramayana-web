@@ -1,5 +1,4 @@
 import { portraitUrl } from '../story/moments.js';
-import { getHighScore, deleteSave } from '../core/state.js';
 
 let hideTimer = 0;
 
@@ -26,41 +25,21 @@ export function buildTitle(corpus, onSelect, onStart, onContinue) {
   const list = document.getElementById('act-list');
   const btn = document.getElementById('btn-start');
   const cont = document.getElementById('btn-continue');
-  const delBtn = document.getElementById('btn-delete-save');
-  const scoreEl = document.getElementById('high-score');
   if (!list || !corpus?.acts) return;
   list.innerHTML = '';
   let selected = corpus.acts.find((a) => a.actId === 'yuddhakanda-war')?.actId || corpus.acts[0]?.actId;
 
-  // High score
-  const hs = getHighScore();
-  if (scoreEl && hs) scoreEl.textContent = `🏆 Best: ${hs.kills} kills · ${hs.waves || '-'} waves`;
-
-  // Continue / Delete buttons
   try {
     const saved = JSON.parse(window.localStorage.getItem('ramayana_web_save') || 'null');
-    if (saved && saved.actId) {
+    if (saved && saved.actId && cont) {
       const act = corpus.acts.find(a => a.actId === saved.actId);
-      if (cont) {
-        cont.style.display = '';
-        cont.textContent = `▶ Continue · ${act?.title || saved.actId}`;
-        cont.onclick = () => onContinue?.(saved);
-      }
-      if (delBtn) delBtn.style.display = '';
-    } else {
-      if (cont) cont.style.display = 'none';
-      if (delBtn) delBtn.style.display = 'none';
+      cont.style.display = '';
+      cont.textContent = `▶ Continue · ${act?.title || saved.actId}`;
+      cont.onclick = () => onContinue?.(saved);
+    } else if (cont) {
+      cont.style.display = 'none';
     }
-  } catch {
-    if (cont) cont.style.display = 'none';
-    if (delBtn) delBtn.style.display = 'none';
-  }
-  delBtn?.addEventListener('click', () => {
-    deleteSave();
-    if (cont) cont.style.display = 'none';
-    delBtn.style.display = 'none';
-    if (scoreEl && !getHighScore()) scoreEl.textContent = '';
-  });
+  } catch { if (cont) cont.style.display = 'none'; }
 
   for (const act of corpus.acts) {
     const el = document.createElement('div');
@@ -77,6 +56,69 @@ export function buildTitle(corpus, onSelect, onStart, onContinue) {
   btn?.addEventListener('click', () => onStart?.(selected));
 }
 
+export function buildCharacterSelect(corpus, currentId, onPick) {
+  const grid = document.getElementById('char-grid');
+  if (!grid || !corpus?.characters) return;
+  grid.innerHTML = '';
+  const playable = ['rama', 'sita', 'lakshmana', 'hanuman'];
+  const chars = corpus.characters.filter(c => playable.includes(c.characterId));
+  for (const c of chars) {
+    const el = document.createElement('button');
+    el.type = 'button';
+    el.className = 'char-card' + (c.characterId === currentId ? ' selected' : '');
+    el.style.setProperty('--char-color', c.color || '#888');
+    el.innerHTML = `<img src="assets/portraits/${c.characterId}.png" alt="${esc(c.displayName)}" onerror="this.style.display='none'" /><div class="ct">${esc(c.displayName)}</div><div class="cr">${esc(c.role || '')}</div>`;
+    el.addEventListener('click', () => {
+      grid.querySelectorAll('.char-card').forEach((x) => x.classList.remove('selected'));
+      el.classList.add('selected');
+      onPick?.(c.characterId, c);
+    });
+    grid.appendChild(el);
+  }
+}
+
+export function buildSlotsUi(onLoad, onDelete, onSaveCurrent) {
+  const wrap = document.getElementById('slot-list');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const slots = (window.RamaWeb?.state && window.RamaWeb.state.__getSlots)
+    ? window.RamaWeb.state.__getSlots()
+    : JSON.parse(window.localStorage.getItem('ramayana_web_slots') || '{}');
+  for (let i = 0; i < 4; i++) {
+    const s = slots[`slot_${i}`];
+    const row = document.createElement('div');
+    row.className = 'slot-row' + (s ? '' : ' empty');
+    row.dataset.slot = String(i);
+    const head = document.createElement('div');
+    head.className = 'slot-head';
+    head.textContent = s ? `Slot ${i} · ${s.actId} · ${s.kills} kills` : `Slot ${i} · empty`;
+    row.appendChild(head);
+    if (s) {
+      const dt = document.createElement('div');
+      dt.className = 'slot-sub';
+      const d = new Date(s.ts || 0);
+      dt.textContent = `${d.toLocaleDateString()} ${d.toLocaleTimeString()} · ${s.objectiveTitle || ''}`;
+      row.appendChild(dt);
+    }
+    const actions = document.createElement('div');
+    actions.className = 'slot-actions';
+    const ld = document.createElement('button');
+    ld.className = 'slot-btn slot-load'; ld.type = 'button'; ld.textContent = 'Load';
+    ld.disabled = !s;
+    ld.onclick = () => s && onLoad?.(i, s);
+    const sv = document.createElement('button');
+    sv.className = 'slot-btn slot-save'; sv.type = 'button'; sv.textContent = 'Save here';
+    sv.onclick = () => onSaveCurrent?.(i);
+    const dl = document.createElement('button');
+    dl.className = 'slot-btn slot-del'; dl.type = 'button'; dl.textContent = '✕';
+    dl.disabled = !s;
+    dl.onclick = () => s && onDelete?.(i);
+    actions.append(ld, sv, dl);
+    row.appendChild(actions);
+    wrap.appendChild(row);
+  }
+}
+
 export function hideTitle() {
   document.getElementById('title')?.classList.add('hidden');
 }
@@ -84,22 +126,6 @@ export function hideTitle() {
 export function showTitle() {
   document.getElementById('title')?.classList.remove('hidden');
   hideDialogue();
-  // Refresh high score + continue on show
-  const hs = getHighScore();
-  const se = document.getElementById('high-score');
-  if (se) se.textContent = hs ? `🏆 Best: ${hs.kills} kills · ${hs.waves || '-'} waves` : '';
-  try {
-    const cont = document.getElementById('btn-continue');
-    const del = document.getElementById('btn-delete-save');
-    const saved = JSON.parse(window.localStorage.getItem('ramayana_web_save') || 'null');
-    if (saved && saved.actId) {
-      if (cont) { cont.style.display = ''; cont.textContent = `▶ Continue · ${saved.actId}`; }
-      if (del) del.style.display = '';
-    } else {
-      if (cont) cont.style.display = 'none';
-      if (del) del.style.display = 'none';
-    }
-  } catch {}
 }
 
 export function updateContinueBtn() {

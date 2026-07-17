@@ -1,12 +1,14 @@
 import * as THREE from 'three';
 
+const SKIN_DEFAULT = 0xf2c86a;
+
 export function createPlayer(scene) {
   const group = new THREE.Group();
   group.position.set(0, 0, 0);
 
   const body = new THREE.Mesh(
     new THREE.CapsuleGeometry(0.35, 0.9, 4, 8),
-    new THREE.MeshStandardMaterial({ color: 0xf2c86a, roughness: 0.55, metalness: 0.1 })
+    new THREE.MeshStandardMaterial({ color: SKIN_DEFAULT, roughness: 0.55, metalness: 0.1 })
   );
   body.position.y = 1.0;
   body.castShadow = true;
@@ -20,6 +22,23 @@ export function createPlayer(scene) {
   bow.rotation.z = 0.4;
   group.add(bow);
 
+  const quiver = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.06, 0.06, 0.5, 6),
+    new THREE.MeshStandardMaterial({ color: 0x4a2810 })
+  );
+  quiver.position.set(-0.32, 1.25, -0.05);
+  quiver.rotation.z = -0.15;
+  group.add(quiver);
+
+  // ground shadow disc for cheap grounding
+  const shadow = new THREE.Mesh(
+    new THREE.CircleGeometry(0.6, 24),
+    new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35 })
+  );
+  shadow.rotation.x = -Math.PI / 2;
+  shadow.position.y = 0.02;
+  group.add(shadow);
+
   scene.add(group);
 
   const vel = new THREE.Vector3();
@@ -27,6 +46,7 @@ export function createPlayer(scene) {
   let grounded = true;
   let locked = false;
   let iFrames = 0;
+  let charColor = SKIN_DEFAULT;
   const walk = 4.2;
   const run = 7.4;
   const gravity = 28;
@@ -70,7 +90,10 @@ export function createPlayer(scene) {
     group.position.x = THREE.MathUtils.clamp(group.position.x, -lim, lim);
     group.position.z = THREE.MathUtils.clamp(group.position.z, -lim, lim);
 
-    // i-frame blink
+    // bob + blink
+    body.position.y = 1.0 + (mv.mag > 0.05 ? Math.sin(performance.now() * 0.012) * 0.05 : 0);
+    shadow.material.opacity = 0.35 - Math.min(0.2, group.position.y * 0.04);
+    shadow.scale.setScalar(1 + Math.min(0.4, group.position.y * 0.06));
     body.material.opacity = iFrames > 0 && Math.floor(iFrames * 12) % 2 === 0 ? 0.35 : 1;
     body.material.transparent = iFrames > 0;
   }
@@ -92,7 +115,11 @@ export function createPlayer(scene) {
     if (locked) vel.set(0, 0, 0);
   }
 
-  /** @returns {boolean} true if damage applied */
+  function setCharacter(_id, color) {
+    charColor = typeof color === 'string' ? parseHex(color) : (color || SKIN_DEFAULT);
+    body.material.color = new THREE.Color(charColor);
+  }
+
   function hurt(amount = 1) {
     if (locked || iFrames > 0) return false;
     iFrames = 0.85;
@@ -109,9 +136,13 @@ export function createPlayer(scene) {
       return new THREE.Vector3(Math.sin(group.rotation.y), 0, Math.cos(group.rotation.y));
     },
     get invulnerable() { return iFrames > 0 || locked; },
-    update,
-    reset,
-    setLocked,
-    hurt,
+    update, reset, setLocked, hurt, setCharacter,
   };
+}
+
+function parseHex(s) {
+  if (typeof s !== 'string') return SKIN_DEFAULT;
+  const m = s.replace('#', '');
+  if (m.length !== 6) return SKIN_DEFAULT;
+  return parseInt(m, 16);
 }
