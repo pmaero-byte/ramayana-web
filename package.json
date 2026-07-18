@@ -5,8 +5,8 @@
   "description": "Browser action slice of Rāmāyaṇa — vanilla ES modules + Three.js, no Unity",
   "type": "module",
   "scripts": {
-    "verify": "node .hermes/verify-boot.js && node .hermes/verify-test.mjs",
-    "verify:boot": "node .hermes/verify-boot.js",
+    "verify": "node .hermes/verify-boot.cjs && node .hermes/verify-test.mjs",
+    "verify:boot": "node .hermes/verify-boot.cjs",
     "verify:test": "node .hermes/verify-test.mjs",
     "serve": "python3 -m http.server 8765"
   },

@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '22'
       - name: Boot surface check
-        run: node .hermes/verify-boot.js
+        run: node .hermes/verify-boot.cjs
       - name: ESM unit smoke (formation + i18n)
         run: node .hermes/verify-test.mjs
       - name: Static server smoke
