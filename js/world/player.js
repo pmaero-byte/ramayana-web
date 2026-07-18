@@ -198,15 +198,20 @@ export function createPlayer(scene) {
     return true;
   }
 
+  /** Spawn/respawn grace — writes the closure var (property assign does NOT). */
+  function grantInvuln(ms = 2000) {
+    invulnerableUntil = performance.now() + ms;
+  }
+
   return {
     group,
     get position() { return group.position; },
     get forward() {
       return new THREE.Vector3(Math.sin(group.rotation.y), 0, Math.cos(group.rotation.y));
     },
-    get invulnerable() { return iFrames > 0 || locked; },
+    get invulnerable() { return iFrames > 0 || locked || performance.now() < invulnerableUntil; },
     get moveSpeed() { return lastMoveSpeed; },
-    update, reset, setLocked, hurt, setCharacter,
+    update, reset, setLocked, hurt, setCharacter, grantInvuln,
   };
 }
 

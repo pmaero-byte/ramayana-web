@@ -107,27 +107,27 @@ export function createCoverSet(scene, player, actId) {
   // Deterministic per-act variation
   const layouts = {
     'yuddhakanda-war': [
-      ['wall', -4, 2, 2.6], ['barrel', -2, -3, 0.5], ['crate', 2, -3, 1.0],
-      ['barrel', 4, 2, 0.45], ['crate', -1, 4, 0.9], ['wall', 3, 1, 2.0],
-      ['barrel', -3, -1, 0.5], ['crate', 1, 1, 0.85],
+      ['wall', -5, 3, 2.6], ['barrel', -3, -4, 0.5], ['crate', 3, -4, 1.0],
+      ['barrel', 5, 3, 0.45], ['crate', -2, 6, 0.9], ['wall', 4, 2, 2.0],
+      ['barrel', -4, -2, 0.5], ['crate', 2, 5, 0.85],
     ],
     'kishkindha-alliance': [
-      ['wall', -3, 3, 3.0], ['crate', 3, 2, 1.1], ['crate', -1, -4, 1.0],
-      ['barrel', 2, -2, 0.5], ['barrel', -4, 0, 0.5], ['wall', 1, 4, 2.5],
+      ['wall', -4, 4, 3.0], ['crate', 4, 3, 1.1], ['crate', -2, -5, 1.0],
+      ['barrel', 3, -3, 0.5], ['barrel', -5, 1, 0.5], ['wall', 2, 5, 2.5],
     ],
     'sundarakanda-leap': [
-      ['barrel', -2, 2, 0.5], ['barrel', 2, 2, 0.5], ['crate', 0, 4, 1.2],
-      ['wall', 4, -2, 2.0], ['wall', -4, -2, 2.0], ['crate', 0, -3, 0.9],
+      ['barrel', -3, 3, 0.5], ['barrel', 3, 3, 0.5], ['crate', 0, 5, 1.2],
+      ['wall', 5, -3, 2.0], ['wall', -5, -3, 2.0], ['crate', 0, -4, 0.9],
     ],
     'ayodhya-dharma': [
-      ['wall', -4, 1, 3.4], ['wall', 4, 1, 3.4], ['crate', 0, 0, 1.1],
-      ['barrel', -2, 4, 0.5], ['barrel', 2, 4, 0.5],
+      ['wall', -5, 2, 3.4], ['wall', 5, 2, 3.4], ['crate', 0, 5, 1.1],
+      ['barrel', -3, 5, 0.5], ['barrel', 3, 5, 0.5],
     ],
   };
   const defaultLayout = [
-    ['crate', -2, -2, 1.0], ['crate', 2, -2, 1.0],
-    ['barrel', -3, 2, 0.5], ['barrel', 3, 2, 0.5],
-    ['wall', 0, 4, 2.2], ['wall', 0, -4, 2.2],
+    ['crate', -3, -3, 1.0], ['crate', 3, -3, 1.0],
+    ['barrel', -4, 3, 0.5], ['barrel', 4, 3, 0.5],
+    ['wall', 0, 5, 2.2], ['wall', 0, -5, 2.2],
   ];
   const plan = layouts[actId] || defaultLayout;
   for (const [kind, x, z, sz] of plan) {

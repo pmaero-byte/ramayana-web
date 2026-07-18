@@ -5,10 +5,10 @@ import { createInput } from './core/input.js';
 import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, startDrone, stopDrone } from './core/audio.js';
 import { createWorld } from './world/scene.js';
-import { createPlayer } from './world/player.js';
+import { createPlayer } from './world/player.js?v=50';
 import { createCameraRig } from './world/camera.js';
-import { createWaveController, createArcher } from './combat/wave.js';
-import { createCoverSet } from './combat/cover.js';
+import { createWaveController, createArcher } from './combat/wave.js?v=51';
+import { createCoverSet } from './combat/cover.js?v=50';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
 
@@ -284,6 +284,7 @@ async function boot() {
     state.dead = false;
     player.reset();
     player.setLocked(false);
+    player.grantInvuln?.(2000);
     setHpBar(state.maxHp, state.maxHp);
     setHud({ obj: state.objectiveTitle || 'Continue the fight' });
     waves?.start(3);
@@ -318,7 +319,7 @@ async function boot() {
     player.setLocked(false);
     setHpBar(saved?.hp ?? state.maxHp, saved?.maxHp ?? state.maxHp);
     // brief invulnerability at game start so first wave doesn't instakill
-    player.invulnerableUntil = performance.now() + 2000;
+    player.grantInvuln?.(2000);
     if (saved?.characterId) {
       const c = corpus.characters.find(x => x.characterId === saved.characterId);
       player.setCharacter?.(saved.characterId, c?.color);

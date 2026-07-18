@@ -196,6 +196,66 @@ export function createArcher(scene, player, waves, hooks = {}) {
       }
     }
   }
+
+  // Floating damage numbers ("−1") — GTA-style hit confirm
+  const dmgNums = [];
+  function spawnDamageNumber(pos, amount) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 128;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 128, 64);
+    ctx.font = 'bold 42px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = 'rgba(20,8,0,0.85)';
+    ctx.fillStyle = '#ffe070';
+    const label = '−' + String(amount);
+    ctx.strokeText(label, 64, 32);
+    ctx.fillText(label, 64, 32);
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.needsUpdate = true;
+    const mat = new THREE.SpriteMaterial({
+      map: tex,
+      transparent: true,
+      depthWrite: false,
+      depthTest: false,
+      opacity: 1,
+    });
+    const spr = new THREE.Sprite(mat);
+    spr.position.set(pos.x + (Math.random() - 0.5) * 0.35, pos.y + 0.4, pos.z + (Math.random() - 0.5) * 0.35);
+    spr.scale.set(1.1, 0.55, 1);
+    spr.renderOrder = 20;
+    scene.add(spr);
+    dmgNums.push({
+      spr, mat, tex,
+      life: 0.85,
+      vy: 1.6 + Math.random() * 0.5,
+      vx: (Math.random() - 0.5) * 0.6,
+    });
+  }
+  function updateDamageNumbers(dt) {
+    for (let i = dmgNums.length - 1; i >= 0; i--) {
+      const d = dmgNums[i];
+      d.life -= dt;
+      if (d.life <= 0) {
+        scene.remove(d.spr);
+        d.mat.map?.dispose();
+        d.mat.dispose();
+        d.tex?.dispose();
+        dmgNums.splice(i, 1);
+      } else {
+        const p = 1 - d.life / 0.85;
+        d.spr.position.y += d.vy * dt;
+        d.spr.position.x += d.vx * dt;
+        d.mat.opacity = Math.max(0, 1 - p * p);
+        const s = 1.1 + p * 0.35;
+        d.spr.scale.set(s, s * 0.5, 1);
+      }
+    }
+  }
+
   let cd = 0;
   const interval = 0.55;
   const speed = 22;
@@ -214,9 +274,12 @@ export function createArcher(scene, player, waves, hooks = {}) {
     if (Math.random() > hitChance) return; // miss — no arrow fired this cycle
     const to = new THREE.Vector3(
       target.position.x - origin.x,
-      0.9 - origin.y + 1,
+      0,
       target.position.z - origin.z
     ).normalize();
+    // Keep a slight loft so the shaft reads above ground, without breaking hit tests
+    to.y = 0.02;
+    to.normalize();
 
     const mesh = new THREE.Mesh(
       new THREE.CylinderGeometry(0.04, 0.04, 0.7, 6),
@@ -265,16 +328,24 @@ export function createArcher(scene, player, waves, hooks = {}) {
     }
     updateSparks(dt);
     updateRings(dt);
+    updateDamageNumbers(dt);
     for (let i = arrows.length - 1; i >= 0; i--) {
       const a = arrows[i];
       a.life -= dt;
       a.mesh.position.addScaledVector(a.dir, speed * dt);
 
-      // Cover block: raycast each frame, if blocked, kill arrow without hit
-      if (!a.blocked && hooks.cover && hooks.cover.blocksLine(a.origin, a.mesh.position)) {
-        a.blocked = true;
-        a.hit = true;        // mark consumed
-        a.life = Math.min(a.life, 0.05);
+      // Cover block: only after the arrow has left the muzzle (≥1.6u).
+      // Near-origin props used to hard-block every shot at spawn.
+      if (!a.blocked && hooks.cover) {
+        const tdx = a.mesh.position.x - a.origin.x;
+        const tdz = a.mesh.position.z - a.origin.z;
+        const traveled2 = tdx * tdx + tdz * tdz;
+        if (traveled2 > 2.56 && hooks.cover.blocksLine(a.origin, a.mesh.position)) {
+          a.blocked = true;
+          a.hit = true;        // mark consumed
+          a.life = Math.min(a.life, 0.05);
+          spawnSparks(a.mesh.position); // cover impact chips
+        }
       }
 
       // Tracer line update: from origin to current arrow position
@@ -305,15 +376,17 @@ export function createArcher(scene, player, waves, hooks = {}) {
       if (!a.hit) {
         for (const r of waves.alive) {
           if (r.isDead) continue;
+          // XZ proximity — Y loft used to make 3D sphere tests always miss
           const dx = r.position.x - a.mesh.position.x;
-          const dy = 1.0 - a.mesh.position.y;
           const dz = r.position.z - a.mesh.position.z;
-          if (dx * dx + dy * dy + dz * dz < 0.55 * 0.55) {
+          const dy = Math.abs((r.position.y + 1.0) - a.mesh.position.y);
+          if (dx * dx + dz * dz < 0.75 * 0.75 && dy < 1.6) {
             r.damage(dmg);
             a.hit = true;
             a.life = 0;
             spawnSparks(a.mesh.position);
             spawnRing(a.mesh.position);
+            spawnDamageNumber(a.mesh.position, dmg);
             hooks.onHit?.(r);
             break;
           }
