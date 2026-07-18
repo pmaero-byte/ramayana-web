@@ -29,6 +29,7 @@ async function boot() {
   let archer = null;
   let cover = null;
   let kills = 0;
+  let streak = 0;
   let last = performance.now();
   let flash = 0;
   let deathTimer = 0;
@@ -216,6 +217,7 @@ async function boot() {
     setHpBar(state.maxHp, state.maxHp);
     setHud({ obj: state.objectiveTitle || 'Continue the fight' });
     waves?.start(3);
+    streak = 0;
     const ov = document.getElementById('death-overlay');
     if (ov) ov.classList.add('hidden');
   }
@@ -228,6 +230,7 @@ async function boot() {
     flash = 0.14;
     sfxHit();
     camRig.damageHit();
+    streak = 0; // player took damage — streak breaks
     if (hp <= 0) onPlayerDeath();
   }
 
@@ -278,10 +281,11 @@ async function boot() {
       onFire: () => sfxBow(),
       onHit: () => {
         kills += 1;
+        streak += 1;
         sfxHit();
         camRig.killHit();
         flash = 0.1;
-        setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills` });
+        setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills${streak >= 3 ? `  · STREAK x${streak}` : ''}` });
       },
       cover,
     });
