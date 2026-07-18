@@ -111,6 +111,12 @@ export function createArcher(scene, player, waves, hooks = {}) {
     origin.y = 1.2;
     const target = waves.findTarget(origin, player.forward);
     if (!target) return;
+    // Accuracy penalty: stationary = 90% hit, moving = 60% hit.
+    // Lets a few rakshasas slip through to melee so the player
+    // actually sees combat instead of standing still watching arrows.
+    const moving = (player.moveSpeed || 0) > 0.1;
+    const hitChance = moving ? 0.6 : 0.9;
+    if (Math.random() > hitChance) return; // miss — no arrow fired this cycle
     const to = new THREE.Vector3(
       target.position.x - origin.x,
       0.9 - origin.y + 1,

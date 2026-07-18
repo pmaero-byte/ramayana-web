@@ -46,7 +46,9 @@ export function createPlayer(scene) {
   let grounded = true;
   let locked = false;
   let iFrames = 0;
+  let invulnerableUntil = 0;
   let charColor = SKIN_DEFAULT;
+  let lastMoveSpeed = 0;
   const walk = 4.2;
   const run = 7.4;
   const gravity = 28;
@@ -66,6 +68,7 @@ export function createPlayer(scene) {
     const target = new THREE.Vector3(fx, 0, fz).multiplyScalar(speed * mv.mag);
     vel.x = THREE.MathUtils.damp(vel.x, target.x, 12, dt);
     vel.z = THREE.MathUtils.damp(vel.z, target.z, 12, dt);
+    lastMoveSpeed = Math.hypot(vel.x, vel.z);
 
     if (input.jump && grounded) {
       yVel = 8.5;
@@ -137,6 +140,7 @@ export function createPlayer(scene) {
       return new THREE.Vector3(Math.sin(group.rotation.y), 0, Math.cos(group.rotation.y));
     },
     get invulnerable() { return iFrames > 0 || locked; },
+    get moveSpeed() { return lastMoveSpeed; },
     update, reset, setLocked, hurt, setCharacter,
   };
 }

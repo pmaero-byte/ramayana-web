@@ -44,8 +44,8 @@ export function createCameraRig(camera) {
     const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(pitch, yaw, 0, 'YXZ'));
     const right = new THREE.Vector3(1, 0, 0).applyQuaternion(q);
 
-    // Time-scale slow-mo on kill
-    const ts = killFreeze > 0 ? 0.18 : 1;
+    // Time-scale slow-mo on kill — capped to avoid stuck-slow-mo state.
+    const ts = killFreeze > 0 ? Math.max(0.5, 1 - killFreeze * 3) : 1;
     if (killFreeze > 0) killFreeze = Math.max(0, killFreeze - dt);
     timeScale = ts;
 
