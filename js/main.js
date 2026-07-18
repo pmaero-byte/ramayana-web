@@ -206,6 +206,8 @@ async function boot() {
     player.reset();
     player.setLocked(false);
     setHpBar(saved?.hp ?? state.maxHp, saved?.maxHp ?? state.maxHp);
+    // brief invulnerability at game start so first wave doesn't instakill
+    player.invulnerableUntil = performance.now() + 2000;
     if (saved?.characterId) {
       const c = corpus.characters.find(x => x.characterId === saved.characterId);
       player.setCharacter?.(saved.characterId, c?.color);
@@ -309,7 +311,7 @@ async function boot() {
   }
   requestAnimationFrame(frame);
 
-  window.RamaWeb = { state, startGame, returnToTitle, THREE, listSlots, saveSlot, loadSlot, setLocale, getLocale, availableLocales };
+  window.RamaWeb = { state, startGame, returnToTitle, THREE, listSlots, saveSlot, loadSlot, setLocale, getLocale, availableLocales, scene: world.scene, camera: world.camera, player };
 }
 
 boot().then(() => { window.RAMA_BOOT.loaded = true; }).catch((err) => {

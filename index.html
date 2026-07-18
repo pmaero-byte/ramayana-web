@@ -67,7 +67,7 @@
     }
   }
   </script>
-  <script type="module" src="js/main.js?v=11"></script>
-  <script>window.RAMA_BOOT = { loaded: false }; setTimeout(() => { if (!window.RAMA_BOOT.loaded) { document.getElementById('hud-obj') && (document.getElementById('hud-obj').textContent = 'Boot failed — check console (need http, not file://)'); console.error('RamaWeb boot did not complete'); } }, 200); </script>
+  <script type="module" src="js/main.js?v=13"></script>
+  <script>window.RAMA_BOOT = { loaded: false }; setTimeout(() => { if (!window.RAMA_BOOT.loaded && !window.RamaWeb) { const t = document.getElementById('hud-obj'); if (t) t.textContent = 'Boot failed — check console (need http, not file://)'; console.error('RamaWeb boot did not complete in 3s'); } }, 3000); </script>
 </body>
 </html>

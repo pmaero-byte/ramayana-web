@@ -40,7 +40,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee) 
     const kind = kindForWave(wave);
     const origin = player.position;
     const forward = player.forward;
-    const pts = spawnPoints(kind, 3 + wave, origin, forward, 6.5);
+    const pts = spawnPoints(kind, 3 + wave, origin, forward, 9 + wave * 2);
     alive = pts.map((p, i) => createRakshasa(scene, p, 2 + wave));
     onWave?.(wave, total, kind, alive.length);
   }

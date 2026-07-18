@@ -119,9 +119,10 @@ export function createPlayer(scene) {
     charColor = typeof color === 'string' ? parseHex(color) : (color || SKIN_DEFAULT);
     body.material.color = new THREE.Color(charColor);
   }
-
+  /** @returns {boolean} true if damage applied */
   function hurt(amount = 1) {
     if (locked || iFrames > 0) return false;
+    if (performance.now() < (invulnerableUntil || 0)) return false;
     iFrames = 0.85;
     body.material.emissive = new THREE.Color(0x661111);
     body.material.emissiveIntensity = 0.8;
