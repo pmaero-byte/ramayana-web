@@ -8,6 +8,7 @@ import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js';
 import { createCameraRig } from './world/camera.js';
 import { createWaveController, createArcher } from './combat/wave.js';
+import { createCoverSet } from './combat/cover.js';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
 
@@ -26,6 +27,7 @@ async function boot() {
   let story = null;
   let waves = null;
   let archer = null;
+  let cover = null;
   let kills = 0;
   let last = performance.now();
   let flash = 0;
@@ -148,6 +150,8 @@ async function boot() {
 
   function returnToTitle() {
     waves?.stop();
+    cover?.dispose();
+    cover = null;
     archer = null;
     story = null;
     state.running = false;
@@ -219,6 +223,8 @@ async function boot() {
     applyActMood(state.actId);
 
     waves?.stop();
+    cover?.dispose();
+    cover = createCoverSet(world.scene, player, state.actId);
     story = createStory(corpus);
     waves = createWaveController(
       world.scene,
