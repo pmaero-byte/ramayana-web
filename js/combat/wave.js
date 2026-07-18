@@ -175,6 +175,35 @@ export function createArcher(scene, player, waves, hooks = {}) {
     sparks.push({ pts, geo, mat, velocities, life: 0.45 });
   }
 
+  // Wood/stone chips when an arrow smacks cover
+  function spawnCoverChips(pos) {
+    const count = 12;
+    const geo = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const velocities = [];
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = pos.x + (Math.random() - 0.5) * 0.2;
+      positions[i * 3 + 1] = (pos.y || 0.8) + Math.random() * 0.3;
+      positions[i * 3 + 2] = pos.z + (Math.random() - 0.5) * 0.2;
+      velocities.push({
+        x: (Math.random() - 0.5) * 5,
+        y: 1.5 + Math.random() * 3.5,
+        z: (Math.random() - 0.5) * 5,
+      });
+    }
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const mat = new THREE.PointsMaterial({
+      color: 0xc4a06a,
+      size: 0.14,
+      transparent: true,
+      opacity: 1,
+      depthWrite: false,
+    });
+    const pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+    sparks.push({ pts, geo, mat, velocities, life: 0.55 });
+  }
+
   function updateSparks(dt) {
     for (let i = sparks.length - 1; i >= 0; i--) {
       const s = sparks[i];
@@ -386,11 +415,20 @@ export function createArcher(scene, player, waves, hooks = {}) {
         const tdx = a.mesh.position.x - a.origin.x;
         const tdz = a.mesh.position.z - a.origin.z;
         const traveled2 = tdx * tdx + tdz * tdz;
-        if (traveled2 > 2.56 && hooks.cover.blocksLine(a.origin, a.mesh.position)) {
-          a.blocked = true;
-          a.hit = true;        // mark consumed
-          a.life = Math.min(a.life, 0.05);
-          spawnSparks(a.mesh.position); // cover impact chips
+        if (traveled2 > 2.56) {
+          const hit = hooks.cover.hitTest
+            ? hooks.cover.hitTest(a.origin, a.mesh.position)
+            : (hooks.cover.blocksLine(a.origin, a.mesh.position) ? { point: a.mesh.position } : null);
+          if (hit) {
+            a.blocked = true;
+            a.hit = true;
+            a.life = Math.min(a.life, 0.05);
+            const p = hit.point || a.mesh.position;
+            spawnCoverChips(p);
+            spawnSparks(p);
+            hit.item?.hit?.(1.4);
+            hooks.onCoverHit?.(p, hit.item);
+          }
         }
       }
 

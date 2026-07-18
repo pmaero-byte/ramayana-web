@@ -6,9 +6,9 @@ import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, sfxGrowl, startDrone, stopDrone } from './core/audio.js?v=58';
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
-import { createCameraRig } from './world/camera.js';
-import { createWaveController, createArcher } from './combat/wave.js?v=59';
-import { createCoverSet } from './combat/cover.js?v=50';
+import { createCameraRig } from './world/camera.js?v=60';
+import { createWaveController, createArcher } from './combat/wave.js?v=60';
+import { createCoverSet } from './combat/cover.js?v=60';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
 
@@ -339,10 +339,12 @@ async function boot() {
       (w, total, kind, n) => {
         setHud({ wave: `Wave ${w}/${total} · ${kind} · ${n} · ${kills} kills` });
         sfxWave();
-        // Boss intro: brief slow-mo + extra shake when wave 3 spawns
+        // Boss intro: longer freeze + FOV punch + roar + cue line
         if (w === 3) {
-          camRig.killHit?.();
+          if (typeof camRig.bossIntro === 'function') camRig.bossIntro();
+          else camRig.killHit?.();
           sfxBossRoar();
+          showDialogue('Rama', 'The asura lord rises — hold the line.', 2.2);
         }
       },
       () => {

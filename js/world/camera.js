@@ -24,6 +24,12 @@ export function createCameraRig(camera) {
   function punchFov(amount) { fovBoost = Math.min(fovBoost + amount, 14); }
   function killHit() { killFreeze = 0.22; punchFov(8); shakeAdd(0.6); }
   function damageHit() { shakeAdd(0.35); hitFlash = 0.18; }
+  /** Wave-3 boss entrance: longer freeze, harder FOV punch, heavy shake */
+  function bossIntro() {
+    killFreeze = 0.55;
+    punchFov(16);
+    shakeAdd(1.15);
+  }
 
   function update(dt, target, yaw, pitch, opts = {}) {
     const speed = opts.moveSpeed || 0; // 0..1
@@ -99,6 +105,7 @@ export function createCameraRig(camera) {
     punchFov,
     killHit,
     damageHit,
+    bossIntro,
     getTimeScale,
   };
 }

@@ -136,28 +136,38 @@ export function createCoverSet(scene, player, actId) {
     else if (kind === 'wall') lowWall(x, z, sz || 2.6, 0.9);
   }
 
-  // Check if cover blocks line of sight between player and target
-  function blocksLine(from, to) {
+  // Check if cover blocks line of sight between player and target.
+  // Returns hit item + world point, or null.
+  function hitTest(from, to) {
+    let best = null;
+    let bestT = 2;
     for (const it of items) {
       const p = it.group.position;
       const dx = to.x - from.x, dz = to.z - from.z;
       const segLen2 = dx * dx + dz * dz;
       if (segLen2 < 0.01) continue;
-      // Closest point on segment
       const t = Math.max(0, Math.min(1, ((p.x - from.x) * dx + (p.z - from.z) * dz) / segLen2));
       const cx = from.x + dx * t, cz = from.z + dz * t;
       const ddx = p.x - cx, ddz = p.z - cz;
       const dist2 = ddx * ddx + ddz * ddz;
       const r = it.kind === 'wall' ? 0.4 : (it.kind === 'crate' ? (it.s / 2) + 0.3 : it.r + 0.3);
-      if (dist2 < r * r) return true;
+      if (dist2 < r * r && t < bestT) {
+        bestT = t;
+        const y = from.y + ((to.y ?? 1.2) - (from.y ?? 1.2)) * t;
+        best = { item: it, point: { x: cx, y, z: cz }, t };
+      }
     }
-    return false;
+    return best;
+  }
+  function blocksLine(from, to) {
+    return !!hitTest(from, to);
   }
 
   return {
     group,
     items,
     blocksLine,
+    hitTest,
     dispose() {
       scene.remove(group);
       group.traverse(o => {
