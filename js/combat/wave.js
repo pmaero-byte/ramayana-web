@@ -44,7 +44,12 @@ export function createWaveController(scene, player, onWave, onAllDone, onClear, 
     const origin = player.position;
     const forward = player.forward;
     const pts = spawnPoints(kind, 3 + wave, origin, forward, 9 + wave * 2);
-    alive = pts.map((p, i) => createRakshasa(scene, p, 2 + wave, { cover }));
+    alive = pts.map((p, i) => {
+      // Wave 3 last enemy is the boss-tier (hp=8, scale 1.45)
+      const isFinalBoss = wave === 3 && i === pts.length - 1;
+      const hp = isFinalBoss ? 8 : 2 + wave;
+      return createRakshasa(scene, p, hp, { cover });
+    });
     prevAliveCount = alive.length;
     onWave?.(wave, total, kind, alive.length);
   }

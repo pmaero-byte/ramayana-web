@@ -3,12 +3,18 @@ import * as THREE from 'three';
 export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   const speed = opts.speed ?? (2.4 + Math.random() * 0.8);
   const cover = opts.cover || null;
+  // Boss-tier scaling: hp >= 6 → larger mesh + dark red glow aura
+  const isBoss = hp >= 6;
+  const scale = isBoss ? 1.45 : 1.0;
+  const baseColor = isBoss ? 0x4a0a14 : 0x6b2a3a;
+  const headColor = isBoss ? 0x2a0610 : 0x4a1825;
   const group = new THREE.Group();
   group.position.set(pos.x, 0, pos.z);
+  group.scale.setScalar(scale);
 
   const body = new THREE.Mesh(
     new THREE.CapsuleGeometry(0.4, 0.85, 4, 8),
-    new THREE.MeshStandardMaterial({ color: 0x6b2a3a, roughness: 0.75 })
+    new THREE.MeshStandardMaterial({ color: baseColor, roughness: 0.75 })
   );
   body.position.y = 1.0;
   body.castShadow = true;
@@ -17,7 +23,7 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   // Head (rakshasa: demonic)
   const head = new THREE.Mesh(
     new THREE.SphereGeometry(0.26, 12, 10),
-    new THREE.MeshStandardMaterial({ color: 0x4a1825, roughness: 0.7 })
+    new THREE.MeshStandardMaterial({ color: headColor, roughness: 0.7 })
   );
   head.position.y = 1.72;
   head.castShadow = true;
@@ -68,6 +74,31 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   const clawFrontR = clawFrontL.clone();
   clawFrontR.position.x = 0.45;
   group.add(clawFrontR);
+
+  // Boss aura: glowing red point cloud at feet (signals threat)
+  if (isBoss) {
+    const auraCount = 32;
+    const auraGeo = new THREE.BufferGeometry();
+    const auraPos = new Float32Array(auraCount * 3);
+    for (let i = 0; i < auraCount; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 0.5 + Math.random() * 0.6;
+      auraPos[i * 3] = Math.cos(angle) * radius;
+      auraPos[i * 3 + 1] = Math.random() * 0.15;
+      auraPos[i * 3 + 2] = Math.sin(angle) * radius;
+    }
+    auraGeo.setAttribute('position', new THREE.BufferAttribute(auraPos, 3));
+    const auraMat = new THREE.PointsMaterial({
+      color: 0xff2200,
+      size: 0.16,
+      transparent: true,
+      opacity: 0.7,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const aura = new THREE.Points(auraGeo, auraMat);
+    group.add(aura);
+  }
 
   const crest = new THREE.Mesh(
     new THREE.ConeGeometry(0.18, 0.4, 6),
