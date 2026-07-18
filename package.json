@@ -1,0 +1,17 @@
+{
+  "name": "ramayana-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser action slice of Rāmāyaṇa — vanilla ES modules + Three.js, no Unity",
+  "type": "module",
+  "scripts": {
+    "verify": "node .hermes/verify-boot.js && node .hermes/verify-test.mjs",
+    "verify:boot": "node .hermes/verify-boot.js",
+    "verify:test": "node .hermes/verify-test.mjs",
+    "serve": "python3 -m http.server 8765"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
