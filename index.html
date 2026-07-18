@@ -21,6 +21,7 @@
         <div id="hp-label" class="hp-label">HP 5/5</div>
         <div class="hp-track"><div id="hp-fill" class="hp-fill"></div></div>
       </div>
+      <canvas id="minimap" class="minimap" width="160" height="160"></canvas>
       <div id="hud-hint" class="hud-hint">WASD · Shift run · RMB orbit · Auto-bow · Esc menu</div>
     </div>
     <div class="chrome" data-role="hud">
@@ -76,7 +77,7 @@
     }
   }
   </script>
-  <script type="module" src="js/main.js?v=44"></script>
+  <script type="module" src="js/main.js?v=45"></script>
   <script>window.RAMA_BOOT = { loaded: false }; setTimeout(() => { if (!window.RAMA_BOOT.loaded && !window.RamaWeb) { const t = document.getElementById('hud-obj'); if (t) t.textContent = 'Boot failed — check console (need http, not file://)'; console.error('RamaWeb boot did not complete in 3s'); } }, 3000); </script>
 </body>
 </html>

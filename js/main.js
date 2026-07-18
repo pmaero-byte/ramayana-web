@@ -405,6 +405,80 @@ async function boot() {
     waves.start(3);
   }
 
+  const minimap = document.getElementById('minimap');
+  const mctx = minimap.getContext('2d');
+  function drawMinimap() {
+    if (!mctx) return;
+    const W = minimap.width, H = minimap.height;
+    const cx = W / 2, cy = H / 2;
+    // World maps roughly to [-14, +14] in xz. Scale to ~75 radius.
+    const R = 75;
+    const S = R / 14;
+    mctx.clearRect(0, 0, W, H);
+    mctx.save();
+    mctx.translate(cx, cy);
+    // Background ring
+    mctx.fillStyle = 'rgba(40, 24, 8, 0.6)';
+    mctx.beginPath();
+    mctx.arc(0, 0, R, 0, Math.PI * 2);
+    mctx.fill();
+    // Arena ring
+    mctx.strokeStyle = '#d4a017';
+    mctx.lineWidth = 2;
+    mctx.beginPath();
+    mctx.arc(0, 0, R, 0, Math.PI * 2);
+    mctx.stroke();
+    // Center cross
+    mctx.strokeStyle = 'rgba(212, 160, 23, 0.4)';
+    mctx.lineWidth = 1;
+    mctx.beginPath();
+    mctx.moveTo(-R, 0); mctx.lineTo(R, 0);
+    mctx.moveTo(0, -R); mctx.lineTo(0, R);
+    mctx.stroke();
+    // Player as yellow dot (always at center)
+    if (player) {
+      mctx.fillStyle = '#4a90e2';
+      mctx.beginPath();
+      mctx.arc(0, 0, 4, 0, Math.PI * 2);
+      mctx.fill();
+      // Direction triangle (player forward)
+      const yaw = input.yaw || 0;
+      mctx.fillStyle = '#7ec0ff';
+      mctx.beginPath();
+      mctx.moveTo(0, -8);
+      mctx.lineTo(-3, -3);
+      mctx.lineTo(3, -3);
+      mctx.closePath();
+      mctx.fill();
+      mctx.rotate(yaw); // intentionally applied to canvas; visual cue only
+    }
+    // Enemies as red dots, position relative to player (subtract player pos first)
+    if (waves?.alive) {
+      const px = player?.position?.x || 0;
+      const pz = player?.position?.z || 0;
+      for (const r of waves.alive) {
+        if (r.isDead) continue;
+        const ex = (r.position.x - px) * S;
+        const ey = (r.position.z - pz) * S;
+        const len = Math.hypot(ex, ey);
+        if (len > R - 4) continue; // clip outside radar
+        mctx.fillStyle = r.isBoss ? '#ff4400' : '#c83232';
+        mctx.beginPath();
+        mctx.arc(ex, ey, r.isBoss ? 4 : 2.5, 0, Math.PI * 2);
+        mctx.fill();
+      }
+    }
+    mctx.restore();
+    // Compass labels
+    mctx.fillStyle = '#d4a017';
+    mctx.font = 'bold 10px system-ui';
+    mctx.textAlign = 'center';
+    mctx.fillText('N', cx, 12);
+    mctx.fillText('S', cx, H - 4);
+    mctx.fillText('W', 6, cy + 4);
+    mctx.fillText('E', W - 6, cy + 4);
+  }
+
   function frame(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
@@ -442,6 +516,7 @@ async function boot() {
       flashEl.style.opacity = '0';
     }
     world.renderer.render(world.scene, world.camera);
+    drawMinimap();
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
