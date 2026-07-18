@@ -337,6 +337,10 @@ async function boot() {
       (w, total, kind, n) => {
         setHud({ wave: `Wave ${w}/${total} · ${kind} · ${n} · ${kills} kills` });
         sfxWave();
+        // Boss intro: brief slow-mo + extra shake when wave 3 spawns
+        if (w === 3) {
+          camRig.killHit?.();
+        }
       },
       () => {
         setHud({ wave: `All waves cleared · ${kills} kills` });
