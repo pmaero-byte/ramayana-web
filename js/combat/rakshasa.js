@@ -36,11 +36,15 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
     damage(n) {
       if (dead || n <= 0) return false;
       current = Math.max(0, current - n);
-      body.material.emissive = new THREE.Color(0x550000);
-      body.material.emissiveIntensity = 0.7;
+      body.material.emissive = new THREE.Color(0xffaa00);
+      body.material.emissiveIntensity = 1.2;
+      body.scale.set(1.18, 0.86, 1.18);
       setTimeout(() => {
-        if (!dead) body.material.emissiveIntensity = 0;
-      }, 80);
+        if (!dead) {
+          body.material.emissiveIntensity = 0;
+          body.scale.set(1, 1, 1);
+        }
+      }, 100);
       if (current === 0) {
         dead = true;
         body.visible = false;
