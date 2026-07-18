@@ -48,7 +48,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onClear, 
       // Wave 3 last enemy is the boss-tier (hp=8, scale 1.45)
       const isFinalBoss = wave === 3 && i === pts.length - 1;
       const hp = isFinalBoss ? 8 : 2 + wave;
-      return createRakshasa(scene, p, hp, { cover });
+      return createRakshasa(scene, p, hp, { cover, wave });
     });
     prevAliveCount = alive.length;
     onWave?.(wave, total, kind, alive.length);

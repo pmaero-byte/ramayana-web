@@ -3,9 +3,12 @@ import * as THREE from 'three';
 export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   const speed = opts.speed ?? (2.4 + Math.random() * 0.8);
   const cover = opts.cover || null;
+  // Per-wave scaling: wave 1 small grunt, wave 3 boss-tier
   // Boss-tier scaling: hp >= 6 → larger mesh + dark red glow aura
+  const wave = opts.wave ?? 1;
   const isBoss = hp >= 6;
-  const scale = isBoss ? 1.45 : 1.0;
+  const baseScale = isBoss ? 1.45 : (wave === 1 ? 0.78 : wave === 2 ? 1.0 : 1.0);
+  const scale = baseScale;
   const baseColor = isBoss ? 0x4a0a14 : 0x6b2a3a;
   const headColor = isBoss ? 0x2a0610 : 0x4a1825;
   const group = new THREE.Group();
