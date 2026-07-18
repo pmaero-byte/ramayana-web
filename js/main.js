@@ -64,6 +64,24 @@ async function boot() {
   document.getElementById('btn-slots')?.addEventListener('click', () => toggleSlotsPanel(true));
   document.getElementById('btn-slots-close')?.addEventListener('click', () => toggleSlotsPanel(false));
   document.getElementById('btn-slots-hud')?.addEventListener('click', () => toggleSlotsPanel(true));
+
+  // Death overlay buttons (DOM exists from commit 8edb7ab; wiring here)
+  document.getElementById('btn-retry')?.addEventListener('click', () => {
+    const ov = document.getElementById('death-overlay');
+    if (ov) ov.classList.add('hidden');
+    hideDialogue();
+    state.dead = false;
+    state.deathSince = 0;
+    respawn();
+  });
+  document.getElementById('btn-return')?.addEventListener('click', () => {
+    const ov = document.getElementById('death-overlay');
+    if (ov) ov.classList.add('hidden');
+    hideDialogue();
+    state.dead = false;
+    state.deathSince = 0;
+    returnToTitle();
+  });
   document.getElementById('btn-locale')?.addEventListener('click', () => {
     const next = getLocale() === 'en' ? 'sa' : 'en';
     setLocale(next);
@@ -176,8 +194,18 @@ async function boot() {
     setHighScore(dKills, dWave);
     showDialogue('Valmiki', 'Even the greatest heroes rise again. Hold fast to dharma.', 2.5);
     deathTimer = 2.4;
+    camRig.shake?.(0.9);
+    // Show death overlay after the dialogue settles — player can retry or quit.
+    setTimeout(() => {
+      if (!state.dead) return;
+      const ov = document.getElementById('death-overlay');
+      const stats = document.getElementById('death-stats');
+      if (ov && stats) {
+        stats.textContent = `${state.deathKills || kills} slain · wave ${state.deathWave || (waves?.wave || 0)}`;
+        ov.classList.remove('hidden');
+      }
+    }, 2400);
   }
-
   function respawn() {
     state.dead = false;
     player.reset();
@@ -185,6 +213,8 @@ async function boot() {
     setHpBar(state.maxHp, state.maxHp);
     setHud({ obj: state.objectiveTitle || 'Continue the fight' });
     waves?.start(3);
+    const ov = document.getElementById('death-overlay');
+    if (ov) ov.classList.add('hidden');
   }
 
   function damagePlayer(n = 1) {
