@@ -94,9 +94,69 @@ export function createPlayer(scene) {
   let charColor = SKIN_DEFAULT;
   let lastMoveSpeed = 0;
   let fallT = 0;
+  let dustAcc = 0;
+  const dust = [];
   const walk = 4.2;
   const run = 7.4;
   const gravity = 28;
+
+  function spawnDust() {
+    const count = 5;
+    const geo = new THREE.BufferGeometry();
+    const pos = new Float32Array(count * 3);
+    const pvel = [];
+    const bx = group.position.x;
+    const bz = group.position.z;
+    // emit slightly behind feet opposite movement
+    const spd = lastMoveSpeed || 1;
+    const backX = -vel.x / spd;
+    const backZ = -vel.z / spd;
+    for (let i = 0; i < count; i++) {
+      pos[i * 3] = bx + backX * 0.25 + (Math.random() - 0.5) * 0.3;
+      pos[i * 3 + 1] = 0.05 + Math.random() * 0.08;
+      pos[i * 3 + 2] = bz + backZ * 0.25 + (Math.random() - 0.5) * 0.3;
+      pvel.push({
+        x: backX * 0.8 + (Math.random() - 0.5) * 1.2,
+        y: 0.6 + Math.random() * 1.1,
+        z: backZ * 0.8 + (Math.random() - 0.5) * 1.2,
+      });
+    }
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const mat = new THREE.PointsMaterial({
+      color: 0xc4a06a,
+      size: 0.14,
+      transparent: true,
+      opacity: 0.7,
+      depthWrite: false,
+    });
+    const pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+    dust.push({ pts, geo, mat, vel: pvel, life: 0.4 });
+  }
+
+  function updateDust(dt) {
+    for (let i = dust.length - 1; i >= 0; i--) {
+      const d = dust[i];
+      d.life -= dt;
+      const arr = d.geo.attributes.position.array;
+      for (let j = 0; j < d.vel.length; j++) {
+        const v = d.vel[j];
+        v.y -= 6 * dt;
+        arr[j * 3] += v.x * dt;
+        arr[j * 3 + 1] += v.y * dt;
+        arr[j * 3 + 2] += v.z * dt;
+      }
+      d.geo.attributes.position.needsUpdate = true;
+      d.mat.opacity = Math.max(0, 0.7 * (d.life / 0.4));
+      d.mat.size = 0.14 + (1 - d.life / 0.4) * 0.1;
+      if (d.life <= 0) {
+        scene.remove(d.pts);
+        d.geo.dispose();
+        d.mat.dispose();
+        dust.splice(i, 1);
+      }
+    }
+  }
 
   function update(dt, input, cameraYaw) {
     iFrames = Math.max(0, iFrames - dt);
@@ -159,6 +219,18 @@ export function createPlayer(scene) {
     shadow.scale.setScalar(1 + Math.min(0.4, group.position.y * 0.06));
     body.material.opacity = iFrames > 0 && Math.floor(iFrames * 12) % 2 === 0 ? 0.35 : 1;
     body.material.transparent = iFrames > 0;
+
+    // Sprint dust at feet (GTA-style kick-up)
+    if (input.run && moving && grounded && lastMoveSpeed > 4.5) {
+      dustAcc += dt;
+      if (dustAcc > 0.06) {
+        dustAcc = 0;
+        spawnDust();
+      }
+    } else {
+      dustAcc = 0;
+    }
+    updateDust(dt);
   }
 
   function reset() {

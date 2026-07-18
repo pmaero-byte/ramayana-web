@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createRakshasa } from './rakshasa.js';
+import { createRakshasa } from './rakshasa.js?v=54';
 import { spawnPoints, kindForWave } from './formation.js';
 
 export function createWaveController(scene, player, onWave, onAllDone, onClear, onMelee, opts = {}) {

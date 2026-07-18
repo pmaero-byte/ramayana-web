@@ -132,6 +132,11 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   let dead = false;
   let attackCd = 0;
   const rId = Math.random();
+  // Idle wander when player is far (GTA-style patrol)
+  let wanderT = Math.random() * 2;
+  let wanderAng = Math.random() * Math.PI * 2;
+  const homeX = pos.x;
+  const homeZ = pos.z;
 
   return {
     group,
@@ -207,19 +212,41 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       }
 
       if (dist > 1.15) {
-        // Pathfind around cover: if line of sight blocked, arc perpendicular first
-        let nx = dx / dist, nz = dz / dist;
-        if (cover && cover.blocksLine(group.position, playerPos)) {
-          // arc sideways based on a per-rakhas phase offset
-          const phase = rId * 6.28;
-          const arc = Math.sin(performance.now() * 0.6 + phase) * 0.6;
-          // rotate (nx,nz) by arc radians
-          const cs = Math.cos(arc), sn = Math.sin(arc);
-          const rx = nx * cs - nz * sn;
-          const rz = nx * sn + nz * cs;
-          nx = rx; nz = rz;
+        // Chase when close; idle wander when player is far away
+        const aggro = dist < 14;
+        let nx, nz, step;
+        if (aggro) {
+          nx = dx / dist;
+          nz = dz / dist;
+          if (cover && cover.blocksLine(group.position, playerPos)) {
+            const phase = rId * 6.28;
+            const arc = Math.sin(performance.now() * 0.6 + phase) * 0.6;
+            const cs = Math.cos(arc), sn = Math.sin(arc);
+            const rx = nx * cs - nz * sn;
+            const rz = nx * sn + nz * cs;
+            nx = rx; nz = rz;
+          }
+          step = Math.min(speed * dt, dist - 1.1);
+        } else {
+          // Patrol around spawn home — slow drift + occasional re-aim
+          wanderT -= dt;
+          if (wanderT <= 0) {
+            wanderT = 1.4 + Math.random() * 2.2;
+            // bias back toward home so they don't leave the arena
+            const hx = homeX - group.position.x;
+            const hz = homeZ - group.position.z;
+            const hlen = Math.hypot(hx, hz) || 1;
+            if (hlen > 4.5) {
+              wanderAng = Math.atan2(hx, hz) + (Math.random() - 0.5) * 0.8;
+            } else {
+              wanderAng += (Math.random() - 0.5) * 1.8;
+            }
+          }
+          nx = Math.sin(wanderAng);
+          nz = Math.cos(wanderAng);
+          step = speed * 0.35 * dt;
+          group.rotation.y = THREE.MathUtils.damp(group.rotation.y, wanderAng, 4, dt);
         }
-        const step = Math.min(speed * dt, dist - 1.1);
         group.position.x += nx * step;
         group.position.z += nz * step;
       }
