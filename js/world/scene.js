@@ -96,19 +96,19 @@ function buildEnv(env, group, palette) {
 }
 
 export function createWorld(canvas) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x140e18);
+  scene.background = new THREE.Color().setRGB(0.4, 0.45, 0.55, THREE.LinearSRGBColorSpace);
   scene.fog = new THREE.Fog(0x2a1810, 16, 70);
 
   const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200);
   camera.position.set(0, 3.2, -7.5);
 
-  const sun = new THREE.DirectionalLight(0xffe0b8, 1.35);
+  const sun = new THREE.DirectionalLight(0xffe0b8, 2.5);
   sun.position.set(12, 22, 8);
   sun.castShadow = true;
   sun.shadow.mapSize.set(1024, 1024);
@@ -119,8 +119,8 @@ export function createWorld(canvas) {
   sun.shadow.camera.top = 25;
   sun.shadow.camera.bottom = -25;
   scene.add(sun);
-  scene.add(new THREE.AmbientLight(0x382820, 0.55));
-  scene.add(new THREE.HemisphereLight(0x4a3050, 0x2a1808, 0.35));
+  scene.add(new THREE.AmbientLight(0xffd0a0, 1.2));
+  scene.add(new THREE.HemisphereLight(0xffd0a0, 0x402010, 0.7));
 
   let arenaGroup = new THREE.Group();
 
@@ -194,9 +194,10 @@ export function createWorld(canvas) {
     // Environment props per act
     buildEnv(s.env, arenaGroup, s);
 
-    // Mood palette
-    const mood = new THREE.Color(s.ground);
-    scene.background = mood.multiplyScalar(0.15);
+    // Mood palette — set in linear color space for visible bg
+    const moodL = new THREE.Color(s.ground).convertSRGBToLinear();
+    const goldL = new THREE.Color(s.gold).convertSRGBToLinear();
+    scene.background = moodL.clone().lerp(goldL, 0.45);
     const f = new THREE.Color(s.fog);
     scene.fog.color.copy(f);
   }
