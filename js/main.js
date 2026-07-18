@@ -186,6 +186,9 @@ async function boot() {
   function onPlayerDeath() {
     if (state.dead) return;
     state.dead = true;
+    state.deathSince = performance.now();
+    state.deathWave = waves?.wave || 0;
+    state.deathKills = kills;
     player.setLocked(true);
     waves?.stop();
     const dKills = kills;
