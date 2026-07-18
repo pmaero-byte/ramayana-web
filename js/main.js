@@ -348,6 +348,7 @@ async function boot() {
         setHud({ wave: `All waves cleared · ${kills} kills` });
         sfxWin();
         story?.completeCurrent();
+        showMissionComplete(kills);
       },
       (w, total, kind) => {
         // Per-act quote when a wave is cleared — small cinematic interlude.
@@ -477,6 +478,29 @@ async function boot() {
     mctx.fillText('S', cx, H - 4);
     mctx.fillText('W', 6, cy + 4);
     mctx.fillText('E', W - 6, cy + 4);
+  }
+
+  // Mission-complete banner: animated overlay shown when all waves clear
+  function showMissionComplete(k) {
+    let el = document.getElementById('mission-complete');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'mission-complete';
+      el.className = 'mission-complete';
+      el.innerHTML = `
+        <div class="mission-complete-inner">
+          <div class="mc-stamp">MISSION COMPLETE</div>
+          <div class="mc-sub">Rama returns victorious.</div>
+          <div class="mc-kills">Slain: ${k} rakshasas</div>
+        </div>
+      `;
+      document.body.appendChild(el);
+    } else {
+      // Update kills text on re-show
+      el.querySelector('.mc-kills').textContent = `Slain: ${k} rakshasas`;
+      el.classList.remove('mc-hidden');
+    }
+    setTimeout(() => el.classList.add('mc-hidden'), 4000);
   }
 
   function frame(now) {
