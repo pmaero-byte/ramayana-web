@@ -51,6 +51,32 @@ export function sfxWin() {
   [523, 659, 784].forEach((f, i) => setTimeout(() => beep({ freq: f, dur: 0.18, type: 'triangle', gain: 0.05 }), i * 120));
 }
 
+// Arrow whoosh — short upward sweep with subtle harmonic
+export function sfxArrow() {
+  beep({ freq: 1200, dur: 0.05, type: 'sawtooth', gain: 0.03, slide: -800 });
+  setTimeout(() => beep({ freq: 700, dur: 0.04, type: 'sine', gain: 0.02 }), 25);
+}
+
+// Player death thud — heavy low boom with reverb-like tail
+export function sfxDeath() {
+  beep({ freq: 90, dur: 0.4, type: 'sine', gain: 0.12, slide: -40 });
+  beep({ freq: 60, dur: 0.5, type: 'sine', gain: 0.1 });
+}
+
+// Boss roar — multi-frequency growl for wave 3 spawn
+export function sfxBossRoar() {
+  beep({ freq: 70, dur: 0.6, type: 'sawtooth', gain: 0.08, slide: -20 });
+  setTimeout(() => beep({ freq: 110, dur: 0.4, type: 'square', gain: 0.06 }), 100);
+  setTimeout(() => beep({ freq: 50, dur: 0.5, type: 'sine', gain: 0.08 }), 200);
+}
+
+// Level up chime — bright ascending arpeggio for streak/wave clear
+export function sfxLevelUp() {
+  [392, 494, 587, 784].forEach((f, i) =>
+    setTimeout(() => beep({ freq: f, dur: 0.12, type: 'triangle', gain: 0.04 }), i * 80)
+  );
+}
+
 /** Tanpura drone — 5 oscillators, calls unlockAudio internally */
 export function startDrone() {
   const c = ac();

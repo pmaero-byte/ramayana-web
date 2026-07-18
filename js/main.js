@@ -3,7 +3,7 @@ import { state, setHud, setHpBar, saveSlot, loadSlot, deleteSlot, listSlots, sav
 import { setLocale, getLocale, availableLocales } from './core/i18n.js';
 import { createInput } from './core/input.js';
 import { createTouchPad } from './core/touch.js';
-import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, startDrone, stopDrone } from './core/audio.js';
+import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, startDrone, stopDrone } from './core/audio.js';
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js';
 import { createCameraRig } from './world/camera.js';
@@ -256,6 +256,7 @@ async function boot() {
   function onPlayerDeath() {
     if (state.dead) return;
     state.dead = true;
+    sfxDeath();
     state.deathSince = performance.now();
     state.deathWave = waves?.wave || 0;
     state.deathKills = kills;
@@ -340,6 +341,7 @@ async function boot() {
         // Boss intro: brief slow-mo + extra shake when wave 3 spawns
         if (w === 3) {
           camRig.killHit?.();
+          sfxBossRoar();
         }
       },
       () => {
@@ -363,6 +365,7 @@ async function boot() {
         sfxHit();
         camRig.killHit();
         flash = 0.1;
+        if (streak === 3) sfxLevelUp();
         setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills${streak >= 3 ? `  · STREAK x${streak}` : ''}` });
       },
       cover,
