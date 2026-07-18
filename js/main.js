@@ -7,7 +7,7 @@ import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBoss
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
 import { createCameraRig } from './world/camera.js';
-import { createWaveController, createArcher } from './combat/wave.js?v=58';
+import { createWaveController, createArcher } from './combat/wave.js?v=59';
 import { createCoverSet } from './combat/cover.js?v=50';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
@@ -374,6 +374,7 @@ async function boot() {
         setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills${streak >= 3 ? `  · STREAK x${streak}` : ''}` });
       },
       cover,
+      aiming: () => !!(input.run && state.running && !state.dead),
     });
 
     story.on('enter', (obj) => {

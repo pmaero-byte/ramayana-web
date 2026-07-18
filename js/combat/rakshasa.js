@@ -79,6 +79,9 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   group.add(clawFrontR);
 
   // Boss aura: glowing red point cloud at feet (signals threat)
+  let auraMat = null;
+  let auraPts = null;
+  let auraBaseSize = 0.16;
   if (isBoss) {
     const auraCount = 32;
     const auraGeo = new THREE.BufferGeometry();
@@ -91,16 +94,16 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       auraPos[i * 3 + 2] = Math.sin(angle) * radius;
     }
     auraGeo.setAttribute('position', new THREE.BufferAttribute(auraPos, 3));
-    const auraMat = new THREE.PointsMaterial({
+    auraMat = new THREE.PointsMaterial({
       color: 0xff2200,
-      size: 0.16,
+      size: auraBaseSize,
       transparent: true,
       opacity: 0.7,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
-    const aura = new THREE.Points(auraGeo, auraMat);
-    group.add(aura);
+    auraPts = new THREE.Points(auraGeo, auraMat);
+    group.add(auraPts);
   }
 
   // HP bar (always faces camera by being added to scene with manual billboard in update)
@@ -159,9 +162,22 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       body.material.emissive = new THREE.Color(0xffaa00);
       body.material.emissiveIntensity = 1.2;
       body.scale.set(1.18, 0.86, 1.18);
+      // Boss low-HP telegraph: aura swells + brightens under 40%
+      if (isBoss && auraMat) {
+        const enrage = pct < 0.4;
+        auraMat.opacity = enrage ? 1.0 : 0.7;
+        auraMat.size = enrage ? auraBaseSize * (1.6 + (1 - pct) * 1.2) : auraBaseSize;
+        auraMat.color.setHex(enrage ? 0xff4400 : 0xff2200);
+        if (enrage) {
+          body.material.emissive = new THREE.Color(0xff2200);
+          body.material.emissiveIntensity = 0.55 + (1 - pct) * 0.9;
+        }
+      }
       setTimeout(() => {
         if (!dead) {
-          body.material.emissiveIntensity = 0;
+          if (!(isBoss && auraMat && current / hp < 0.4)) {
+            body.material.emissiveIntensity = 0;
+          }
           body.scale.set(1, 1, 1);
         }
       }, 100);
@@ -170,6 +186,7 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
         body.visible = false;
         crest.visible = false;
         barBg.visible = false;
+        if (auraPts) auraPts.visible = false;
         spawnParticles();
       }
       return true;
@@ -189,6 +206,16 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       if (dist < 2.4 && growlCd <= 0) {
         onGrowl?.();
         growlCd = 1.1 + Math.random() * 1.6;
+      }
+
+      // Boss enrage pulse: aura size breathes when low HP
+      if (isBoss && auraMat && current > 0) {
+        const pct = current / hp;
+        if (pct < 0.4) {
+          const pulse = 0.85 + Math.sin(performance.now() * 0.012 + rId) * 0.25;
+          auraMat.size = auraBaseSize * (1.6 + (1 - pct) * 1.2) * pulse;
+          auraMat.opacity = 0.75 + pulse * 0.2;
+        }
       }
 
       // Squash-and-stretch + forward lean into chase direction (GTA-style body language)

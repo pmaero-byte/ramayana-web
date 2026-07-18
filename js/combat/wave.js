@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createRakshasa } from './rakshasa.js?v=58';
+import { createRakshasa } from './rakshasa.js?v=59';
 import { spawnPoints, kindForWave } from './formation.js';
 
 export function createWaveController(scene, player, onWave, onAllDone, onClear, onMelee, opts = {}) {
@@ -262,6 +262,50 @@ export function createArcher(scene, player, waves, hooks = {}) {
   const speed = 22;
   const dmg = 1;
 
+  // Shift-hold aim assist line: faint gold beam to nearest in-cone target
+  let aimGeo = null;
+  let aimMat = null;
+  let aimLine = null;
+  function ensureAimLine() {
+    if (aimLine) return;
+    aimGeo = new THREE.BufferGeometry();
+    aimGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
+    aimMat = new THREE.LineBasicMaterial({
+      color: 0xffe080,
+      transparent: true,
+      opacity: 0.55,
+      depthWrite: false,
+    });
+    aimLine = new THREE.Line(aimGeo, aimMat);
+    aimLine.renderOrder = 5;
+    aimLine.visible = false;
+    scene.add(aimLine);
+  }
+  function updateAimLine() {
+    const aiming = !!hooks.aiming?.();
+    if (!aiming) {
+      if (aimLine) aimLine.visible = false;
+      return;
+    }
+    ensureAimLine();
+    const origin = player.position.clone();
+    origin.y = 1.25;
+    const target = waves.findTarget(origin, player.forward, 14, 70);
+    if (!target) {
+      aimLine.visible = false;
+      return;
+    }
+    const arr = aimGeo.attributes.position.array;
+    arr[0] = origin.x; arr[1] = origin.y; arr[2] = origin.z;
+    arr[3] = target.position.x;
+    arr[4] = 1.1;
+    arr[5] = target.position.z;
+    aimGeo.attributes.position.needsUpdate = true;
+    // pulse opacity while held
+    aimMat.opacity = 0.4 + Math.sin(performance.now() * 0.008) * 0.2;
+    aimLine.visible = true;
+  }
+
   function fire() {
     const origin = player.position.clone();
     origin.y = 1.2;
@@ -330,6 +374,7 @@ export function createArcher(scene, player, waves, hooks = {}) {
     updateSparks(dt);
     updateRings(dt);
     updateDamageNumbers(dt);
+    updateAimLine();
     for (let i = arrows.length - 1; i >= 0; i--) {
       const a = arrows[i];
       a.life -= dt;
