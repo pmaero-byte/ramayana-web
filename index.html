@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Rāmāyaṇa — Web</title>
-  <link rel="stylesheet" href="css/game.css?v=9" />
+  <link rel="stylesheet" href="css/game.css?v=10" />
 </head>
 <body>
   <div id="app">
@@ -26,6 +26,7 @@
     <div class="chrome" data-role="hud">
       <button type="button" id="btn-save" class="chrome-btn" title="Save">💾</button>
       <button type="button" id="btn-slots-hud" class="chrome-btn" title="Save slots">📂</button>
+      <button type="button" id="btn-locale" class="chrome-btn" title="Language">अ/En</button>
       <button type="button" id="btn-menu" class="chrome-btn" title="Kāṇḍa menu">☰</button>
       <button type="button" id="btn-fullscreen" class="chrome-btn" title="Fullscreen">⛶</button>
     </div>
@@ -66,7 +67,7 @@
     }
   }
   </script>
-  <script type="module" src="js/main.js?v=9"></script>
+  <script type="module" src="js/main.js?v=10"></script>
   <script>window.RAMA_BOOT = { loaded: false }; setTimeout(() => { if (!window.RAMA_BOOT.loaded) { document.getElementById('hud-obj') && (document.getElementById('hud-obj').textContent = 'Boot failed — check console (need http, not file://)'); console.error('RamaWeb boot did not complete'); } }, 200); </script>
 </body>
 </html>

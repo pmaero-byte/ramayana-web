@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { state, setHud, setHpBar, saveSlot, loadSlot, deleteSlot, listSlots, saveGame, setHighScore } from './core/state.js';
+import { setLocale, getLocale, availableLocales } from './core/i18n.js';
 import { createInput } from './core/input.js';
 import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, startDrone, stopDrone } from './core/audio.js';
@@ -61,6 +62,25 @@ async function boot() {
   document.getElementById('btn-slots')?.addEventListener('click', () => toggleSlotsPanel(true));
   document.getElementById('btn-slots-close')?.addEventListener('click', () => toggleSlotsPanel(false));
   document.getElementById('btn-slots-hud')?.addEventListener('click', () => toggleSlotsPanel(true));
+  document.getElementById('btn-locale')?.addEventListener('click', () => {
+    const next = getLocale() === 'en' ? 'sa' : 'en';
+    setLocale(next);
+    try { window.localStorage.setItem('ramayana_web_locale', next); } catch {}
+    document.getElementById('btn-locale').textContent = next === 'en' ? 'अ/En' : 'En/अ';
+    setHud({ wave: `Language: ${next === 'en' ? 'English' : 'संस्कृतम्'}` });
+    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+  });
+  try {
+    const saved = window.localStorage.getItem('ramayana_web_locale');
+    if (saved === 'sa' || saved === 'en') setLocale(saved);
+  } catch {}
+  // parent iframe can request a locale via postMessage
+  window.addEventListener('message', (e) => {
+    if (e?.data?.type === 'rama-set-locale' && (e.data.locale === 'en' || e.data.locale === 'sa')) {
+      setLocale(e.data.locale);
+      try { window.localStorage.setItem('ramayana_web_locale', e.data.locale); } catch {}
+    }
+  });
   window.addEventListener('keydown', (e) => {
     if (e.key === 'f' || e.key === 'F') toggleFullscreen();
     if (e.key === 'm' || e.key === 'M') { if (state.running) returnToTitle(); }
@@ -289,7 +309,7 @@ async function boot() {
   }
   requestAnimationFrame(frame);
 
-  window.RamaWeb = { state, startGame, returnToTitle, THREE, listSlots, saveSlot, loadSlot };
+  window.RamaWeb = { state, startGame, returnToTitle, THREE, listSlots, saveSlot, loadSlot, setLocale, getLocale, availableLocales };
 }
 
 boot().then(() => { window.RAMA_BOOT.loaded = true; }).catch((err) => {
