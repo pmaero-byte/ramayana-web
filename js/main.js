@@ -7,7 +7,7 @@ import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBoss
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
 import { createCameraRig } from './world/camera.js?v=61';
-import { createWaveController, createArcher } from './combat/wave.js?v=61';
+import { createWaveController, createArcher } from './combat/wave.js?v=62';
 import { createCoverSet } from './combat/cover.js?v=61';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';

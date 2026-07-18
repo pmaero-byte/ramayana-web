@@ -142,6 +142,24 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   const homeZ = pos.z;
   let growlCd = 0.4 + Math.random() * 1.2;
   const onGrowl = opts.onGrowl || null;
+  // Melee telegraph: red ground reticle around the rakshasa while
+  // its melee attack is "winding up" (attackCd is full / nearly full).
+  let reticle = null;
+  if (!opts.noReticle) {
+    reticle = new THREE.Mesh(
+      new THREE.RingGeometry(0.65, 0.85, 32),
+      new THREE.MeshBasicMaterial({
+        color: 0xff3322,
+        transparent: true,
+        opacity: 0.55,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+      })
+    );
+    reticle.rotation.x = -Math.PI / 2;
+    reticle.position.y = 0.03;
+    group.add(reticle);
+  }
 
   return {
     group,
@@ -201,6 +219,20 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       group.rotation.y = Math.atan2(dx, dz);
       // Counter-rotate HP bar so it always faces camera (simple billboard)
       barBg.rotation.y = -Math.atan2(dx, dz);
+
+      // Melee telegraph reticle: pulse red while attackCd is full
+      // (about to strike) and the rakshasa is in melee range.
+      if (reticle) {
+        const inMelee = dist < 1.6;
+        const charging = attackCd > 0.65; // wind-up window before the strike
+        if (inMelee && charging) {
+          reticle.visible = true;
+          reticle.material.opacity = 0.35 + Math.sin(performance.now() * 0.022 + rId) * 0.3;
+          reticle.scale.setScalar(1 + Math.sin(performance.now() * 0.022 + rId) * 0.12);
+        } else {
+          reticle.visible = false;
+        }
+      }
 
       // Close-range chatter — growl when within ~2.4u
       if (dist < 2.4 && growlCd <= 0) {
