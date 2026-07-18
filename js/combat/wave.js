@@ -101,6 +101,52 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee, 
 /** Kinematic arrows + ember trail */
 export function createArcher(scene, player, waves, hooks = {}) {
   const arrows = [];
+  const sparks = [];
+
+  function spawnSparks(pos) {
+    const count = 8;
+    const geo = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const velocities = [];
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = pos.x;
+      positions[i * 3 + 1] = pos.y;
+      positions[i * 3 + 2] = pos.z;
+      velocities.push({
+        x: (Math.random() - 0.5) * 6,
+        y: 2 + Math.random() * 4,
+        z: (Math.random() - 0.5) * 6,
+      });
+    }
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const mat = new THREE.PointsMaterial({ color: 0xffe080, size: 0.18, transparent: true, opacity: 1 });
+    const pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+    sparks.push({ pts, geo, mat, velocities, life: 0.45 });
+  }
+
+  function updateSparks(dt) {
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const s = sparks[i];
+      s.life -= dt;
+      const arr = s.geo.attributes.position.array;
+      for (let j = 0; j < s.velocities.length; j++) {
+        const v = s.velocities[j];
+        v.y -= 12 * dt; // gravity
+        arr[j * 3] += v.x * dt;
+        arr[j * 3 + 1] += v.y * dt;
+        arr[j * 3 + 2] += v.z * dt;
+      }
+      s.geo.attributes.position.needsUpdate = true;
+      s.mat.opacity = Math.max(0, s.life / 0.45);
+      if (s.life <= 0) {
+        scene.remove(s.pts);
+        s.geo.dispose();
+        s.mat.dispose();
+        sparks.splice(i, 1);
+      }
+    }
+  }
   let cd = 0;
   const interval = 0.55;
   const speed = 22;
@@ -168,6 +214,7 @@ export function createArcher(scene, player, waves, hooks = {}) {
       fire();
       cd = interval;
     }
+    updateSparks(dt);
     for (let i = arrows.length - 1; i >= 0; i--) {
       const a = arrows[i];
       a.life -= dt;
@@ -215,6 +262,7 @@ export function createArcher(scene, player, waves, hooks = {}) {
             r.damage(dmg);
             a.hit = true;
             a.life = 0;
+            spawnSparks(a.mesh.position);
             hooks.onHit?.(r);
             break;
           }
