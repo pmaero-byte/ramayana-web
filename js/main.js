@@ -386,6 +386,7 @@ async function boot() {
         player.update(dt, input, input.yaw);
         waves?.update(dt * camRig.getTimeScale());
         archer?.update(dt * camRig.getTimeScale());
+        world.updateAtmosphere?.(dt);
         autoSaveTimer += dt;
         if (autoSaveTimer > 30) {
           autoSaveTimer = 0;

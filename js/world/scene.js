@@ -205,6 +205,77 @@ export function createWorld(canvas) {
 
   buildArena('yuddhakanda-war');
 
+  // Sky dome — large sphere with subtle gradient, gives the world a ceiling
+  const skyGeo = new THREE.SphereGeometry(80, 24, 16);
+  const skyMat = new THREE.ShaderMaterial({
+    side: THREE.BackSide,
+    depthWrite: false,
+    uniforms: {
+      topColor: { value: new THREE.Color(0x281006).convertSRGBToLinear() },
+      bottomColor: { value: new THREE.Color(0x6a2a14).convertSRGBToLinear() },
+    },
+    vertexShader: `
+      varying vec3 vWorldPos;
+      void main() {
+        vec4 worldPos = modelMatrix * vec4(position, 1.0);
+        vWorldPos = worldPos.xyz;
+        gl_Position = projectionMatrix * viewMatrix * worldPos;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 topColor;
+      uniform vec3 bottomColor;
+      varying vec3 vWorldPos;
+      void main() {
+        float h = normalize(vWorldPos).y;
+        float t = smoothstep(-0.1, 0.6, h);
+        vec3 col = mix(bottomColor, topColor, t);
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `,
+  });
+  const sky = new THREE.Mesh(skyGeo, skyMat);
+  scene.add(sky);
+
+  // Drifting dust motes — slow ambient particles for atmosphere
+  const moteCount = 80;
+  const moteGeo = new THREE.BufferGeometry();
+  const motePos = new Float32Array(moteCount * 3);
+  const moteVel = new Float32Array(moteCount * 3);
+  for (let i = 0; i < moteCount; i++) {
+    motePos[i * 3] = (Math.random() - 0.5) * 30;
+    motePos[i * 3 + 1] = Math.random() * 6 + 0.5;
+    motePos[i * 3 + 2] = (Math.random() - 0.5) * 30;
+    moteVel[i * 3] = (Math.random() - 0.5) * 0.4;
+    moteVel[i * 3 + 1] = (Math.random() - 0.5) * 0.2;
+    moteVel[i * 3 + 2] = (Math.random() - 0.5) * 0.4;
+  }
+  moteGeo.setAttribute('position', new THREE.BufferAttribute(motePos, 3));
+  const moteMat = new THREE.PointsMaterial({
+    color: 0xffd098,
+    size: 0.08,
+    transparent: true,
+    opacity: 0.55,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+  const motes = new THREE.Points(moteGeo, moteMat);
+  scene.add(motes);
+
+  function updateAtmosphere(dt) {
+    const p = motes.geometry.attributes.position.array;
+    for (let i = 0; i < moteCount; i++) {
+      p[i * 3] += moteVel[i * 3] * dt;
+      p[i * 3 + 1] += moteVel[i * 3 + 1] * dt;
+      p[i * 3 + 2] += moteVel[i * 3 + 2] * dt;
+      // wrap back if drifted out
+      if (Math.abs(p[i * 3]) > 15) p[i * 3] *= -0.95;
+      if (Math.abs(p[i * 3 + 2]) > 15) p[i * 3 + 2] *= -0.95;
+      if (p[i * 3 + 1] > 6.5 || p[i * 3 + 1] < 0.3) p[i * 3 + 1] = Math.random() * 6 + 0.5;
+    }
+    motes.geometry.attributes.position.needsUpdate = true;
+  }
+
   function onResize() {
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -214,5 +285,5 @@ export function createWorld(canvas) {
   }
   window.addEventListener('resize', onResize);
 
-  return { renderer, scene, camera, buildArena };
+  return { renderer, scene, camera, buildArena, updateAtmosphere };
 }
