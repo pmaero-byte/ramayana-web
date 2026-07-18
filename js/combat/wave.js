@@ -116,6 +116,42 @@ export function createArcher(scene, player, waves, hooks = {}) {
   const arrows = [];
   const sparks = [];
 
+  // Expanding golden ground ring on hit (shockwave effect)
+  const rings = [];
+  function spawnRing(pos) {
+    const geo = new THREE.RingGeometry(0.3, 0.4, 32);
+    const mat = new THREE.MeshBasicMaterial({
+      color: 0xffd060,
+      transparent: true,
+      opacity: 0.9,
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const ring = new THREE.Mesh(geo, mat);
+    ring.position.set(pos.x, 0.05, pos.z);
+    ring.rotation.x = -Math.PI / 2;
+    scene.add(ring);
+    rings.push({ ring, geo, mat, life: 0.5 });
+  }
+  function updateRings(dt) {
+    for (let i = rings.length - 1; i >= 0; i--) {
+      const r = rings[i];
+      r.life -= dt;
+      if (r.life <= 0) {
+        scene.remove(r.ring);
+        r.geo.dispose();
+        r.mat.dispose();
+        rings.splice(i, 1);
+      } else {
+        const p = 1 - r.life / 0.5;
+        const scale = 1 + p * 4;
+        r.ring.scale.set(scale, scale, scale);
+        r.mat.opacity = 0.9 * (1 - p);
+      }
+    }
+  }
+
   function spawnSparks(pos) {
     const count = 8;
     const geo = new THREE.BufferGeometry();
@@ -228,6 +264,7 @@ export function createArcher(scene, player, waves, hooks = {}) {
       cd = interval;
     }
     updateSparks(dt);
+    updateRings(dt);
     for (let i = arrows.length - 1; i >= 0; i--) {
       const a = arrows[i];
       a.life -= dt;
@@ -276,6 +313,7 @@ export function createArcher(scene, player, waves, hooks = {}) {
             a.hit = true;
             a.life = 0;
             spawnSparks(a.mesh.position);
+            spawnRing(a.mesh.position);
             hooks.onHit?.(r);
             break;
           }
