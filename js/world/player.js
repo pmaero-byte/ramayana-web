@@ -49,6 +49,7 @@ export function createPlayer(scene) {
   let invulnerableUntil = 0;
   let charColor = SKIN_DEFAULT;
   let lastMoveSpeed = 0;
+  let fallT = 0;
   const walk = 4.2;
   const run = 7.4;
   const gravity = 28;
@@ -57,6 +58,16 @@ export function createPlayer(scene) {
     iFrames = Math.max(0, iFrames - dt);
     if (locked) {
       vel.set(0, 0, 0);
+      // Death fall animation: tip backward over 0.6s, then stay
+      if (fallT < 0.6) {
+        fallT += dt;
+        const p = Math.min(1, fallT / 0.6);
+        const ease = p * p * (3 - 2 * p); // smoothstep
+        group.rotation.x = ease * (Math.PI / 2.4); // tip backward
+        body.position.y = -ease * 0.4; // sink slightly
+        body.material.opacity = 1 - ease * 0.5;
+        body.material.transparent = true;
+      }
       return;
     }
     const mv = input.moveVector();
@@ -104,9 +115,14 @@ export function createPlayer(scene) {
   function reset() {
     group.position.set(0, 0, 0);
     group.rotation.y = 0;
+    group.rotation.x = 0;
+    group.rotation.z = 0;
+    body.position.set(0, 0, 0);
+    body.rotation.set(0, 0, 0);
     vel.set(0, 0, 0);
     yVel = 0;
     grounded = true;
+    fallT = 0;
     locked = false;
     iFrames = 0;
     body.material.opacity = 1;

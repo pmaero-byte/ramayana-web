@@ -325,6 +325,7 @@ async function boot() {
     last = now;
     if (state.running) {
       if (state.dead) {
+        player.update(dt, input, input.yaw); // run death fall animation
         deathTimer -= dt;
         if (deathTimer <= 0) respawn();
       } else {
