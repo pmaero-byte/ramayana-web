@@ -71,6 +71,30 @@ async function boot() {
         'Rama returns. Ayodhya lights ten thousand lamps.',
       ],
     },
+    'bala-birth': {
+      speaker: 'Vishwamitra',
+      lines: [
+        'A prince is born to dash the asuras\' pride. Begin.',
+        'Tadaka falls. The forest is no longer her dark dominion.',
+        'The bow of Shiva sings. Sita is found.',
+      ],
+    },
+    'panchavati-golden-deer': {
+      speaker: 'Lakshmana',
+      lines: [
+        'The deer was Maya. We must hold the line.',
+        'Surpanakha is repelled. Her kin will answer.',
+        'Lanka burns. Ravana prepares his answer.',
+      ],
+    },
+    'uttara-earth-return': {
+      speaker: 'Valmiki',
+      lines: [
+        'The throne is given back. Sita returns to the earth.',
+        'Time takes what it must. The story continues elsewhere.',
+        'The seventh avatar rests. The cycle turns.',
+      ],
+    },
   };
   let cover = null;
   let kills = 0;
