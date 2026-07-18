@@ -55,15 +55,45 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       const dz = playerPos.z - group.position.z;
       const dist = Math.hypot(dx, dz) || 1;
       group.rotation.y = Math.atan2(dx, dz);
+
+      // Squash-and-stretch + forward lean into chase direction (GTA-style body language)
+      const moving = dist > 1.15;
+      if (moving) {
+        const nx = dx / dist;
+        const nz = dz / dist;
+        // lean forward in chase direction
+        body.position.x = nx * 0.08;
+        body.position.z = nz * 0.08;
+        // squash: stretch taller when running, squash when stopping
+        const runT = Math.min(1, speed / 3.2);
+        body.scale.set(0.9 + runT * 0.1, 1.1 + runT * 0.15, 0.9 + runT * 0.1);
+        crest.position.set(nx * 0.08, 1.75, nz * 0.08);
+        crest.rotation.z = Math.sin(performance.now() * 0.012 + rId) * 0.15;
+      } else if (attackCd <= 0) {
+        // wind-up crouch before melee
+        body.scale.set(1.15, 0.78, 1.15);
+        body.position.y = 0.85;
+        attackCd = 0.9;
+        return true;
+      } else {
+        // recover
+        body.position.x = THREE.MathUtils.damp(body.position.x, 0, 10, dt);
+        body.position.z = THREE.MathUtils.damp(body.position.z, 0, 10, dt);
+        body.position.y = THREE.MathUtils.damp(body.position.y, 1.0, 8, dt);
+        body.scale.x = THREE.MathUtils.damp(body.scale.x, 1, 8, dt);
+        body.scale.y = THREE.MathUtils.damp(body.scale.y, 1, 8, dt);
+        body.scale.z = THREE.MathUtils.damp(body.scale.z, 1, 8, dt);
+        crest.rotation.z = THREE.MathUtils.damp(crest.rotation.z, 0, 8, dt);
+      }
+
       if (dist > 1.15) {
         const step = Math.min(speed * dt, dist - 1.1);
         group.position.x += (dx / dist) * step;
         group.position.z += (dz / dist) * step;
-      } else if (attackCd <= 0) {
-        attackCd = 0.9;
-        return true;
       }
-      body.position.y = 1.0 + Math.sin(performance.now() * 0.008 + rId * 100) * 0.04;
+
+      // bob while moving (keeps previous alive-y feel)
+      body.position.y = (body.position.y || 1.0) + Math.sin(performance.now() * 0.008 + rId * 100) * 0.04;
       return false;
     },
     dispose() {

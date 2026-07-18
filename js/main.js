@@ -190,6 +190,7 @@ async function boot() {
     setHpBar(hp, state.maxHp);
     flash = 0.14;
     sfxHit();
+    camRig.damageHit();
     if (hp <= 0) onPlayerDeath();
   }
 
@@ -238,6 +239,7 @@ async function boot() {
       onHit: () => {
         kills += 1;
         sfxHit();
+        camRig.killHit();
         flash = 0.1;
         setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills` });
       },
@@ -286,15 +288,20 @@ async function boot() {
         if (deathTimer <= 0) respawn();
       } else {
         player.update(dt, input, input.yaw);
-        waves?.update(dt);
-        archer?.update(dt);
+        waves?.update(dt * camRig.getTimeScale());
+        archer?.update(dt * camRig.getTimeScale());
         autoSaveTimer += dt;
         if (autoSaveTimer > 30) {
           autoSaveTimer = 0;
           saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
         }
       }
-      camRig.update(dt, player, input.yaw, input.pitch);
+      const mv = input.moveVector();
+      const moveSpeed = mv.mag;
+      camRig.update(dt, player, input.yaw, input.pitch, {
+        moveSpeed,
+        sprinting: input.run && moveSpeed > 0.1,
+      });
     } else {
       const t = now * 0.00015;
       world.camera.position.set(Math.sin(t) * 10, 4, Math.cos(t) * 10);
