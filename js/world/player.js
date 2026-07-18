@@ -149,7 +149,12 @@ export function createPlayer(scene) {
     group.position.z = THREE.MathUtils.clamp(group.position.z, -lim, lim);
 
     // bob + blink
-    body.position.y = 1.0 + (mv.mag > 0.05 ? Math.sin(performance.now() * 0.012) * 0.05 : 0);
+    // Stronger bob when moving + slight forward lean while sprinting
+    const moving = mv.mag > 0.05;
+    body.position.y = 1.0 + (moving ? Math.sin(performance.now() * 0.012) * 0.12 : 0);
+    group.rotation.x = input.run && moving ? -0.08 : 0;
+    // Subtle side-lean during strafe
+    group.rotation.z = moving ? Math.sin(performance.now() * 0.008) * 0.02 : 0;
     shadow.material.opacity = 0.35 - Math.min(0.2, group.position.y * 0.04);
     shadow.scale.setScalar(1 + Math.min(0.4, group.position.y * 0.06));
     body.material.opacity = iFrames > 0 && Math.floor(iFrames * 12) % 2 === 0 ? 0.35 : 1;
