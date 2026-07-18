@@ -619,6 +619,17 @@ async function boot() {
     } else {
       flashEl.style.opacity = '0';
     }
+    // Persistent low-HP vignette: edges turn red as HP drops (GTA-style).
+    // Strongest at 1/5 HP; absent at full HP. Pulses subtly.
+    if (flashEl && !state.dead) {
+      const pct = state.maxHp > 0 ? state.hp / state.maxHp : 1;
+      if (pct < 0.7) {
+        const sev = 1 - pct / 0.7;            // 0..1
+        const pulse = 0.85 + Math.sin(now * 0.004) * 0.15;
+        flashEl.style.background =
+          `radial-gradient(circle at 50% 50%, transparent 35%, rgba(180, 16, 16, ${(sev * 0.85 * pulse).toFixed(3)}) 95%)`;
+      }
+    }
     world.renderer.render(world.scene, world.camera);
     drawMinimap();
     requestAnimationFrame(frame);
