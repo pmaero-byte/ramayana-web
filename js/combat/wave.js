@@ -144,8 +144,17 @@ export function createArcher(scene, player, waves, hooks = {}) {
     const trail = new THREE.Points(trailGeo, trailMat);
     scene.add(trail);
 
+    // Bright tracer line from origin to current arrow position — makes every
+    // shot readable as a streak of light, not just dots.
+    const lineGeo = new THREE.BufferGeometry();
+    const linePos = new Float32Array([origin.x, origin.y, origin.z, origin.x, origin.y, origin.z]);
+    lineGeo.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
+    const lineMat = new THREE.LineBasicMaterial({ color: 0xffd070, transparent: true, opacity: 0.95 });
+    const tracer = new THREE.Line(lineGeo, lineMat);
+    scene.add(tracer);
+
     arrows.push({
-      mesh, trail, trailGeo, trailMat, dir: to,
+      mesh, trail, trailGeo, trailMat, tracer, lineGeo, lineMat, dir: to,
       life: 2.2, hit: false, tIdx: 0, tAcc: 0,
       origin: origin.clone(),
       blocked: false,
@@ -170,6 +179,17 @@ export function createArcher(scene, player, waves, hooks = {}) {
         a.hit = true;        // mark consumed
         a.life = Math.min(a.life, 0.05);
       }
+
+      // Tracer line update: from origin to current arrow position
+      const lp = a.lineGeo.attributes.position.array;
+      lp[0] = a.origin.x;
+      lp[1] = a.origin.y;
+      lp[2] = a.origin.z;
+      lp[3] = a.mesh.position.x;
+      lp[4] = a.mesh.position.y;
+      lp[5] = a.mesh.position.z;
+      a.lineGeo.attributes.position.needsUpdate = true;
+      a.lineMat.opacity = Math.max(0, 0.95 * (a.life / 2.2));
 
       // ember trail update (every 2 frames ~ 30hz)
       a.tAcc += dt;
@@ -207,6 +227,9 @@ export function createArcher(scene, player, waves, hooks = {}) {
         scene.remove(a.trail);
         a.trailGeo.dispose();
         a.trailMat.dispose();
+        scene.remove(a.tracer);
+        a.lineGeo.dispose();
+        a.lineMat.dispose();
         arrows.splice(i, 1);
       }
     }
