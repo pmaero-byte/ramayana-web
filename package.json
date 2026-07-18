@@ -5,7 +5,12 @@
   "description": "Browser action slice of Rāmāyaṇa — vanilla ES modules + Three.js, no Unity",
   "type": "module",
   "scripts": {
-    "verify": "node .hermes/verify-boot.cjs && node .hermes/verify-test.mjs",
+    "test": "vitest run",
+    "test:unit": "vitest run --config vitest.config.js tests/unit",
+    "test:e2e": "node tests/e2e/browser.spec.js",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "verify": "vitest run",
     "verify:boot": "node .hermes/verify-boot.cjs",
     "verify:test": "node .hermes/verify-test.mjs",
     "serve": "python3 -m http.server 8765"
@@ -13,5 +18,11 @@
   "engines": {
     "node": ">=18"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.10",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.61.1",
+    "vitest": "^4.1.10"
+  }
 }

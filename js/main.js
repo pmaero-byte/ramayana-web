@@ -6,9 +6,9 @@ import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, sfxGrowl, startDrone, stopDrone } from './core/audio.js?v=58';
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
-import { createCameraRig } from './world/camera.js?v=60';
-import { createWaveController, createArcher } from './combat/wave.js?v=60';
-import { createCoverSet } from './combat/cover.js?v=60';
+import { createCameraRig } from './world/camera.js?v=61';
+import { createWaveController, createArcher } from './combat/wave.js?v=61';
+import { createCoverSet } from './combat/cover.js?v=61';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
 
@@ -292,7 +292,6 @@ async function boot() {
     const ov = document.getElementById('death-overlay');
     if (ov) ov.classList.add('hidden');
   }
-
   function damagePlayer(n = 1) {
     if (state.dead || !state.running) return;
     if (!player.hurt(n)) return;
@@ -337,6 +336,9 @@ async function boot() {
       world.scene,
       player,
       (w, total, kind, n) => {
+        state.wave = w;
+        state.totalWaves = total;
+        state.alive = n;
         setHud({ wave: `Wave ${w}/${total} · ${kind} · ${n} · ${kills} kills` });
         sfxWave();
         // Boss intro: longer freeze + FOV punch + roar + cue line
@@ -367,6 +369,7 @@ async function boot() {
       onFire: () => sfxBow(),
       onHit: (enemy) => {
         kills += 1;
+        state.kills = kills;
         streak += 1;
         sfxHit();
         camRig.killHit();

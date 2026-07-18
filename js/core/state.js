@@ -44,6 +44,12 @@ export function setHpBar(hp, maxHp) {
 const HIGH_KEY = 'ramayana_web_high';
 const SLOTS_KEY = 'ramayana_web_slots';
 const SLOT_COUNT = 4;
+const NAMED_SLOTS = new Set(['auto']);
+
+function isValidSlotKey(k) {
+  if (NAMED_SLOTS.has(k)) return true;
+  return Number.isInteger(k) && k >= 0 && k < SLOT_COUNT;
+}
 
 function readSlots() {
   try { return JSON.parse(window.localStorage.getItem(SLOTS_KEY) || '{}') || {}; }
@@ -55,15 +61,18 @@ function writeSlots(o) {
 }
 
 export function saveSlot(slot, data) {
+  if (!isValidSlotKey(slot)) return false;
   const all = readSlots();
   all[`slot_${slot}`] = { ...data, ts: Date.now() };
   return writeSlots(all);
 }
 export function loadSlot(slot) {
+  if (!isValidSlotKey(slot)) return null;
   const all = readSlots();
   return all[`slot_${slot}`] || null;
 }
 export function deleteSlot(slot) {
+  if (!isValidSlotKey(slot)) return false;
   const all = readSlots();
   delete all[`slot_${slot}`];
   return writeSlots(all);

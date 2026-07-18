@@ -7,23 +7,35 @@ on:
     branches: [main]
 
 jobs:
-  smoke:
+  unit:
     runs-on: ubuntu-latest
-    name: Ad-hoc boot + ESM smoke
+    name: Unit + boot smoke
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node
         uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Boot surface check
-        run: node .hermes/verify-boot.cjs
-      - name: ESM unit smoke (formation + i18n)
-        run: node .hermes/verify-test.mjs
-      - name: Static server smoke
+        with: { node-version: "22" }
+      - name: Install deps
+        run: npm ci
+      - name: Unit tests (must be green)
+        run: npm test
+
+  e2e:
+    runs-on: ubuntu-latest
+    name: Browser smoke (Playwright)
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: Install deps
+        run: npm ci
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: Serve + e2e
         run: |
           (python3 -m http.server 8765 &) 2>/dev/null || (npx http-server -p 8765 &)
           sleep 2
           curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8765/ | grep -q 200
-          curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8765/embed.html | grep -q 200
+          npm run test:e2e
           curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8765/js/main.js | grep -q 200
