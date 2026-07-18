@@ -77,6 +77,12 @@ export function sfxLevelUp() {
   );
 }
 
+// Close-range rakshasa growl — short rough burble for tension
+export function sfxGrowl() {
+  beep({ freq: 85 + Math.random() * 40, dur: 0.18, type: 'sawtooth', gain: 0.045, slide: -30 });
+  setTimeout(() => beep({ freq: 55 + Math.random() * 25, dur: 0.14, type: 'square', gain: 0.03 }), 40);
+}
+
 /** Tanpura drone — 5 oscillators, calls unlockAudio internally */
 export function startDrone() {
   const c = ac();

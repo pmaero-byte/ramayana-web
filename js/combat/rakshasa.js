@@ -137,12 +137,15 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   let wanderAng = Math.random() * Math.PI * 2;
   const homeX = pos.x;
   const homeZ = pos.z;
+  let growlCd = 0.4 + Math.random() * 1.2;
+  const onGrowl = opts.onGrowl || null;
 
   return {
     group,
     get position() { return group.position; },
     get isDead() { return dead; },
     get hp() { return current; },
+    get isBoss() { return isBoss; },
     damage(n) {
       if (dead || n <= 0) return false;
       current = Math.max(0, current - n);
@@ -174,12 +177,19 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
     update(dt, playerPos) {
       if (dead) return false;
       attackCd = Math.max(0, attackCd - dt);
+      growlCd = Math.max(0, growlCd - dt);
       const dx = playerPos.x - group.position.x;
       const dz = playerPos.z - group.position.z;
       const dist = Math.hypot(dx, dz) || 1;
       group.rotation.y = Math.atan2(dx, dz);
       // Counter-rotate HP bar so it always faces camera (simple billboard)
       barBg.rotation.y = -Math.atan2(dx, dz);
+
+      // Close-range chatter — growl when within ~2.4u
+      if (dist < 2.4 && growlCd <= 0) {
+        onGrowl?.();
+        growlCd = 1.1 + Math.random() * 1.6;
+      }
 
       // Squash-and-stretch + forward lean into chase direction (GTA-style body language)
       const moving = dist > 1.15;

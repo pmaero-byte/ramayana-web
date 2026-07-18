@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createRakshasa } from './rakshasa.js?v=54';
+import { createRakshasa } from './rakshasa.js?v=58';
 import { spawnPoints, kindForWave } from './formation.js';
 
 export function createWaveController(scene, player, onWave, onAllDone, onClear, onMelee, opts = {}) {
@@ -11,6 +11,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onClear, 
   let prevAliveCount = 0;
   const cover = opts.cover || null;
   const pathfind = opts.pathfind !== false;
+  const onGrowl = opts.onGrowl || null;
 
   function clearAlive() {
     for (const r of alive) r.dispose();
@@ -48,7 +49,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onClear, 
       // Wave 3 last enemy is the boss-tier (hp=8, scale 1.45)
       const isFinalBoss = wave === 3 && i === pts.length - 1;
       const hp = isFinalBoss ? 8 : 2 + wave;
-      return createRakshasa(scene, p, hp, { cover, wave });
+      return createRakshasa(scene, p, hp, { cover, wave, onGrowl });
     });
     prevAliveCount = alive.length;
     onWave?.(wave, total, kind, alive.length);

@@ -3,11 +3,11 @@ import { state, setHud, setHpBar, saveSlot, loadSlot, deleteSlot, listSlots, sav
 import { setLocale, getLocale, availableLocales } from './core/i18n.js';
 import { createInput } from './core/input.js';
 import { createTouchPad } from './core/touch.js';
-import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, startDrone, stopDrone } from './core/audio.js';
+import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, sfxGrowl, startDrone, stopDrone } from './core/audio.js?v=58';
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
 import { createCameraRig } from './world/camera.js';
-import { createWaveController, createArcher } from './combat/wave.js?v=55';
+import { createWaveController, createArcher } from './combat/wave.js?v=58';
 import { createCoverSet } from './combat/cover.js?v=50';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
@@ -359,16 +359,17 @@ async function boot() {
         if (w < total) showWaveCountdown(3);
       },
       () => damagePlayer(1),
-      { cover }
+      { cover, onGrowl: () => sfxGrowl() }
     );
     archer = createArcher(world.scene, player, waves, {
       onFire: () => sfxBow(),
-      onHit: () => {
+      onHit: (enemy) => {
         kills += 1;
         streak += 1;
         sfxHit();
         camRig.killHit();
         flash = 0.1;
+        if (enemy?.position) pushMapFlash(enemy.position.x, enemy.position.z);
         if (streak === 3) sfxLevelUp();
         setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills${streak >= 3 ? `  · STREAK x${streak}` : ''}` });
       },
@@ -411,6 +412,11 @@ async function boot() {
 
   const minimap = document.getElementById('minimap');
   const mctx = minimap.getContext('2d');
+  // Brief gold flash rings on minimap when an enemy is hit
+  const mapFlashes = [];
+  function pushMapFlash(wx, wz) {
+    mapFlashes.push({ x: wx, z: wz, life: 0.38 });
+  }
   function drawMinimap() {
     if (!mctx) return;
     const W = minimap.width, H = minimap.height;
@@ -457,9 +463,9 @@ async function boot() {
       mctx.rotate(yaw); // intentionally applied to canvas; visual cue only
     }
     // Enemies as red dots, position relative to player (subtract player pos first)
+    const px = player?.position?.x || 0;
+    const pz = player?.position?.z || 0;
     if (waves?.alive) {
-      const px = player?.position?.x || 0;
-      const pz = player?.position?.z || 0;
       for (const r of waves.alive) {
         if (r.isDead) continue;
         const ex = (r.position.x - px) * S;
@@ -471,6 +477,24 @@ async function boot() {
         mctx.arc(ex, ey, r.isBoss ? 4 : 2.5, 0, Math.PI * 2);
         mctx.fill();
       }
+    }
+    // Hit flashes — expanding gold rings at impact world pos
+    for (let i = mapFlashes.length - 1; i >= 0; i--) {
+      const f = mapFlashes[i];
+      const p = 1 - f.life / 0.38;
+      const fx = (f.x - px) * S;
+      const fy = (f.z - pz) * S;
+      const rad = 3 + p * 14;
+      mctx.strokeStyle = `rgba(255, 220, 80, ${Math.max(0, 1 - p)})`;
+      mctx.lineWidth = 2.5 - p * 1.5;
+      mctx.beginPath();
+      mctx.arc(fx, fy, rad, 0, Math.PI * 2);
+      mctx.stroke();
+      // bright core
+      mctx.fillStyle = `rgba(255, 240, 160, ${Math.max(0, 0.9 - p)})`;
+      mctx.beginPath();
+      mctx.arc(fx, fy, 3.5 * (1 - p * 0.5), 0, Math.PI * 2);
+      mctx.fill();
     }
     mctx.restore();
     // Compass labels
@@ -566,6 +590,11 @@ async function boot() {
           autoSaveTimer = 0;
           saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
         }
+      }
+      // decay minimap hit flashes
+      for (let i = mapFlashes.length - 1; i >= 0; i--) {
+        mapFlashes[i].life -= dt;
+        if (mapFlashes[i].life <= 0) mapFlashes.splice(i, 1);
       }
       const mv = input.moveVector();
       const moveSpeed = mv.mag;
