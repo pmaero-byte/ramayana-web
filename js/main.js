@@ -27,6 +27,51 @@ async function boot() {
   let story = null;
   let waves = null;
   let archer = null;
+
+  // Per-act quotes shown after each wave is cleared. First matching line
+  // for the cleared wave index; falls back to last line.
+  const WAVE_QUOTES = {
+    'yuddhakanda-war': {
+      speaker: 'Rama',
+      lines: [
+        'The first stone is laid. The bridge of dharma begins.',
+        'Indrajit falls — maya warfare cannot stand against truth.',
+        'Ravana is defeated. Dharma is restored.',
+      ],
+    },
+    'panchavati-golden-deer': {
+      speaker: 'Lakshmana',
+      lines: [
+        'The deer was Maya. We must hold the line.',
+        'Surpanakha is repelled. Her kin will answer.',
+        'Lanka burns. Ravana prepares his answer.',
+      ],
+    },
+    'kishkindha-alliance': {
+      speaker: 'Hanuman',
+      lines: [
+        'Sugriva is crowned. The vanara army is yours, Rama.',
+        'The search parties are sent. Every direction covered.',
+        'Sampati speaks of Lanka. The path is known.',
+      ],
+    },
+    'sundarakanda-leap': {
+      speaker: 'Hanuman',
+      lines: [
+        'The ocean answered. I leap for Lanka.',
+        'I have found Sita. The message is delivered.',
+        'Lanka burns and I am unbound. The war begins.',
+      ],
+    },
+    'ayodhya-dharma': {
+      speaker: 'Bharata',
+      lines: [
+        'The kingdom is yours in absence. I will hold it for you.',
+        'The people mourn with me. Your sandals guide the throne.',
+        'Rama returns. Ayodhya lights ten thousand lamps.',
+      ],
+    },
+  };
   let cover = null;
   let kills = 0;
   let streak = 0;
@@ -273,6 +318,11 @@ async function boot() {
         setHud({ wave: `All waves cleared · ${kills} kills` });
         sfxWin();
         story?.completeCurrent();
+      },
+      (w, total, kind) => {
+        // Per-act quote when a wave is cleared — small cinematic interlude.
+        const q = WAVE_QUOTES[state.actId];
+        if (q) showDialogue(q.speaker, q.lines[w - 1] || q.lines[q.lines.length - 1], 2.4);
       },
       () => damagePlayer(1),
       { cover }

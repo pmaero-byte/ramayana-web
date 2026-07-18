@@ -2,12 +2,13 @@ import * as THREE from 'three';
 import { createRakshasa } from './rakshasa.js';
 import { spawnPoints, kindForWave } from './formation.js';
 
-export function createWaveController(scene, player, onWave, onAllDone, onMelee, opts = {}) {
+export function createWaveController(scene, player, onWave, onAllDone, onClear, onMelee, opts = {}) {
   let alive = [];
   let wave = 0;
   let total = 3;
   let running = false;
   let pause = 0;
+  let prevAliveCount = 0;
   const cover = opts.cover || null;
   const pathfind = opts.pathfind !== false;
 
@@ -44,6 +45,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee, 
     const forward = player.forward;
     const pts = spawnPoints(kind, 3 + wave, origin, forward, 9 + wave * 2);
     alive = pts.map((p, i) => createRakshasa(scene, p, 2 + wave, { cover }));
+    prevAliveCount = alive.length;
     onWave?.(wave, total, kind, alive.length);
   }
 
@@ -60,11 +62,17 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee, 
       return true;
     });
     if (alive.length === 0) {
+      if (prevAliveCount > 0) {
+        onClear?.(wave, total, kind);
+        prevAliveCount = 0;
+      }
       pause += dt;
       if (pause > 1.6) {
         pause = 0;
         nextWave();
       }
+    } else {
+      prevAliveCount = alive.length;
     }
   }
 
