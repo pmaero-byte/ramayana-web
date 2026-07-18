@@ -103,6 +103,22 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
     group.add(aura);
   }
 
+  // HP bar (always faces camera by being added to scene with manual billboard in update)
+  const barBg = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.2, 0.16),
+    new THREE.MeshBasicMaterial({ color: 0x111111, transparent: true, opacity: 0.9, depthTest: false })
+  );
+  barBg.position.y = 2.4;
+  barBg.renderOrder = 10;
+  group.add(barBg);
+  const barFill = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.12, 0.1),
+    new THREE.MeshBasicMaterial({ color: 0xff3030, depthTest: false })
+  );
+  barFill.position.z = 0.001;
+  barFill.renderOrder = 11;
+  barBg.add(barFill);
+
   const crest = new THREE.Mesh(
     new THREE.ConeGeometry(0.18, 0.4, 6),
     new THREE.MeshStandardMaterial({ color: 0x2a1018, roughness: 0.8 })
@@ -125,6 +141,13 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
     damage(n) {
       if (dead || n <= 0) return false;
       current = Math.max(0, current - n);
+      const pct = Math.max(0, current / hp);
+      barFill.scale.x = pct;
+      barFill.position.x = -(1 - pct) * 1.12 / 2;
+      // Color shift: red -> orange as HP drops
+      const r = 1.0;
+      const g = pct * 0.6;
+      barFill.material.color.setRGB(r, g, 0);
       body.material.emissive = new THREE.Color(0xffaa00);
       body.material.emissiveIntensity = 1.2;
       body.scale.set(1.18, 0.86, 1.18);
@@ -138,6 +161,7 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
         dead = true;
         body.visible = false;
         crest.visible = false;
+        barBg.visible = false;
         spawnParticles();
       }
       return true;
@@ -149,6 +173,8 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       const dz = playerPos.z - group.position.z;
       const dist = Math.hypot(dx, dz) || 1;
       group.rotation.y = Math.atan2(dx, dz);
+      // Counter-rotate HP bar so it always faces camera (simple billboard)
+      barBg.rotation.y = -Math.atan2(dx, dz);
 
       // Squash-and-stretch + forward lean into chase direction (GTA-style body language)
       const moving = dist > 1.15;
