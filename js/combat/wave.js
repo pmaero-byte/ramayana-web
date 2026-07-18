@@ -72,7 +72,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onClear, 
         prevAliveCount = 0;
       }
       pause += dt;
-      if (pause > 1.6) {
+      if (pause > 3.2) {
         pause = 0;
         nextWave();
       }

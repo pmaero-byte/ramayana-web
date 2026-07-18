@@ -7,7 +7,7 @@ import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBoss
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
 import { createCameraRig } from './world/camera.js';
-import { createWaveController, createArcher } from './combat/wave.js?v=54';
+import { createWaveController, createArcher } from './combat/wave.js?v=55';
 import { createCoverSet } from './combat/cover.js?v=50';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
@@ -355,6 +355,8 @@ async function boot() {
         // Per-act quote when a wave is cleared — small cinematic interlude.
         const q = WAVE_QUOTES[state.actId];
         if (q) showDialogue(q.speaker, q.lines[w - 1] || q.lines[q.lines.length - 1], 2.4);
+        // 3-2-1 countdown before next wave (pause is 3.2s in wave.js)
+        if (w < total) showWaveCountdown(3);
       },
       () => damagePlayer(1),
       { cover }
@@ -502,6 +504,48 @@ async function boot() {
       el.classList.remove('mc-hidden');
     }
     setTimeout(() => el.classList.add('mc-hidden'), 4000);
+  }
+
+  // Between-wave 3-2-1 countdown (GTA-style round start)
+  let waveCdTimer = null;
+  function showWaveCountdown(from = 3) {
+    let el = document.getElementById('wave-cd');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'wave-cd';
+      el.className = 'wave-cd';
+      el.innerHTML = '<div class="wave-cd-num">3</div><div class="wave-cd-label">NEXT WAVE</div>';
+      document.body.appendChild(el);
+    }
+    if (waveCdTimer) {
+      clearInterval(waveCdTimer);
+      waveCdTimer = null;
+    }
+    let left = from;
+    const num = el.querySelector('.wave-cd-num');
+    num.textContent = String(left);
+    el.classList.remove('wave-cd-hidden');
+    el.classList.remove('wave-cd-pop');
+    // force reflow so pop restarts
+    void el.offsetWidth;
+    el.classList.add('wave-cd-pop');
+    sfxCue?.();
+    setHud({ wave: `Next wave in ${left}…` });
+    waveCdTimer = setInterval(() => {
+      left -= 1;
+      if (left <= 0) {
+        clearInterval(waveCdTimer);
+        waveCdTimer = null;
+        el.classList.add('wave-cd-hidden');
+        return;
+      }
+      num.textContent = String(left);
+      el.classList.remove('wave-cd-pop');
+      void el.offsetWidth;
+      el.classList.add('wave-cd-pop');
+      sfxCue?.();
+      setHud({ wave: `Next wave in ${left}…` });
+    }, 1000);
   }
 
   function frame(now) {

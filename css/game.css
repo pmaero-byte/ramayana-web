@@ -335,3 +335,43 @@ color: #e8f0e8;
   color: #b89868;
   letter-spacing: 0.08em;
 }
+
+/* Between-wave 3-2-1 countdown */
+.wave-cd {
+  position: fixed;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9;
+  text-align: center;
+  transition: opacity 0.35s ease;
+  opacity: 1;
+}
+.wave-cd.wave-cd-hidden {
+  opacity: 0;
+}
+.wave-cd-num {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 5.2rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #ffe070;
+  text-shadow: 0 0 28px rgba(255, 200, 60, 0.75), 0 4px 0 rgba(20, 8, 0, 0.85);
+  letter-spacing: 0.06em;
+}
+.wave-cd-label {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  color: #d4a017;
+  text-transform: uppercase;
+}
+.wave-cd.wave-cd-pop .wave-cd-num {
+  animation: wave-cd-pop 0.45s ease-out;
+}
+@keyframes wave-cd-pop {
+  0% { transform: scale(1.55); opacity: 0.35; }
+  60% { transform: scale(0.96); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
