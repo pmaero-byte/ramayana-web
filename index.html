@@ -59,6 +59,15 @@
       <div id="slot-list" class="slot-list"></div>
       <button id="btn-slots-close" class="btn-start" type="button">Close</button>
     </div>
+    <div id="death-overlay" class="death-overlay hidden" data-role="hud">
+      <div class="death-inner">
+        <div class="death-sanskrit">क्षणं शिरः क्रियताम्</div>
+        <h2>YOU FELL</h2>
+        <p class="death-stats" id="death-stats">— slain · wave —</p>
+        <button id="btn-retry" class="btn-start" type="button">⚔ Retry</button>
+        <button id="btn-return" class="btn-start btn-delete" type="button">Return to Kāṇḍa</button>
+      </div>
+    </div>
   </div>
   <script type="importmap">
   {
@@ -67,7 +76,7 @@
     }
   }
   </script>
-  <script type="module" src="js/main.js?v=25"></script>
+  <script type="module" src="js/main.js?v=26"></script>
   <script>window.RAMA_BOOT = { loaded: false }; setTimeout(() => { if (!window.RAMA_BOOT.loaded && !window.RamaWeb) { const t = document.getElementById('hud-obj'); if (t) t.textContent = 'Boot failed — check console (need http, not file://)'; console.error('RamaWeb boot did not complete in 3s'); } }, 3000); </script>
 </body>
 </html>
