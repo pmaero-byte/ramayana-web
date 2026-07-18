@@ -96,7 +96,8 @@ function buildEnv(env, group, palette) {
 }
 
 export function createWorld(canvas) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: true });
+  renderer.setClearColor(0x000000, 1.0);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
@@ -108,7 +109,7 @@ export function createWorld(canvas) {
   const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200);
   camera.position.set(0, 3.2, -7.5);
 
-  const sun = new THREE.DirectionalLight(0xffe0b8, 2.5);
+  const sun = new THREE.DirectionalLight(0xffe0b8, 3.5);
   sun.position.set(12, 22, 8);
   sun.castShadow = true;
   sun.shadow.mapSize.set(1024, 1024);
@@ -119,8 +120,8 @@ export function createWorld(canvas) {
   sun.shadow.camera.top = 25;
   sun.shadow.camera.bottom = -25;
   scene.add(sun);
-  scene.add(new THREE.AmbientLight(0xffd0a0, 1.2));
-  scene.add(new THREE.HemisphereLight(0xffd0a0, 0x402010, 0.7));
+  scene.add(new THREE.AmbientLight(0xffe0c8, 2.2));
+  scene.add(new THREE.HemisphereLight(0xffe0c8, 0x402010, 1.4));
 
   let arenaGroup = new THREE.Group();
 

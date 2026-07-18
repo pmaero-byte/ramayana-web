@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   const speed = opts.speed ?? (2.4 + Math.random() * 0.8);
+  const cover = opts.cover || null;
   const group = new THREE.Group();
   group.position.set(pos.x, 0, pos.z);
 
@@ -87,9 +88,21 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
       }
 
       if (dist > 1.15) {
+        // Pathfind around cover: if line of sight blocked, arc perpendicular first
+        let nx = dx / dist, nz = dz / dist;
+        if (cover && cover.blocksLine(group.position, playerPos)) {
+          // arc sideways based on a per-rakhas phase offset
+          const phase = rId * 6.28;
+          const arc = Math.sin(performance.now() * 0.6 + phase) * 0.6;
+          // rotate (nx,nz) by arc radians
+          const cs = Math.cos(arc), sn = Math.sin(arc);
+          const rx = nx * cs - nz * sn;
+          const rz = nx * sn + nz * cs;
+          nx = rx; nz = rz;
+        }
         const step = Math.min(speed * dt, dist - 1.1);
-        group.position.x += (dx / dist) * step;
-        group.position.z += (dz / dist) * step;
+        group.position.x += nx * step;
+        group.position.z += nz * step;
       }
 
       // bob while moving (keeps previous alive-y feel)

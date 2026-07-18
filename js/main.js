@@ -238,7 +238,8 @@ async function boot() {
         sfxWin();
         story?.completeCurrent();
       },
-      () => damagePlayer(1)
+      () => damagePlayer(1),
+      { cover }
     );
     archer = createArcher(world.scene, player, waves, {
       onFire: () => sfxBow(),
@@ -249,6 +250,7 @@ async function boot() {
         flash = 0.1;
         setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills` });
       },
+      cover,
     });
 
     story.on('enter', (obj) => {

@@ -2,12 +2,14 @@ import * as THREE from 'three';
 import { createRakshasa } from './rakshasa.js';
 import { spawnPoints, kindForWave } from './formation.js';
 
-export function createWaveController(scene, player, onWave, onAllDone, onMelee) {
+export function createWaveController(scene, player, onWave, onAllDone, onMelee, opts = {}) {
   let alive = [];
   let wave = 0;
   let total = 3;
   let running = false;
   let pause = 0;
+  const cover = opts.cover || null;
+  const pathfind = opts.pathfind !== false;
 
   function clearAlive() {
     for (const r of alive) r.dispose();
@@ -41,7 +43,7 @@ export function createWaveController(scene, player, onWave, onAllDone, onMelee) 
     const origin = player.position;
     const forward = player.forward;
     const pts = spawnPoints(kind, 3 + wave, origin, forward, 9 + wave * 2);
-    alive = pts.map((p, i) => createRakshasa(scene, p, 2 + wave));
+    alive = pts.map((p, i) => createRakshasa(scene, p, 2 + wave, { cover }));
     onWave?.(wave, total, kind, alive.length);
   }
 
@@ -123,7 +125,6 @@ export function createArcher(scene, player, waves, hooks = {}) {
     mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), to);
     scene.add(mesh);
 
-    // ember trail: short-lived Points behind each arrow
     const trailCount = 12;
     const trailGeo = new THREE.BufferGeometry();
     const tpos = new Float32Array(trailCount * 3);
@@ -137,7 +138,12 @@ export function createArcher(scene, player, waves, hooks = {}) {
     const trail = new THREE.Points(trailGeo, trailMat);
     scene.add(trail);
 
-    arrows.push({ mesh, trail, trailGeo, trailMat, dir: to, life: 2.2, hit: false, tIdx: 0, tAcc: 0 });
+    arrows.push({
+      mesh, trail, trailGeo, trailMat, dir: to,
+      life: 2.2, hit: false, tIdx: 0, tAcc: 0,
+      origin: origin.clone(),
+      blocked: false,
+    });
     hooks.onFire?.();
   }
 
@@ -151,6 +157,13 @@ export function createArcher(scene, player, waves, hooks = {}) {
       const a = arrows[i];
       a.life -= dt;
       a.mesh.position.addScaledVector(a.dir, speed * dt);
+
+      // Cover block: raycast each frame, if blocked, kill arrow without hit
+      if (!a.blocked && hooks.cover && hooks.cover.blocksLine(a.origin, a.mesh.position)) {
+        a.blocked = true;
+        a.hit = true;        // mark consumed
+        a.life = Math.min(a.life, 0.05);
+      }
 
       // ember trail update (every 2 frames ~ 30hz)
       a.tAcc += dt;
