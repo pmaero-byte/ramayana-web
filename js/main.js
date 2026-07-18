@@ -39,14 +39,6 @@ async function boot() {
         'Ravana is defeated. Dharma is restored.',
       ],
     },
-    'panchavati-golden-deer': {
-      speaker: 'Lakshmana',
-      lines: [
-        'The deer was Maya. We must hold the line.',
-        'Surpanakha is repelled. Her kin will answer.',
-        'Lanka burns. Ravana prepares his answer.',
-      ],
-    },
     'kishkindha-alliance': {
       speaker: 'Hanuman',
       lines: [
@@ -69,6 +61,14 @@ async function boot() {
         'The kingdom is yours in absence. I will hold it for you.',
         'The people mourn with me. Your sandals guide the throne.',
         'Rama returns. Ayodhya lights ten thousand lamps.',
+      ],
+    },
+    'return-ayodhya': {
+      speaker: 'Kausalya',
+      lines: [
+        'The exile ends. My son walks home at last.',
+        'Fourteen years of waiting — tonight, ten thousand lamps.',
+        'Ayodhya shines. Rama on the throne, Sita at his side.',
       ],
     },
     'bala-birth': {
