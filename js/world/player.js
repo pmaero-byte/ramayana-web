@@ -14,6 +14,50 @@ export function createPlayer(scene) {
   body.castShadow = true;
   group.add(body);
 
+  // Head
+  const head = new THREE.Mesh(
+    new THREE.SphereGeometry(0.22, 12, 10),
+    new THREE.MeshStandardMaterial({ color: 0xe8b888, roughness: 0.6 })
+  );
+  head.position.y = 1.7;
+  head.castShadow = true;
+  group.add(head);
+
+  // Hair / crown cap
+  const hair = new THREE.Mesh(
+    new THREE.SphereGeometry(0.24, 12, 8, 0, Math.PI * 2, 0, Math.PI * 0.55),
+    new THREE.MeshStandardMaterial({ color: 0x1a0e06, roughness: 0.85 })
+  );
+  hair.position.y = 1.7;
+  group.add(hair);
+
+  // Crown band (gold)
+  const crown = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.235, 0.235, 0.08, 16),
+    new THREE.MeshStandardMaterial({ color: 0xd4a017, roughness: 0.3, metalness: 0.7 })
+  );
+  crown.position.y = 1.78;
+  group.add(crown);
+
+  // Legs (two short cylinders)
+  const legMat = new THREE.MeshStandardMaterial({ color: 0xc89432, roughness: 0.7 });
+  const legL = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.55, 6), legMat);
+  legL.position.set(-0.14, 0.28, 0);
+  legL.castShadow = true;
+  group.add(legL);
+  const legR = legL.clone();
+  legR.position.x = 0.14;
+  group.add(legR);
+
+  // Boots
+  const bootMat = new THREE.MeshStandardMaterial({ color: 0x3a1f0a, roughness: 0.8 });
+  const bootL = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.12, 0.36), bootMat);
+  bootL.position.set(-0.14, 0.06, 0.04);
+  group.add(bootL);
+  const bootR = bootL.clone();
+  bootR.position.x = 0.14;
+  group.add(bootR);
+
   const bow = new THREE.Mesh(
     new THREE.CylinderGeometry(0.03, 0.03, 0.9, 6),
     new THREE.MeshStandardMaterial({ color: 0x8b5a2b })

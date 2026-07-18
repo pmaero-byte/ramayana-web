@@ -14,6 +14,61 @@ export function createRakshasa(scene, pos, hp = 3, opts = {}) {
   body.castShadow = true;
   group.add(body);
 
+  // Head (rakshasa: demonic)
+  const head = new THREE.Mesh(
+    new THREE.SphereGeometry(0.26, 12, 10),
+    new THREE.MeshStandardMaterial({ color: 0x4a1825, roughness: 0.7 })
+  );
+  head.position.y = 1.72;
+  head.castShadow = true;
+  group.add(head);
+
+  // Horns (two cones)
+  const hornMat = new THREE.MeshStandardMaterial({ color: 0x1a0608, roughness: 0.6 });
+  const hornL = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.3, 6), hornMat);
+  hornL.position.set(-0.14, 1.92, 0);
+  hornL.rotation.z = 0.35;
+  group.add(hornL);
+  const hornR = hornL.clone();
+  hornR.position.x = 0.14;
+  hornR.rotation.z = -0.35;
+  group.add(hornR);
+
+  // Fangs (two tiny cones in front of mouth)
+  const fangMat = new THREE.MeshStandardMaterial({ color: 0xfff4d0, roughness: 0.5 });
+  const fangL = new THREE.Mesh(new THREE.ConeGeometry(0.025, 0.08, 4), fangMat);
+  fangL.position.set(-0.06, 1.6, 0.22);
+  fangL.rotation.x = Math.PI;
+  group.add(fangL);
+  const fangR = fangL.clone();
+  fangR.position.x = 0.06;
+  group.add(fangR);
+
+  // Eyes (two small spheres — emissive red)
+  const eyeMat = new THREE.MeshStandardMaterial({
+    color: 0xff3000,
+    emissive: 0xff2000,
+    emissiveIntensity: 1.0,
+    roughness: 0.3,
+  });
+  const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.05, 6, 6), eyeMat);
+  eyeL.position.set(-0.09, 1.78, 0.21);
+  group.add(eyeL);
+  const eyeR = eyeL.clone();
+  eyeR.position.x = 0.09;
+  group.add(eyeR);
+
+  // Claws (two pairs of tiny cones as hands)
+  const clawMat = new THREE.MeshStandardMaterial({ color: 0xfff4d0, roughness: 0.4 });
+  const clawFrontL = new THREE.Mesh(new THREE.ConeGeometry(0.04, 0.12, 4), clawMat);
+  clawFrontL.position.set(-0.45, 0.95, 0.18);
+  clawFrontL.rotation.z = Math.PI / 2;
+  clawFrontL.rotation.x = -0.4;
+  group.add(clawFrontL);
+  const clawFrontR = clawFrontL.clone();
+  clawFrontR.position.x = 0.45;
+  group.add(clawFrontR);
+
   const crest = new THREE.Mesh(
     new THREE.ConeGeometry(0.18, 0.4, 6),
     new THREE.MeshStandardMaterial({ color: 0x2a1018, roughness: 0.8 })
