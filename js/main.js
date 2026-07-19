@@ -6,7 +6,7 @@ import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, sfxGrowl, startDrone, stopDrone } from './core/audio.js?v=58';
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
-import { createCameraRig } from './world/camera.js?v=61';
+import { createCameraRig } from './world/camera.js?v=64';
 import { createWaveController, createArcher } from './combat/wave.js?v=62';
 import { createCoverSet } from './combat/cover.js?v=61';
 import { createStory } from './story/moments.js';
@@ -628,6 +628,15 @@ async function boot() {
         const pulse = 0.85 + Math.sin(now * 0.004) * 0.15;
         flashEl.style.background =
           `radial-gradient(circle at 50% 50%, transparent 35%, rgba(180, 16, 16, ${(sev * 0.85 * pulse).toFixed(3)}) 95%)`;
+      }
+    }
+    // Brief desaturation on kill (GTA-3 "punch" feel). 0..1 fades over ~0.5s.
+    if (world?.renderer?.domElement) {
+      const d = camRig.getDesat ? camRig.getDesat() : 0;
+      if (d > 0) {
+        world.renderer.domElement.style.filter = `saturate(${(1 - d * 0.85).toFixed(3)})`;
+      } else if (world.renderer.domElement.style.filter) {
+        world.renderer.domElement.style.filter = '';
       }
     }
     world.renderer.render(world.scene, world.camera);

@@ -19,10 +19,18 @@ export function createCameraRig(camera) {
   let hitFlash = 0;       // red vignette
   let killFreeze = 0;     // bullet-time timer
   let timeScale = 1;      // slow-mo multiplier
+  let hitStop = 0;        // microfreeze (frame-freeze feel) on kill — 60ms timescale dip
+  let desat = 0;          // 0..1 brief desaturation after a kill
 
   function shakeAdd(amount) { shake = Math.min(shake + amount, 1.0); }
   function punchFov(amount) { fovBoost = Math.min(fovBoost + amount, 14); }
-  function killHit() { killFreeze = 0.22; punchFov(8); shakeAdd(0.6); }
+  function killHit() {
+    killFreeze = 0.22;
+    punchFov(8);
+    shakeAdd(0.6);
+    hitStop = 0.06;      // microfreeze for ~60ms — GTA "punch" feel
+    desat = 1.0;         // full desat on hit, decays over 0.5s
+  }
   function damageHit() { shakeAdd(0.35); hitFlash = 0.18; }
   /** Wave-3 boss entrance: longer freeze, harder FOV punch, heavy shake */
   function bossIntro() {
@@ -51,8 +59,12 @@ export function createCameraRig(camera) {
     const right = new THREE.Vector3(1, 0, 0).applyQuaternion(q);
 
     // Time-scale slow-mo on kill — capped to avoid stuck-slow-mo state.
-    const ts = killFreeze > 0 ? Math.max(0.5, 1 - killFreeze * 3) : 1;
+    const ts = killFreeze > 0 ? Math.max(0.5, 1 - killFreeze * 3)
+            : hitStop > 0 ? 0.18                  // microfreeze: ~18% speed
+            : 1;
     if (killFreeze > 0) killFreeze = Math.max(0, killFreeze - dt);
+    if (hitStop > 0)    hitStop    = Math.max(0, hitStop - dt);
+    if (desat > 0)     desat      = Math.max(0, desat - dt * 2);   // 0.5s decay
     timeScale = ts;
 
     // Apply lean offset (camera right & slightly down)
@@ -98,6 +110,7 @@ export function createCameraRig(camera) {
 
   function setMoveSpeed(s) { /* stored via opts in update */ }
   function getTimeScale() { return timeScale; }
+  function getDesat() { return desat; }
 
   return {
     update,
@@ -107,5 +120,6 @@ export function createCameraRig(camera) {
     damageHit,
     bossIntro,
     getTimeScale,
+    getDesat,
   };
 }
