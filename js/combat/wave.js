@@ -397,7 +397,13 @@ export function createArcher(scene, player, waves, hooks = {}) {
   function update(dt) {
     cd -= dt;
     if (cd <= 0) {
-      fire();
+      // Only fire if there's actually a target in cone (12u, 60°).
+      // Stops the "constant attack" feel when there's nothing to shoot at —
+      // the bow goes quiet when no rakshasas are facing Rama.
+      const origin = player.position.clone();
+      origin.y = 1.2;
+      const tgt = waves.findTarget(origin, player.forward);
+      if (tgt) fire();
       cd = interval;
     }
     updateSparks(dt);

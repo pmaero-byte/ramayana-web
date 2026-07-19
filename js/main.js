@@ -7,7 +7,7 @@ import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBoss
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
 import { createCameraRig } from './world/camera.js?v=65';
-import { createWaveController, createArcher } from './combat/wave.js?v=62';
+import { createWaveController, createArcher } from './combat/wave.js?v=66';
 import { createCoverSet } from './combat/cover.js?v=61';
 import { createStory } from './story/moments.js';
 import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
@@ -387,6 +387,7 @@ async function boot() {
       state.objectiveTitle = obj.title || obj.cue || obj.id;
       const title = story.act?.title || state.actId;
       setHud({ title, obj: state.objectiveTitle });
+      setObjectiveCard(state.objectiveTitle, `Kāṇḍa · ${state.actId.replace(/-/g, ' ')}`);
       const speaker = story.playerRole || obj.marker || 'Rama';
       showDialogue(speaker, obj.cue || obj.title || '', 2.8);
       sfxCue();
@@ -512,6 +513,17 @@ async function boot() {
     mctx.fillText('W', 6, cy + 4);
     mctx.fillText('E', W - 6, cy + 4);
   }
+
+  // Persistent mission card — makes "why am I fighting?" legible
+  function setObjectiveCard(text, sub) {
+    const el = document.getElementById('objective-card-text');
+    if (el) {
+      el.textContent = text;
+      const subEl = document.getElementById('objective-card-sub');
+      if (subEl && sub != null) subEl.textContent = sub;
+    }
+  }
+  window.setObjectiveCard = setObjectiveCard;
 
   // Mission-complete banner: animated overlay shown when all waves clear
   function showMissionComplete(k) {
