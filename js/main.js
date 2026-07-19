@@ -6,7 +6,7 @@ import { createTouchPad } from './core/touch.js';
 import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, sfxGrowl, startDrone, stopDrone } from './core/audio.js?v=58';
 import { createWorld } from './world/scene.js';
 import { createPlayer } from './world/player.js?v=54';
-import { createCameraRig } from './world/camera.js?v=64';
+import { createCameraRig } from './world/camera.js?v=65';
 import { createWaveController, createArcher } from './combat/wave.js?v=62';
 import { createCoverSet } from './combat/cover.js?v=61';
 import { createStory } from './story/moments.js';
@@ -607,6 +607,8 @@ async function boot() {
       camRig.update(dt, player, input.yaw, input.pitch, {
         moveSpeed,
         sprinting: input.run && moveSpeed > 0.1,
+        strafeX: mv.x,
+        forwardZ: mv.z,
       });
     } else {
       const t = now * 0.00015;

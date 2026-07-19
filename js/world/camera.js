@@ -16,6 +16,7 @@ export function createCameraRig(camera) {
   let shake = 0;
   let fovBoost = 0;       // temporary FOV widening (sprint)
   let lean = new THREE.Vector2(0, 0); // shoulder offset lean
+  let roll = 0;                       // camera roll on turn / sprint lean (GTA-3 feel)
   let hitFlash = 0;       // red vignette
   let killFreeze = 0;     // bullet-time timer
   let timeScale = 1;      // slow-mo multiplier
@@ -42,12 +43,19 @@ export function createCameraRig(camera) {
   function update(dt, target, yaw, pitch, opts = {}) {
     const speed = opts.moveSpeed || 0; // 0..1
     const isSprinting = opts.sprinting || false;
+    const strafeX = opts.strafeX || 0; // -1..1 horizontal input (for turn-roll)
+    const forwardZ = opts.forwardZ || 0; // -1..1 forward input
 
     // Over-the-shoulder lean: shift camera right when moving right, slightly down
     const leanTargetX = 0.35 + speed * 0.25; // always slightly right shoulder
     const leanTargetY = -0.15 - (isSprinting ? 0.25 : 0);
     lean.x = THREE.MathUtils.damp(lean.x, leanTargetX, 8, dt);
     lean.y = THREE.MathUtils.damp(lean.y, leanTargetY, 8, dt);
+
+    // Camera roll: tilt into strafes; faster forward = slight nose-down roll.
+    // strafe left → roll left (+Z), strafe right → roll right (-Z). Pure run = tiny left lean.
+    const rollTarget = strafeX * -0.16 + (isSprinting && forwardZ > 0.6 ? -0.05 : 0);
+    roll = THREE.MathUtils.damp(roll, rollTarget, 10, dt);
 
     // FOV punch on sprint
     const targetFov = baseFov + (isSprinting ? 10 : 0) + fovBoost;
@@ -90,6 +98,8 @@ export function createCameraRig(camera) {
     const lookAhead = new THREE.Vector3(Math.sin(yaw) * 0.6, 0, Math.cos(yaw) * 0.6).multiplyScalar(speed * 0.6);
     lookAt.add(lookAhead);
     camera.lookAt(lookAt);
+    // Apply roll around the camera's forward axis (after lookAt).
+    if (Math.abs(roll) > 1e-4) camera.rotateZ(roll);
 
     // Hit flash: tint via small DOM overlay (cheap cinematic)
     if (hitFlash > 0) {
