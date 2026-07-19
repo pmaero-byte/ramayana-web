@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+# Railway watches this branch — push to main triggers deploy (via GitHub
+# integration or the railway CLI). Healthcheck lives in railway.toml.
+
 jobs:
   unit:
     runs-on: ubuntu-latest
@@ -34,7 +37,7 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Serve + e2e
         run: |
-          (python3 -m http.server 8765 &) 2>/dev/null || (npx http-server -p 8765 &)
+          (node server.mjs &) 2>/dev/null
           sleep 2
           curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8765/ | grep -q 200
           npm run test:e2e
