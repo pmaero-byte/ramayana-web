@@ -78,6 +78,23 @@ namespace Jambudweep.Ramayana.UI
                     es.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
                     Debug.Log("[MainMenu] created EventSystem");
                 }
+                // Global click tester to confirm EventSystem receives input.
+                var overlay = new GameObject("ClickOverlay");
+                overlay.transform.SetParent(transform, false);
+                var overlayRt = overlay.AddComponent<RectTransform>();
+                overlayRt.anchorMin = Vector2.zero;
+                overlayRt.anchorMax = Vector2.one;
+                overlayRt.offsetMin = Vector2.zero;
+                overlayRt.offsetMax = Vector2.zero;
+                var overlayImg = overlay.AddComponent<Image>();
+                overlayImg.color = new Color(0f, 0f, 0f, 0f);
+                var overlayBtn = overlay.AddComponent<Button>();
+                overlayBtn.transition = Selectable.Transition.None;
+                overlayBtn.onClick.AddListener(() =>
+                {
+                    Debug.Log("[MainMenu] overlay click fired");
+                });
+                Debug.Log("[MainMenu] ClickOverlay added");
             _canvas = gameObject.GetComponent<Canvas>();
             if (_canvas == null)
             {
@@ -281,7 +298,8 @@ namespace Jambudweep.Ramayana.UI
                 colorMultiplier = 1f
             };
             string kandaId = ResolveKandaId(act.actId);
-            if (!KandaPermissions.IsUnlocked(kandaId))
+            bool unlocked = KandaPermissions.IsUnlocked(kandaId);
+            if (!unlocked)
             {
                 btn.interactable = false;
                 titleText.color = new Color(0.55f, 0.52f, 0.50f, 1f);
@@ -289,8 +307,12 @@ namespace Jambudweep.Ramayana.UI
                 numText.color = new Color(0.55f, 0.52f, 0.50f, 1f);
                 bg.color = new Color(0.25f, 0.22f, 0.20f, 1f);
             }
+            else
+            {
+                btn.interactable = true;
+            }
             btn.onClick.AddListener(() => SelectKanda(act.actId, act.title));
-            Debug.Log($"[MainMenu] card built: {act.actNumber} {act.title}");
+            Debug.Log($"[MainMenu] card built: {act.actNumber} {act.title} unlocked={unlocked}");
         }
 
         private string ResolveKandaId(string actId)
@@ -369,6 +391,14 @@ namespace Jambudweep.Ramayana.UI
         {
             Debug.Log("[MainMenu] New game selected — returning to TitleScreen.");
             UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScreen");
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("[MainMenu] mouse down at " + Input.mousePosition);
+            }
         }
     }
 }
