@@ -61,9 +61,16 @@ namespace Jambudweep.Ramayana.UI
 
         private void Build()
         {
-            if (_built) return;
+            Debug.Log("[MainMenu] Build() start");
+            if (_built)
+            {
+                Debug.Log("[MainMenu] Build() already built, returning");
+                return;
+            }
             _built = true;
-
+            Debug.Log("[MainMenu] Build() proceeding");
+            try
+            {
             _canvas = gameObject.GetComponent<Canvas>();
             if (_canvas == null)
             {
@@ -112,8 +119,17 @@ namespace Jambudweep.Ramayana.UI
                 new Vector2(-20f, 15f), new Vector2(300f, 30f));
             verText.text = "v0.1.0";
             verText.color = new Color(0.55f, 0.50f, 0.45f, 1f);
+            Debug.Log("[MainMenu] Build() UI construction complete");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError("[MainMenu] Build() exception: " + ex);
+            }
+            Debug.Log("[MainMenu] Build() end");
+        }
 
-            // Scrollable card list container
+        private void BuildCardList()
+        {
             var list = new GameObject("KandaList");
             list.transform.SetParent(transform, false);
             var listRt = list.AddComponent<RectTransform>();
