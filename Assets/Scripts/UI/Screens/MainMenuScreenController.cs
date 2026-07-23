@@ -148,8 +148,6 @@ namespace Jambudweep.Ramayana.UI
             listLayout.childForceExpandWidth = true;
             listLayout.childControlHeight = false;
             listLayout.childControlWidth = true;
-            var fitter = list.AddComponent<ContentSizeFitter>();
-            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         }
 
         private void Populate()
