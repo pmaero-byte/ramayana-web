@@ -26,8 +26,8 @@ namespace Jambudweep.Ramayana
         public Audio.RagaAudioEngine audio;
 
         [Header("Scene order")]
-        [Tooltip("Scene to load on first frame when no save exists.")]
-        [SerializeField] private string titleSceneName = "TitleScreen";
+        [Tooltip("First scene when no save exists.")]
+        [SerializeField] private string firstSceneName = "MainMenu";
 
         [Tooltip("Scene to load when a recent save exists.")]
         [SerializeField] private string resumeSceneName = "MainMenu";
@@ -55,15 +55,15 @@ namespace Jambudweep.Ramayana
         private void OnFirstFrame()
         {
             var mostRecent = SaveSystem.GetMostRecentSave();
-            if (mostRecent != null && !string.IsNullOrEmpty(mostRecent.selectedCharacterId))
+            if (mostRecent != null && !string.IsNullOrEmpty(mostRecent.currentActId))
             {
-                Debug.Log($"[Bootstrap] Resuming save: act={mostRecent.currentActId}, char={mostRecent.selectedCharacterId}");
+                Debug.Log($"[Bootstrap] Resuming save: act={mostRecent.currentActId}");
                 SceneManager.LoadScene(resumeSceneName);
             }
             else
             {
-                Debug.Log("[Bootstrap] No save found → TitleScreen scene");
-                SceneManager.LoadScene(titleSceneName);
+                Debug.Log("[Bootstrap] No save found → MainMenu scene");
+                SceneManager.LoadScene(firstSceneName);
             }
         }
 
