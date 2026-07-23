@@ -1,0 +1,204 @@
+{
+  "project": "Ramayana PS5 \u2014 ELGODS Return Kanda moment corpus",
+  "version": "day31-v1",
+  "sourceProject": "ELGODS (jambudweep/ELGODS)",
+  "sourceFile": "src/game/ramayana/characterStoryArcs.ts",
+  "exportedAt": "2026-07-22",
+  "designPillars": [
+    "10 Return Kanda moments derived from ELGODS source citations",
+    "Event-summary shape: narrative + moralLesson only",
+    "Cross-references Day 11 character roster (whitelist only)",
+    "Valmiki sarga citations preserved per moment",
+    "Voice cue IDs follow Day 13 register pattern vc_return_<verb>_<id>"
+  ],
+  "kanda": "return-kanda",
+  "moments": [
+    {
+      "momentId": "deepavali",
+      "kanda": "return-kanda",
+      "adhyaya": 1,
+      "verb": "return",
+      "protagonist": "rama",
+      "voiceCueId": "vc_return_return_deepavali",
+      "narrative": "Rama returns to Ayodhya. The city is illuminated with a million lamps \u2014 it is the first Deepavali. Bharata rushes to his brother's feet. The throne was always yours. I kept it safe. The people weep with joy.",
+      "moralLesson": "The road home can be brighter than the road away",
+      "characters": [
+        "rama",
+        "bharata",
+        "sita",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 1,
+      "sargaEnd": 4
+    },
+    {
+      "momentId": "rama-crowned",
+      "kanda": "return-kanda",
+      "adhyaya": 1,
+      "verb": "crown",
+      "protagonist": "rama",
+      "voiceCueId": "vc_return_crown_rama",
+      "narrative": "Rama is crowned king of Ayodhya. Bharata places the crown upon his head. Sita stands beside him. The city is lit with a million lamps. The fourteen years are over. Ram Rajya begins \u2014 an age of justice, prosperity, and peace.",
+      "moralLesson": "A coronation is not an end; it is a vow",
+      "characters": [
+        "rama",
+        "sita",
+        "bharata"
+      ],
+      "durationSec": 18,
+      "sargaStart": 4,
+      "sargaEnd": 7
+    },
+    {
+      "momentId": "rajya-begins",
+      "kanda": "return-kanda",
+      "adhyaya": 2,
+      "verb": "begin",
+      "protagonist": "rama",
+      "voiceCueId": "vc_return_begin_rajya",
+      "narrative": "Ram Rajya begins. No hunger. No fear. No one goes to bed hungry. No one dies of disease. The cows give milk. The trees give fruit. The rivers give water. Ayodhya becomes the city the world envies.",
+      "moralLesson": "A righteous kingdom feeds its people before its pride",
+      "characters": [
+        "rama",
+        "sita",
+        "bharata",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 8,
+      "sargaEnd": 12
+    },
+    {
+      "momentId": "urmila-reunion",
+      "kanda": "return-kanda",
+      "adhyaya": 3,
+      "verb": "reunite",
+      "protagonist": "urmila",
+      "voiceCueId": "vc_return_reunite_urmila",
+      "narrative": "Urmila and Lakshmana reunite after fourteen years. She kept the home fires burning. He kept the war alive. Two sacrifices, two paths, one household. The palace courtyard is full again.",
+      "moralLesson": "A shared sacrifice makes reunion sacred",
+      "characters": [
+        "urmila",
+        "lakshmana",
+        "sita"
+      ],
+      "durationSec": 18,
+      "sargaStart": 13,
+      "sargaEnd": 16
+    },
+    {
+      "momentId": "guha-return",
+      "kanda": "return-kanda",
+      "adhyaya": 4,
+      "verb": "greet",
+      "protagonist": "guha",
+      "voiceCueId": "vc_return_greet_guha",
+      "narrative": "Rama returns to the banks of the Ganga. Guha the Nishada chief waits. The ferryman who carried the exiles now greets the king. The river remembers. The forest remembers. The friendship outlasted the exile.",
+      "moralLesson": "The people who carry you into exile deserve the first seat at your return feast",
+      "characters": [
+        "guha",
+        "rama",
+        "sita",
+        "lakshmana",
+        "hanuman"
+      ],
+      "durationSec": 18,
+      "sargaStart": 19,
+      "sargaEnd": 22
+    },
+    {
+      "momentId": "kausalya-bless",
+      "kanda": "return-kanda",
+      "adhyaya": 4,
+      "verb": "bless",
+      "protagonist": "kausalya",
+      "voiceCueId": "vc_return_bless_kausalya",
+      "narrative": "Kausalya waits in the palace. Her son returns. She does not ask about the war. She does not ask about Lanka. She touches his face and blesses him. A mother's blessing is the oldest shield in the world.",
+      "moralLesson": "A mother's faith is the quiet armor of kings",
+      "characters": [
+        "kausalya",
+        "rama",
+        "sita"
+      ],
+      "durationSec": 18,
+      "sargaStart": 22,
+      "sargaEnd": 24
+    },
+    {
+      "momentId": "vishwamitra-witness",
+      "kanda": "return-kanda",
+      "adhyaya": 5,
+      "verb": "witness",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_return_witness_vishwamitra",
+      "narrative": "Vishwamitra watches from the eastern gate. The boy who came to my ashram is now king. The demoness Tataka fell to his first arrow. Now he rules the kingdom he saved. The rishi smiles. This is the fruit of tapas.",
+      "moralLesson": "The teacher's reward is the student's dharma",
+      "characters": [
+        "vishwamitra",
+        "rama"
+      ],
+      "durationSec": 18,
+      "sargaStart": 25,
+      "sargaEnd": 28
+    },
+    {
+      "momentId": "ashvamedha",
+      "kanda": "return-kanda",
+      "adhyaya": 6,
+      "verb": "sacrifice",
+      "protagonist": "rama",
+      "voiceCueId": "vc_return_sacrifice_ashvamedha",
+      "narrative": "Rama performs the Ashvamedha yajna. The horse is released. The kingdom is consecrated. Sita watches from a distance \u2014 she who cannot enter the hall because of the kingdom's silence. The sacrifice is complete. The kingdom is whole.",
+      "moralLesson": "A king's sacrifice is not for himself but for the soil he rules",
+      "characters": [
+        "rama",
+        "sita",
+        "bharata",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 30,
+      "sargaEnd": 34
+    },
+    {
+      "momentId": "lava-kusha",
+      "kanda": "return-kanda",
+      "adhyaya": 6,
+      "verb": "sing",
+      "protagonist": "lava",
+      "voiceCueId": "vc_return_sing_lava_kusha",
+      "narrative": "Lava and Kusha sing the Ramayana outside the royal hall. They are twins born in the forest, raised by Valmiki. Rama weeps. Sita watches from the balcony. The song ends. She descends into the earth that bore her.",
+      "moralLesson": "The story outlives the teller",
+      "characters": [
+        "lava",
+        "kusha",
+        "rama",
+        "sita",
+        "valmiki"
+      ],
+      "durationSec": 18,
+      "sargaStart": 48,
+      "sargaEnd": 52
+    },
+    {
+      "momentId": "rama-leaves",
+      "kanda": "return-kanda",
+      "adhyaya": 7,
+      "verb": "depart",
+      "protagonist": "rama",
+      "voiceCueId": "vc_return_depart_rama",
+      "narrative": "Time to leave. Not death \u2014 departure. Rama walks into the Sarayu river. The water does not wet him. The kingdom watches. Bharata runs after him. Lakshmana runs. The rope they lay behind them disappears. He is not gone. He is everywhere.",
+      "moralLesson": "The truly divine never truly leave",
+      "characters": [
+        "rama",
+        "bharata",
+        "lakshmana",
+        "sita"
+      ],
+      "durationSec": 18,
+      "sargaStart": 36,
+      "sargaEnd": 40
+    }
+  ]
+}

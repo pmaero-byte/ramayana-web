@@ -1,0 +1,669 @@
+import * as THREE from 'three';
+import { state, setHud, setHpBar, saveSlot, loadSlot, deleteSlot, listSlots, saveGame, setHighScore } from './core/state.js';
+import { setLocale, getLocale, availableLocales } from './core/i18n.js';
+import { createInput } from './core/input.js';
+import { createTouchPad } from './core/touch.js';
+import { unlockAudio, sfxBow, sfxHit, sfxWave, sfxCue, sfxWin, sfxDeath, sfxBossRoar, sfxLevelUp, sfxGrowl, startDrone, stopDrone } from './core/audio.js?v=58';
+import { createWorld } from './world/scene.js';
+import { createPlayer } from './world/player.js?v=54';
+import { createCameraRig } from './world/camera.js?v=65';
+import { createWaveController, createArcher } from './combat/wave.js?v=66';
+import { createCoverSet } from './combat/cover.js?v=61';
+import { createStory } from './story/moments.js';
+import { showDialogue, buildTitle, hideTitle, showTitle, updateContinueBtn, buildCharacterSelect, buildSlotsUi } from './ui/dialogue.js';
+
+async function boot() {
+  const canvas = document.getElementById('c');
+  const res = await fetch('data/corpus_data.json');
+  const corpus = await res.json();
+  state.corpus = corpus;
+
+  const world = createWorld(canvas);
+  const input = createInput(canvas);
+  createTouchPad(input);
+  const player = createPlayer(world.scene);
+  const camRig = createCameraRig(world.camera);
+
+  let story = null;
+  let waves = null;
+  let archer = null;
+
+  // Per-act quotes shown after each wave is cleared. First matching line
+  // for the cleared wave index; falls back to last line.
+  const WAVE_QUOTES = {
+    'yuddhakanda-war': {
+      speaker: 'Rama',
+      lines: [
+        'The first stone is laid. The bridge of dharma begins.',
+        'Indrajit falls — maya warfare cannot stand against truth.',
+        'Ravana is defeated. Dharma is restored.',
+      ],
+    },
+    'kishkindha-alliance': {
+      speaker: 'Hanuman',
+      lines: [
+        'Sugriva is crowned. The vanara army is yours, Rama.',
+        'The search parties are sent. Every direction covered.',
+        'Sampati speaks of Lanka. The path is known.',
+      ],
+    },
+    'sundarakanda-leap': {
+      speaker: 'Hanuman',
+      lines: [
+        'The ocean answered. I leap for Lanka.',
+        'I have found Sita. The message is delivered.',
+        'Lanka burns and I am unbound. The war begins.',
+      ],
+    },
+    'ayodhya-dharma': {
+      speaker: 'Bharata',
+      lines: [
+        'The kingdom is yours in absence. I will hold it for you.',
+        'The people mourn with me. Your sandals guide the throne.',
+        'Rama returns. Ayodhya lights ten thousand lamps.',
+      ],
+    },
+    'return-ayodhya': {
+      speaker: 'Kausalya',
+      lines: [
+        'The exile ends. My son walks home at last.',
+        'Fourteen years of waiting — tonight, ten thousand lamps.',
+        'Ayodhya shines. Rama on the throne, Sita at his side.',
+      ],
+    },
+    'bala-birth': {
+      speaker: 'Vishwamitra',
+      lines: [
+        'A prince is born to dash the asuras\' pride. Begin.',
+        'Tadaka falls. The forest is no longer her dark dominion.',
+        'The bow of Shiva sings. Sita is found.',
+      ],
+    },
+    'panchavati-golden-deer': {
+      speaker: 'Lakshmana',
+      lines: [
+        'The deer was Maya. We must hold the line.',
+        'Surpanakha is repelled. Her kin will answer.',
+        'Lanka burns. Ravana prepares his answer.',
+      ],
+    },
+    'uttara-earth-return': {
+      speaker: 'Valmiki',
+      lines: [
+        'The throne is given back. Sita returns to the earth.',
+        'Time takes what it must. The story continues elsewhere.',
+        'The seventh avatar rests. The cycle turns.',
+      ],
+    },
+  };
+  let cover = null;
+  let kills = 0;
+  let streak = 0;
+  let last = performance.now();
+  let flash = 0;
+  let deathTimer = 0;
+  let autoSaveTimer = 0;
+
+  let flashEl = document.getElementById('hit-flash');
+  if (!flashEl) {
+    flashEl = document.createElement('div');
+    flashEl.id = 'hit-flash';
+    document.getElementById('app')?.appendChild(flashEl);
+  }
+
+  // expose slot helpers for slots UI
+  state.__getSlots = () => {
+    const out = {};
+    try { Object.assign(out, JSON.parse(window.localStorage.getItem('ramayana_web_slots') || '{}')); } catch {}
+    return out;
+  };
+
+  function toggleFullscreen() {
+    const el = document.documentElement;
+    if (!document.fullscreenElement) el.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+
+  document.getElementById('btn-fullscreen')?.addEventListener('click', toggleFullscreen);
+  document.getElementById('btn-menu')?.addEventListener('click', () => returnToTitle());
+  document.getElementById('btn-save')?.addEventListener('click', () => {
+    const ok = saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
+    setHud({ wave: ok ? 'Saved to autoslot ✓' : 'Save failed' });
+    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+  });
+  document.getElementById('btn-slots')?.addEventListener('click', () => toggleSlotsPanel(true));
+  document.getElementById('btn-slots-close')?.addEventListener('click', () => toggleSlotsPanel(false));
+  document.getElementById('btn-slots-hud')?.addEventListener('click', () => toggleSlotsPanel(true));
+
+  // Death overlay buttons (DOM exists from commit 8edb7ab; wiring here)
+  document.getElementById('btn-retry')?.addEventListener('click', () => {
+    const ov = document.getElementById('death-overlay');
+    if (ov) ov.classList.add('hidden');
+    hideDialogue();
+    state.dead = false;
+    state.deathSince = 0;
+    respawn();
+  });
+  document.getElementById('btn-return')?.addEventListener('click', () => {
+    const ov = document.getElementById('death-overlay');
+    if (ov) ov.classList.add('hidden');
+    hideDialogue();
+    state.dead = false;
+    state.deathSince = 0;
+    returnToTitle();
+  });
+  document.getElementById('btn-locale')?.addEventListener('click', () => {
+    const next = getLocale() === 'en' ? 'sa' : 'en';
+    setLocale(next);
+    try { window.localStorage.setItem('ramayana_web_locale', next); } catch {}
+    document.getElementById('btn-locale').textContent = next === 'en' ? 'अ/En' : 'En/अ';
+    setHud({ wave: `Language: ${next === 'en' ? 'English' : 'संस्कृतम्'}` });
+    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+  });
+  try {
+    const saved = window.localStorage.getItem('ramayana_web_locale');
+    if (saved === 'sa' || saved === 'en') setLocale(saved);
+  } catch {}
+  // parent iframe can request a locale via postMessage
+  window.addEventListener('message', (e) => {
+    if (e?.data?.type === 'rama-set-locale' && (e.data.locale === 'en' || e.data.locale === 'sa')) {
+      setLocale(e.data.locale);
+      try { window.localStorage.setItem('ramayana_web_locale', e.data.locale); } catch {}
+    }
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+    if (e.key === 'm' || e.key === 'M') { if (state.running) returnToTitle(); }
+    if (e.key === 'Escape') toggleSlotsPanel(false);
+  });
+
+  buildTitle(
+    corpus,
+    (id, act) => {
+      state.selectedActId = id;
+      document.getElementById('btn-start').textContent = `Begin · ${act.title || id}`;
+    },
+    (id) => {
+      unlockAudio();
+      toggleSlotsPanel(false);
+      startGame(id);
+    },
+    (saved) => {
+      unlockAudio();
+      toggleSlotsPanel(false);
+      startGame(saved.actId, saved);
+    }
+  );
+
+  buildCharacterSelect(corpus, state.selectedCharacter, (id) => {
+    state.selectedCharacter = id;
+    const c = corpus.characters.find(x => x.characterId === id);
+    player.setCharacter?.(id, c?.color);
+  });
+
+  buildSlotsUi(
+    (i, s) => { unlockAudio(); toggleSlotsPanel(false); startGame(s.actId, s); },
+    (i) => { deleteSlot(i); refreshSlotsPanel(); },
+    (i) => saveToSlot(i)
+  );
+
+  function refreshSlotsPanel() {
+    buildSlotsUi(
+      (ii, s) => { unlockAudio(); toggleSlotsPanel(false); startGame(s.actId, s); },
+      (ii) => { deleteSlot(ii); refreshSlotsPanel(); },
+      (ii) => saveToSlot(ii)
+    );
+  }
+
+  function saveToSlot(i) {
+    const ok = saveSlot(i, {
+      actId: state.actId, kills, hp: state.hp, maxHp: state.maxHp,
+      objectiveTitle: state.objectiveTitle, characterId: state.selectedCharacter,
+    });
+    setHud({ wave: ok ? `Saved to slot ${i} ✓` : 'Save failed' });
+    setTimeout(() => setHud({ wave: `Wave ${waves?.wave || '-'}/3` }), 1200);
+    refreshSlotsPanel();
+  }
+
+  function toggleSlotsPanel(show) {
+    const p = document.getElementById('slots-panel');
+    if (!p) return;
+    p.classList.toggle('hidden', !show);
+    if (show) refreshSlotsPanel();
+  }
+
+  function applyActMood(actId) {
+    world.buildArena?.(actId);
+  }
+
+  function returnToTitle() {
+    waves?.stop();
+    cover?.dispose();
+    cover = null;
+    archer = null;
+    story = null;
+    state.running = false;
+    state.dead = false;
+    player.reset();
+    player.setLocked(false);
+    setHpBar(state.maxHp, state.maxHp);
+    setHud({ title: 'Rāmāyaṇa', obj: '—', wave: 'Wave —' });
+    updateContinueBtn();
+    showTitle();
+    stopDrone();
+  }
+
+  function onPlayerDeath() {
+    if (state.dead) return;
+    state.dead = true;
+    sfxDeath();
+    state.deathSince = performance.now();
+    state.deathWave = waves?.wave || 0;
+    state.deathKills = kills;
+    player.setLocked(true);
+    waves?.stop();
+    const dKills = kills;
+    const dWave = waves?.wave || 0;
+    setHud({ obj: `Fallen at wave ${dWave} — ${dKills} slain`, wave: 'Respawning…' });
+    setHighScore(dKills, dWave);
+    showDialogue('Valmiki', 'Even the greatest heroes rise again. Hold fast to dharma.', 2.5);
+    deathTimer = 2.4;
+    camRig.shake?.(0.9);
+    // Show death overlay after the dialogue settles — player can retry or quit.
+    setTimeout(() => {
+      if (!state.dead) return;
+      const ov = document.getElementById('death-overlay');
+      const stats = document.getElementById('death-stats');
+      if (ov && stats) {
+        stats.textContent = `${state.deathKills || kills} slain · wave ${state.deathWave || (waves?.wave || 0)}`;
+        ov.classList.remove('hidden');
+      }
+    }, 2400);
+  }
+  function respawn() {
+    state.dead = false;
+    player.reset();
+    player.setLocked(false);
+    player.grantInvuln?.(2000);
+    setHpBar(state.maxHp, state.maxHp);
+    setHud({ obj: state.objectiveTitle || 'Continue the fight' });
+    waves?.start(3);
+    streak = 0;
+    const ov = document.getElementById('death-overlay');
+    if (ov) ov.classList.add('hidden');
+  }
+  function damagePlayer(n = 1) {
+    if (state.dead || !state.running) return;
+    if (!player.hurt(n)) return;
+    const hp = Math.max(0, state.hp - n);
+    setHpBar(hp, state.maxHp);
+    flash = 0.14;
+    sfxHit();
+    camRig.damageHit();
+    streak = 0; // player took damage — streak breaks
+    if (hp <= 0) onPlayerDeath();
+  }
+
+  function startGame(actId, saved = null) {
+    hideTitle();
+    unlockAudio();
+    startDrone();
+    state.running = true;
+    state.dead = false;
+    state.actId = actId || state.selectedActId;
+    kills = saved?.kills ?? 0;
+    deathTimer = 0;
+    autoSaveTimer = 0;
+    player.reset();
+    player.setLocked(false);
+    setHpBar(saved?.hp ?? state.maxHp, saved?.maxHp ?? state.maxHp);
+    // brief invulnerability at game start so first wave doesn't instakill
+    player.grantInvuln?.(2000);
+    if (saved?.characterId) {
+      const c = corpus.characters.find(x => x.characterId === saved.characterId);
+      player.setCharacter?.(saved.characterId, c?.color);
+    } else {
+      const c = corpus.characters.find(x => x.characterId === state.selectedCharacter);
+      player.setCharacter?.(state.selectedCharacter, c?.color);
+    }
+    applyActMood(state.actId);
+
+    waves?.stop();
+    cover?.dispose();
+    cover = createCoverSet(world.scene, player, state.actId);
+    story = createStory(corpus);
+    waves = createWaveController(
+      world.scene,
+      player,
+      (w, total, kind, n) => {
+        state.wave = w;
+        state.totalWaves = total;
+        state.alive = n;
+        setHud({ wave: `Wave ${w}/${total} · ${kind} · ${n} · ${kills} kills` });
+        sfxWave();
+        // Boss intro: longer freeze + FOV punch + roar + cue line
+        if (w === 3) {
+          if (typeof camRig.bossIntro === 'function') camRig.bossIntro();
+          else camRig.killHit?.();
+          sfxBossRoar();
+          showDialogue('Rama', 'The asura lord rises — hold the line.', 2.2);
+        }
+      },
+      () => {
+        setHud({ wave: `All waves cleared · ${kills} kills` });
+        sfxWin();
+        story?.completeCurrent();
+        showMissionComplete(kills);
+      },
+      (w, total, kind) => {
+        // Per-act quote when a wave is cleared — small cinematic interlude.
+        const q = WAVE_QUOTES[state.actId];
+        if (q) showDialogue(q.speaker, q.lines[w - 1] || q.lines[q.lines.length - 1], 2.4);
+        // 3-2-1 countdown before next wave (pause is 3.2s in wave.js)
+        if (w < total) showWaveCountdown(3);
+      },
+      () => damagePlayer(1),
+      { cover, onGrowl: () => sfxGrowl() }
+    );
+    archer = createArcher(world.scene, player, waves, {
+      onFire: () => sfxBow(),
+      onHit: (enemy) => {
+        kills += 1;
+        state.kills = kills;
+        streak += 1;
+        sfxHit();
+        camRig.killHit();
+        flash = 0.1;
+        if (enemy?.position) pushMapFlash(enemy.position.x, enemy.position.z);
+        if (streak === 3) sfxLevelUp();
+        setHud({ wave: `Wave ${waves.wave}/3 · ${waves.alive.length} left · ${kills} kills${streak >= 3 ? `  · STREAK x${streak}` : ''}` });
+      },
+      cover,
+      aiming: () => !!(input.run && state.running && !state.dead),
+    });
+
+    story.on('enter', (obj) => {
+      state.objectiveId = obj.id;
+      state.objectiveTitle = obj.title || obj.cue || obj.id;
+      const title = story.act?.title || state.actId;
+      setHud({ title, obj: state.objectiveTitle });
+      setObjectiveCard(state.objectiveTitle, `Kāṇḍa · ${state.actId.replace(/-/g, ' ')}`);
+      const speaker = story.playerRole || obj.marker || 'Rama';
+      showDialogue(speaker, obj.cue || obj.title || '', 2.8);
+      sfxCue();
+    });
+    story.on('complete', (obj) => {
+      const cl = obj.completedLine;
+      if (cl) showDialogue(cl.speaker || 'Narrator', cl.text || '', 3.0);
+      saveGame(state.actId, kills, state.hp, state.maxHp, story?.current?.title || '');
+      setTimeout(() => story.advance(), 3200);
+    });
+    story.on('actDone', () => {
+      setHud({ obj: 'Act complete — dharma upheld' });
+      showDialogue('Valmiki', 'Thus ends this kāṇḍa. Returning to the kāṇḍa picker…', 3.2);
+      sfxWin();
+      waves?.stop();
+      setHighScore(kills, 3);
+      saveGame(state.actId, kills, state.hp, state.maxHp, '✓ Complete');
+      setTimeout(() => returnToTitle(), 3400);
+    });
+
+    const ok = story.loadAct(state.actId);
+    if (!ok) {
+      setHud({ obj: 'Act not found in corpus' });
+      return;
+    }
+    setHud({ title: story.act?.title || state.actId });
+    waves.start(3);
+  }
+
+  const minimap = document.getElementById('minimap');
+  const mctx = minimap.getContext('2d');
+  // Brief gold flash rings on minimap when an enemy is hit
+  const mapFlashes = [];
+  function pushMapFlash(wx, wz) {
+    mapFlashes.push({ x: wx, z: wz, life: 0.38 });
+  }
+  function drawMinimap() {
+    if (!mctx) return;
+    const W = minimap.width, H = minimap.height;
+    const cx = W / 2, cy = H / 2;
+    // World maps roughly to [-14, +14] in xz. Scale to ~75 radius.
+    const R = 75;
+    const S = R / 14;
+    mctx.clearRect(0, 0, W, H);
+    mctx.save();
+    mctx.translate(cx, cy);
+    // Background ring
+    mctx.fillStyle = 'rgba(40, 24, 8, 0.6)';
+    mctx.beginPath();
+    mctx.arc(0, 0, R, 0, Math.PI * 2);
+    mctx.fill();
+    // Arena ring
+    mctx.strokeStyle = '#d4a017';
+    mctx.lineWidth = 2;
+    mctx.beginPath();
+    mctx.arc(0, 0, R, 0, Math.PI * 2);
+    mctx.stroke();
+    // Center cross
+    mctx.strokeStyle = 'rgba(212, 160, 23, 0.4)';
+    mctx.lineWidth = 1;
+    mctx.beginPath();
+    mctx.moveTo(-R, 0); mctx.lineTo(R, 0);
+    mctx.moveTo(0, -R); mctx.lineTo(0, R);
+    mctx.stroke();
+    // Player as yellow dot (always at center)
+    if (player) {
+      mctx.fillStyle = '#4a90e2';
+      mctx.beginPath();
+      mctx.arc(0, 0, 4, 0, Math.PI * 2);
+      mctx.fill();
+      // Direction triangle (player forward)
+      const yaw = input.yaw || 0;
+      mctx.fillStyle = '#7ec0ff';
+      mctx.beginPath();
+      mctx.moveTo(0, -8);
+      mctx.lineTo(-3, -3);
+      mctx.lineTo(3, -3);
+      mctx.closePath();
+      mctx.fill();
+      mctx.rotate(yaw); // intentionally applied to canvas; visual cue only
+    }
+    // Enemies as red dots, position relative to player (subtract player pos first)
+    const px = player?.position?.x || 0;
+    const pz = player?.position?.z || 0;
+    if (waves?.alive) {
+      for (const r of waves.alive) {
+        if (r.isDead) continue;
+        const ex = (r.position.x - px) * S;
+        const ey = (r.position.z - pz) * S;
+        const len = Math.hypot(ex, ey);
+        if (len > R - 4) continue; // clip outside radar
+        mctx.fillStyle = r.isBoss ? '#ff4400' : '#c83232';
+        mctx.beginPath();
+        mctx.arc(ex, ey, r.isBoss ? 4 : 2.5, 0, Math.PI * 2);
+        mctx.fill();
+      }
+    }
+    // Hit flashes — expanding gold rings at impact world pos
+    for (let i = mapFlashes.length - 1; i >= 0; i--) {
+      const f = mapFlashes[i];
+      const p = 1 - f.life / 0.38;
+      const fx = (f.x - px) * S;
+      const fy = (f.z - pz) * S;
+      const rad = 3 + p * 14;
+      mctx.strokeStyle = `rgba(255, 220, 80, ${Math.max(0, 1 - p)})`;
+      mctx.lineWidth = 2.5 - p * 1.5;
+      mctx.beginPath();
+      mctx.arc(fx, fy, rad, 0, Math.PI * 2);
+      mctx.stroke();
+      // bright core
+      mctx.fillStyle = `rgba(255, 240, 160, ${Math.max(0, 0.9 - p)})`;
+      mctx.beginPath();
+      mctx.arc(fx, fy, 3.5 * (1 - p * 0.5), 0, Math.PI * 2);
+      mctx.fill();
+    }
+    mctx.restore();
+    // Compass labels
+    mctx.fillStyle = '#d4a017';
+    mctx.font = 'bold 10px system-ui';
+    mctx.textAlign = 'center';
+    mctx.fillText('N', cx, 12);
+    mctx.fillText('S', cx, H - 4);
+    mctx.fillText('W', 6, cy + 4);
+    mctx.fillText('E', W - 6, cy + 4);
+  }
+
+  // Persistent mission card — makes "why am I fighting?" legible
+  function setObjectiveCard(text, sub) {
+    const el = document.getElementById('objective-card-text');
+    if (el) {
+      el.textContent = text;
+      const subEl = document.getElementById('objective-card-sub');
+      if (subEl && sub != null) subEl.textContent = sub;
+    }
+  }
+  window.setObjectiveCard = setObjectiveCard;
+
+  // Mission-complete banner: animated overlay shown when all waves clear
+  function showMissionComplete(k) {
+    let el = document.getElementById('mission-complete');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'mission-complete';
+      el.className = 'mission-complete';
+      el.innerHTML = `
+        <div class="mission-complete-inner">
+          <div class="mc-stamp">MISSION COMPLETE</div>
+          <div class="mc-sub">Rama returns victorious.</div>
+          <div class="mc-kills">Slain: ${k} rakshasas</div>
+        </div>
+      `;
+      document.body.appendChild(el);
+    } else {
+      // Update kills text on re-show
+      el.querySelector('.mc-kills').textContent = `Slain: ${k} rakshasas`;
+      el.classList.remove('mc-hidden');
+    }
+    setTimeout(() => el.classList.add('mc-hidden'), 4000);
+  }
+
+  // Between-wave 3-2-1 countdown (GTA-style round start)
+  let waveCdTimer = null;
+  function showWaveCountdown(from = 3) {
+    let el = document.getElementById('wave-cd');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'wave-cd';
+      el.className = 'wave-cd';
+      el.innerHTML = '<div class="wave-cd-num">3</div><div class="wave-cd-label">NEXT WAVE</div>';
+      document.body.appendChild(el);
+    }
+    if (waveCdTimer) {
+      clearInterval(waveCdTimer);
+      waveCdTimer = null;
+    }
+    let left = from;
+    const num = el.querySelector('.wave-cd-num');
+    num.textContent = String(left);
+    el.classList.remove('wave-cd-hidden');
+    el.classList.remove('wave-cd-pop');
+    // force reflow so pop restarts
+    void el.offsetWidth;
+    el.classList.add('wave-cd-pop');
+    sfxCue?.();
+    setHud({ wave: `Next wave in ${left}…` });
+    waveCdTimer = setInterval(() => {
+      left -= 1;
+      if (left <= 0) {
+        clearInterval(waveCdTimer);
+        waveCdTimer = null;
+        el.classList.add('wave-cd-hidden');
+        return;
+      }
+      num.textContent = String(left);
+      el.classList.remove('wave-cd-pop');
+      void el.offsetWidth;
+      el.classList.add('wave-cd-pop');
+      sfxCue?.();
+      setHud({ wave: `Next wave in ${left}…` });
+    }, 1000);
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    if (state.running) {
+      if (state.dead) {
+        player.update(dt, input, input.yaw); // run death fall animation
+        deathTimer -= dt;
+        if (deathTimer <= 0) respawn();
+      } else {
+        player.update(dt, input, input.yaw);
+        waves?.update(dt * camRig.getTimeScale());
+        archer?.update(dt * camRig.getTimeScale());
+        world.updateAtmosphere?.(dt);
+        autoSaveTimer += dt;
+        if (autoSaveTimer > 30) {
+          autoSaveTimer = 0;
+          saveGame(state.actId, kills, state.hp, state.maxHp, state.objectiveTitle);
+        }
+      }
+      // decay minimap hit flashes
+      for (let i = mapFlashes.length - 1; i >= 0; i--) {
+        mapFlashes[i].life -= dt;
+        if (mapFlashes[i].life <= 0) mapFlashes.splice(i, 1);
+      }
+      const mv = input.moveVector();
+      const moveSpeed = mv.mag;
+      camRig.update(dt, player, input.yaw, input.pitch, {
+        moveSpeed,
+        sprinting: input.run && moveSpeed > 0.1,
+        strafeX: mv.x,
+        forwardZ: mv.z,
+      });
+    } else {
+      const t = now * 0.00015;
+      world.camera.position.set(Math.sin(t) * 10, 4, Math.cos(t) * 10);
+      world.camera.lookAt(0, 1, 0);
+    }
+    if (flash > 0) {
+      flash -= dt;
+      flashEl.style.opacity = String(Math.max(0, flash * 4));
+    } else {
+      flashEl.style.opacity = '0';
+    }
+    // Persistent low-HP vignette: edges turn red as HP drops (GTA-style).
+    // Strongest at 1/5 HP; absent at full HP. Pulses subtly.
+    if (flashEl && !state.dead) {
+      const pct = state.maxHp > 0 ? state.hp / state.maxHp : 1;
+      if (pct < 0.7) {
+        const sev = 1 - pct / 0.7;            // 0..1
+        const pulse = 0.85 + Math.sin(now * 0.004) * 0.15;
+        flashEl.style.background =
+          `radial-gradient(circle at 50% 50%, transparent 35%, rgba(180, 16, 16, ${(sev * 0.85 * pulse).toFixed(3)}) 95%)`;
+      }
+    }
+    // Brief desaturation on kill (GTA-3 "punch" feel). 0..1 fades over ~0.5s.
+    if (world?.renderer?.domElement) {
+      const d = camRig.getDesat ? camRig.getDesat() : 0;
+      if (d > 0) {
+        world.renderer.domElement.style.filter = `saturate(${(1 - d * 0.85).toFixed(3)})`;
+      } else if (world.renderer.domElement.style.filter) {
+        world.renderer.domElement.style.filter = '';
+      }
+    }
+    world.renderer.render(world.scene, world.camera);
+    drawMinimap();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  window.RamaWeb = { state, startGame, returnToTitle, THREE, listSlots, saveSlot, loadSlot, setLocale, getLocale, availableLocales, scene: world.scene, camera: world.camera, player };
+}
+
+boot().then(() => { window.RAMA_BOOT.loaded = true; }).catch((err) => {
+  console.error(err);
+  const t = document.getElementById('hud-obj');
+  if (t) t.textContent = 'Boot failed — see console (serve via http, not file://)';
+});

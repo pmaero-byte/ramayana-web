@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_1_bala-birth
+  m_EditorClassIdentifier: 
+  actId: "bala-birth"
+  actNumber: 1
+  title: "Balakanda: Birth and Bow"
+  location: "Ayodhya Palace"
+  scene: 6
+  setup: "King Dasharatha of Ayodhya has three wives but no heirs. He performs the putra-kameshti yajna and receives divine payasam from the gods. His wives bear four sons, Bharata, Lakshmana, and Shatrughna. Rama grows into the ideal prince and wins Sita’s hand by breaking Shiva’s bow at Janakpur."
+  lesson: "The divine descends into the world to restore dharma when adharma rises."
+  playerRole: "Rama"
+  objectives:
+  - id: "witness-birth"
+    type: 5
+    title: "Witness Rama’s birth and the divine payasam"
+    marker: "Sacred fire"
+    cue: "Stand before the sacred fire and witness the birth ceremony."
+    actionLabel: "Witness birth"
+    completedLine: {speaker: "Kausalya", text: "The gods have blessed us. Rama is born to restore dharma to the world."}
+    target: 1
+    position: {x: -2, y: 0.6, z: -4}
+  - id: "break-bow"
+    type: 0
+    title: "Break Shiva’s bow at Janakpur to win Sita"
+    marker: "Shiva’s bow"
+    cue: "Stand before the great bow and choose your path to Sita."
+    actionLabel: "Approach the bow"
+    completedLine: {speaker: "Janaka", text: "No man has lifted this bow since Shiva. You have broken it. Sita is yours."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 0}
+  - id: "marry-sita"
+    type: 1
+    title: "Marry Sita at Janakpur"
+    marker: "Sita"
+    cue: "Speak with Sita and receive her bride."
+    actionLabel: "Speak with Sita"
+    completedLine: {speaker: "Sita", text: "I am Sita, daughter of Earth. Where you walk, I shall walk. Where you dwell, I shall dwell."}
+    target: 1
+    position: {x: 4, y: 0.6, z: 2}
+  - id: "vishwamitra-sacrifice"
+    type: 1
+    title: "Accept Vishwamitra’s request to protect his sacrifice"
+    marker: "Vishwamitra"
+    cue: "The sage Vishwamitra has come to Ayodhya. He seeks warriors to protect his sacred fire from demons."
+    actionLabel: "Accept quest"
+    completedLine: {speaker: "Vishwamitra", text: "You are young, but the gods have prepared you. Come, let us walk where adharma festers."}
+    target: 1
+    position: {x: -6, y: 0.6, z: -2}
+  - id: "tataka-battle"
+    type: 6
+    title: "Battle Tataka and free her from her curse"
+    marker: "Tataka"
+    cue: "A demoness blocks the path. She was cursed into this form, and only dharma can release her."
+    actionLabel: "Battle Tataka"
+    completedLine: {speaker: "Tataka", text: "You have freed me. I return to the world of spirits, no longer a terror to the innocent."}
+    target: 1
+    position: {x: 6, y: 0.6, z: -4}
+  - id: "ahalya-redemption"
+    type: 5
+    title: "Free Ahalya from Gautama’s curse"
+    marker: "Stone figure"
+    cue: "A woman turned to stone waits for the touch of Rama. Her curse holds until dharma itself arrives."
+    actionLabel: "Touch stone"
+    completedLine: {speaker: "Ahalya", text: "Gautama’s curse is lifted. I am flesh again, and the world is new."}
+    target: 1
+    position: {x: -4, y: 0.6, z: 2}
+  - id: "swayamvara-gathering"
+    type: 0
+    title: "Witness the gathering of princes at Sita’s swayamvara"
+    marker: "Assembly hall"
+    cue: "Kings and warriors from every corner of Bharata have assembled. Only one can lift Shiva’s bow."
+    actionLabel: "Enter assembly"
+    completedLine: {speaker: "Janaka", text: "Princes of the earth, the bow awaits. He who bends it shall win my daughter."}
+    target: 1
+    position: {x: 3, y: 0.6, z: -3}
+  - id: "brother-marriages"
+    type: 5
+    title: "Witness the marriages of the four brothers"
+    marker: "Sacred fire"
+    cue: "Four brides for four brothers. The bonds of dharma extend beyond one couple."
+    actionLabel: "Witness marriages"
+    completedLine: {speaker: "Dasharatha", text: "My four sons are wed. The kingdom is blessed with four pillars of dharma."}
+    target: 1
+    position: {x: -3, y: 0.6, z: 3}
+  - id: "kausalya-blessing"
+    type: 1
+    title: "Receive Kausalya’s blessing before leaving with Vishwamitra"
+    marker: "Kausalya"
+    cue: "A mother’s blessing is the first armor a warrior wears. Kausalya waits with tears and strength both."
+    actionLabel: "Receive blessing"
+    completedLine: {speaker: "Kausalya", text: "Go with the gods, my son. A mother’s heart breaks and mends in the same breath when dharma calls."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 5}
+  - id: "kaikeyi-boons-story"
+    type: 5
+    title: "Witness the story of how Kaikeyi earned her two boons"
+    marker: "Battlefield memory"
+    cue: "In the war with the asuras, Kaikeyi saved Dasharatha’s life. Two boons were promised — unspent until now."
+    actionLabel: "Witness memory"
+    completedLine: {speaker: "Kaikeyi", text: "I saved his life with my own hands. He promised me anything. Now I claim what was promised."}
+    target: 1
+    position: {x: -5, y: 0.6, z: -5}
+  dialogue:
+  - speaker: "Dasharatha"
+    text: "The gods have heard my prayer. Four sons are born to uphold dharma in this age."
+    voice: 10
+  - speaker: "Kausalya"
+    text: "Rama is not merely my son. He is the hope of all who suffer under adharma."
+    voice: 10
+  - speaker: "Vishwamitra"
+    text: "I am Vishwamitra, once a king, now a sage. I have forged my spirit through ten thousand years of tapas. Now I forge yours."
+    voice: 10
+  - speaker: "Tataka"
+    text: "Who dares enter my forest? I was a woman once, but cursed to become this form. Kill me, and you free me both."
+    voice: 10
+  - speaker: "Ahalya"
+    text: "I have been stone for an age, punished for a moment’s folly. Gautama’s curse said only Rama could restore me."
+    voice: 10
+  - speaker: "Janaka"
+    text: "This bow of Shiva has rested here since the gods walked the earth. Only the worthy may lift it."
+    voice: 10
+  - speaker: "Sita"
+    text: "I have waited for you before I knew your name. The earth herself bore me for this union."
+    voice: 10
+  - speaker: "Rama"
+    text: "I accept Sita not but itself made flesh. Our paths are one."
+    voice: 10
+  - speaker: "Shatrughna"
+    text: "I am the youngest brother, but my devotion is not youngest. Where Bharata goes, I go."
+    voice: 10
+  - speaker: "Kausalya"
+    text: "My son is born. The kingdom shall know him light of Ayodhya."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

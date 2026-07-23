@@ -1,0 +1,2736 @@
+{
+  "schemaVersion": "1",
+  "characters": [
+    {
+      "characterId": "rama",
+      "displayName": "Rama",
+      "role": "Seventh avatar of Vishnu",
+      "color": "#4f8cff"
+    },
+    {
+      "characterId": "sita",
+      "displayName": "Sita",
+      "role": "Princess of Mithila",
+      "color": "#f0bd5e"
+    },
+    {
+      "characterId": "kaikeyi",
+      "displayName": "Kaikeyi",
+      "role": "Queen of Ayodhya",
+      "color": "#b85a8f"
+    },
+    {
+      "characterId": "lakshmana",
+      "displayName": "Lakshmana",
+      "role": "Rama’s brother",
+      "color": "#5fd1a5"
+    },
+    {
+      "characterId": "hanuman",
+      "displayName": "Hanuman",
+      "role": "Devotee and ally",
+      "color": "#e46445"
+    },
+    {
+      "characterId": "ravana",
+      "displayName": "Ravana",
+      "role": "King of Lanka",
+      "color": "#6c4dc2"
+    },
+    {
+      "characterId": "bharata",
+      "displayName": "Bharata",
+      "role": "Rama’s brother",
+      "color": "#5d6fb7"
+    },
+    {
+      "characterId": "kausalya",
+      "displayName": "Kausalya",
+      "role": "Rama’s mother",
+      "color": "#d4a843"
+    },
+    {
+      "characterId": "sumitra",
+      "displayName": "Sumitra",
+      "role": "Lakshmana’s mother",
+      "color": "#6a8a5a"
+    },
+    {
+      "characterId": "manthara",
+      "displayName": "Manthara",
+      "role": "Kaikeyi’s maid",
+      "color": "#4a3a4a"
+    },
+    {
+      "characterId": "shabari",
+      "displayName": "Shabari",
+      "role": "Ascetic woman",
+      "color": "#c58a4a"
+    },
+    {
+      "characterId": "jatayu",
+      "displayName": "Jatayu",
+      "role": "Vulture king",
+      "color": "#8a6a3a"
+    },
+    {
+      "characterId": "vali",
+      "displayName": "Vali",
+      "role": "Monkey king",
+      "color": "#b88a3a"
+    },
+    {
+      "characterId": "tara",
+      "displayName": "Tara",
+      "role": "Vali’s wife",
+      "color": "#5a8a6a"
+    },
+    {
+      "characterId": "angada",
+      "displayName": "Angada",
+      "role": "Sugriva’s son",
+      "color": "#6aaa6a"
+    },
+    {
+      "characterId": "jambavan",
+      "displayName": "Jambavan",
+      "role": "Bear king",
+      "color": "#5a3a2a"
+    },
+    {
+      "characterId": "sampati",
+      "displayName": "Sampati",
+      "role": "Jatayu’s brother",
+      "color": "#7a6a5a"
+    },
+    {
+      "characterId": "kumbhakarna",
+      "displayName": "Kumbhakarna",
+      "role": "Ravana’s brother",
+      "color": "#3a2a4a"
+    },
+    {
+      "characterId": "indrajit",
+      "displayName": "Indrajit",
+      "role": "Ravana’s son",
+      "color": "#5a1a1a"
+    },
+    {
+      "characterId": "mandodari",
+      "displayName": "Mandodari",
+      "role": "Ravana’s wife",
+      "color": "#5a3a6a"
+    },
+    {
+      "characterId": "vibhishana",
+      "displayName": "Vibhishana",
+      "role": "Ravana’s brother",
+      "color": "#4a6a8a"
+    },
+    {
+      "characterId": "lava",
+      "displayName": "Lava",
+      "role": "Rama’s son",
+      "color": "#5a8aaa"
+    },
+    {
+      "characterId": "kusha",
+      "displayName": "Kusha",
+      "role": "Rama’s son",
+      "color": "#5aaa8a"
+    },
+    {
+      "characterId": "valmiki",
+      "displayName": "Valmiki",
+      "role": "Sage and poet",
+      "color": "#f5f5e5"
+    },
+    {
+      "characterId": "janaka",
+      "displayName": "Janaka",
+      "role": "King of Mithila",
+      "color": "#5a3a7a"
+    },
+    {
+      "characterId": "vishwamitra",
+      "displayName": "Vishwamitra",
+      "role": "Sage and guru",
+      "color": "#c58a4a"
+    },
+    {
+      "characterId": "guha",
+      "displayName": "Guha",
+      "role": "Boatman king of Sringaverapura",
+      "color": "#6a8a5a"
+    },
+    {
+      "characterId": "ahalya",
+      "displayName": "Ahalya",
+      "role": "Cursed wife of Gautama",
+      "color": "#9a8aaa"
+    },
+    {
+      "characterId": "tataka",
+      "displayName": "Tataka",
+      "role": "Cursed demoness",
+      "color": "#3a2a3a"
+    },
+    {
+      "characterId": "kabandha",
+      "displayName": "Kabandha",
+      "role": "Cursed demon",
+      "color": "#5a4a3a"
+    },
+    {
+      "characterId": "anasuya",
+      "displayName": "Anasuya",
+      "role": "Wife of sage Atri",
+      "color": "#8a7aaa"
+    },
+    {
+      "characterId": "atri",
+      "displayName": "Atri",
+      "role": "Venerable sage",
+      "color": "#c58a4a"
+    },
+    {
+      "characterId": "surasa",
+      "displayName": "Surasa",
+      "role": "Sea serpent of the ocean",
+      "color": "#2a5a4a"
+    },
+    {
+      "characterId": "simhika",
+      "displayName": "Simhika",
+      "role": "Shadow demoness",
+      "color": "#3a2a2a"
+    },
+    {
+      "characterId": "prahasta",
+      "displayName": "Prahasta",
+      "role": "Ravana's commander",
+      "color": "#5a3a3a"
+    },
+    {
+      "characterId": "sushena",
+      "displayName": "Sushena",
+      "role": "Vanara physician",
+      "color": "#6aaa8a"
+    },
+    {
+      "characterId": "sarama",
+      "displayName": "Sarama",
+      "role": "Vibhishana's wife",
+      "color": "#7a6a8a"
+    },
+    {
+      "characterId": "trijata",
+      "displayName": "Trijata",
+      "role": "Demoness who protects Sita",
+      "color": "#5a4a6a"
+    },
+    {
+      "characterId": "narada",
+      "displayName": "Narada",
+      "role": "Divine sage and messenger",
+      "color": "#f5f5e5"
+    },
+    {
+      "characterId": "shurpanakha",
+      "displayName": "Shurpanakha",
+      "role": "Ravana's sister",
+      "color": "#6a3a4a"
+    },
+    {
+      "characterId": "shatrughna",
+      "displayName": "Shatrughna",
+      "role": "Rama's brother",
+      "color": "#5a6aaa"
+    },
+    {
+      "characterId": "nala",
+      "displayName": "Nala",
+      "role": "Son of Vishvakarma, bridge builder",
+      "color": "#8a7a5a"
+    },
+    {
+      "characterId": "mainaka",
+      "displayName": "Mainaka",
+      "role": "Mountain of the ocean",
+      "color": "#5a7a6a"
+    },
+    {
+      "characterId": "urmila",
+      "displayName": "Urmila",
+      "role": "Lakshmana's wife",
+      "color": "#8a6aaa"
+    },
+    {
+      "characterId": "mandavi",
+      "displayName": "Mandavi",
+      "role": "Bharata's wife",
+      "color": "#7a5a8a"
+    },
+    {
+      "characterId": "shrutakirti",
+      "displayName": "Shrutakirti",
+      "role": "Shatrughna's wife",
+      "color": "#6a5aaa"
+    },
+    {
+      "characterId": "nila",
+      "displayName": "Nila",
+      "role": "Son of Vishvakarma, bridge builder",
+      "color": "#5a8a7a"
+    },
+    {
+      "characterId": "shuka",
+      "displayName": "Shuka",
+      "role": "Ravana's spy",
+      "color": "#4a3a2a"
+    },
+    {
+      "characterId": "sarana",
+      "displayName": "Sarana",
+      "role": "Ravana's spy",
+      "color": "#3a4a2a"
+    },
+    {
+      "characterId": "lavana",
+      "displayName": "Lavana",
+      "role": "Demon king of Madhupura",
+      "color": "#4a2a3a"
+    }
+  ],
+  "acts": [
+    {
+      "actId": "bala-birth",
+      "actNumber": 1,
+      "title": "Balakanda: Birth and Bow",
+      "location": "Ayodhya Palace",
+      "scene": "bala",
+      "setup": "King Dasharatha of Ayodhya has three wives but no heirs. He performs the putra-kameshti yajna and receives divine payasam from the gods. His wives bear four sons, Bharata, Lakshmana, and Shatrughna. Rama grows into the ideal prince and wins Sita’s hand by breaking Shiva’s bow at Janakpur.",
+      "lesson": "The divine descends into the world to restore dharma when adharma rises.",
+      "playerRole": "Rama",
+      "objectives": [
+        {
+          "id": "witness-birth",
+          "type": "witness",
+          "title": "Witness Rama’s birth and the divine payasam",
+          "marker": "Sacred fire",
+          "cue": "Stand before the sacred fire and witness the birth ceremony.",
+          "actionLabel": "Witness birth",
+          "completedLine": {
+            "speaker": "Kausalya",
+            "text": "The gods have blessed us. Rama is born to restore dharma to the world."
+          },
+          "target": 1,
+          "position": {
+            "x": -2,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 15-20 (birth of the four princes)"
+        },
+        {
+          "id": "break-bow",
+          "type": "choice",
+          "title": "Break Shiva’s bow at Janakpur to win Sita",
+          "marker": "Shiva’s bow",
+          "cue": "Stand before the great bow and choose your path to Sita.",
+          "actionLabel": "Approach the bow",
+          "completedLine": {
+            "speaker": "Janaka",
+            "text": "No man has lifted this bow since Shiva. You have broken it. Sita is yours."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sarga 67 (Shiva dhanusha bhanga)"
+        },
+        {
+          "id": "marry-sita",
+          "type": "talk",
+          "title": "Marry Sita at Janakpur",
+          "marker": "Sita",
+          "cue": "Speak with Sita and receive her bride.",
+          "actionLabel": "Speak with Sita",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "I am Sita, daughter of Earth. Where you walk, I shall walk. Where you dwell, I shall dwell."
+          },
+          "target": 1,
+          "position": {
+            "x": 4,
+            "y": 0.6,
+            "z": 2
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 73-76 (the wedding at Janakpur)"
+        },
+        {
+          "id": "vishwamitra-sacrifice",
+          "type": "talk",
+          "title": "Accept Vishwamitra’s request to protect his sacrifice",
+          "marker": "Vishwamitra",
+          "cue": "The sage Vishwamitra has come to Ayodhya. He seeks warriors to protect his sacred fire from demons.",
+          "actionLabel": "Accept quest",
+          "completedLine": {
+            "speaker": "Vishwamitra",
+            "text": "You are young, but the gods have prepared you. Come, let us walk where adharma festers."
+          },
+          "target": 1,
+          "position": {
+            "x": -6,
+            "y": 0.6,
+            "z": -2
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 21-30 (Vishwamitra at court; Tataka vadha)"
+        },
+        {
+          "id": "tataka-battle",
+          "type": "combat",
+          "title": "Battle Tataka and free her from her curse",
+          "marker": "Tataka",
+          "cue": "A demoness blocks the path. She was cursed into this form, and only dharma can release her.",
+          "actionLabel": "Battle Tataka",
+          "completedLine": {
+            "speaker": "Tataka",
+            "text": "You have freed me. I return to the world of spirits, no longer a terror to the innocent."
+          },
+          "target": 1,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sarga 25 (Tataka vadha)"
+        },
+        {
+          "id": "ahalya-redemption",
+          "type": "witness",
+          "title": "Free Ahalya from Gautama’s curse",
+          "marker": "Stone figure",
+          "cue": "A woman turned to stone waits for the touch of Rama. Her curse holds until dharma itself arrives.",
+          "actionLabel": "Touch stone",
+          "completedLine": {
+            "speaker": "Ahalya",
+            "text": "Gautama’s curse is lifted. I am flesh again, and the world is new."
+          },
+          "target": 1,
+          "position": {
+            "x": -4,
+            "y": 0.6,
+            "z": 2
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sarga 30"
+        },
+        {
+          "id": "swayamvara-gathering",
+          "type": "choice",
+          "title": "Witness the gathering of princes at Sita’s swayamvara",
+          "marker": "Assembly hall",
+          "cue": "Kings and warriors from every corner of Bharata have assembled. Only one can lift Shiva’s bow.",
+          "actionLabel": "Enter assembly",
+          "completedLine": {
+            "speaker": "Janaka",
+            "text": "Princes of the earth, the bow awaits. He who bends it shall win my daughter."
+          },
+          "target": 1,
+          "position": {
+            "x": 3,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 73-76"
+        },
+        {
+          "id": "brother-marriages",
+          "type": "witness",
+          "title": "Witness the marriages of the four brothers",
+          "marker": "Sacred fire",
+          "cue": "Four brides for four brothers. The bonds of dharma extend beyond one couple.",
+          "actionLabel": "Witness marriages",
+          "completedLine": {
+            "speaker": "Dasharatha",
+            "text": "My four sons are wed. The kingdom is blessed with four pillars of dharma."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": 3
+          },
+          "citation": "Valmiki Ramayana (specific sarga not cited — verify in standard recension)"
+        },
+        {
+          "id": "kausalya-blessing",
+          "type": "talk",
+          "title": "Receive Kausalya’s blessing before leaving with Vishwamitra",
+          "marker": "Kausalya",
+          "cue": "A mother’s blessing is the first armor a warrior wears. Kausalya waits with tears and strength both.",
+          "actionLabel": "Receive blessing",
+          "completedLine": {
+            "speaker": "Kausalya",
+            "text": "Go with the gods, my son. A mother’s heart breaks and mends in the same breath when dharma calls."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 21-30"
+        },
+        {
+          "id": "kaikeyi-boons-story",
+          "type": "witness",
+          "title": "Witness the story of how Kaikeyi earned her two boons",
+          "marker": "Battlefield memory",
+          "cue": "In the war with the asuras, Kaikeyi saved Dasharatha’s life. Two boons were promised — unspent until now.",
+          "actionLabel": "Witness memory",
+          "completedLine": {
+            "speaker": "Kaikeyi",
+            "text": "I saved his life with my own hands. He promised me anything. Now I claim what was promised."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": -5
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 9-11"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Dasharatha",
+          "text": "The gods have heard my prayer. Four sons are born to uphold dharma in this age.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Kausalya",
+          "text": "Rama is not merely my son. He is the hope of all who suffer under adharma.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Vishwamitra",
+          "text": "I am Vishwamitra, once a king, now a sage. I have forged my spirit through ten thousand years of tapas. Now I forge yours.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Tataka",
+          "text": "Who dares enter my forest? I was a woman once, but cursed to become this form. Kill me, and you free me both.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Ahalya",
+          "text": "I have been stone for an age, punished for a moment’s folly. Gautama’s curse said only Rama could restore me.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Janaka",
+          "text": "This bow of Shiva has rested here since the gods walked the earth. Only the worthy may lift it.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Sita",
+          "text": "I have waited for you before I knew your name. The earth herself bore me for this union.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Rama",
+          "text": "I accept Sita not but itself made flesh. Our paths are one.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Shatrughna",
+          "text": "I am the youngest brother, but my devotion is not youngest. Where Bharata goes, I go.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        },
+        {
+          "speaker": "Kausalya",
+          "text": "My son is born. The kingdom shall know him light of Ayodhya.",
+          "voice": "kathaka",
+          "citation": "Bala Kanda, Sargas 15-20"
+        }
+      ],
+      "reward": {
+        "badge": "Divine Birth",
+        "lore": "Balakanda and the descent of Vishnu",
+        "dharma": 20
+      },
+      "valmiki_citation": "Bala Kanda, Sargas 15-20"
+    },
+    {
+      "actId": "ayodhya-dharma",
+      "actNumber": 2,
+      "title": "Ayodhyakanda: The Exile",
+      "location": "Ayodhya Palace",
+      "scene": "ayodhya",
+      "setup": "Dasharatha prepares to crown Rama, but Kaikeyi, influenced by her maid Manthara, remembers two old boons. She demands Bharata be crowned and Rama sent to the forest for fourteen years. Rama accepts exile willingly. Dasharatha dies of grief. Bharata refuses the throne and places Rama’s sandals upon it symbol.",
+      "lesson": "Dharma must be upheld even at great personal cost. A son’s duty to his father transcends personal ambition.",
+      "playerRole": "Rama",
+      "objectives": [
+        {
+          "id": "accept-exile",
+          "type": "choice",
+          "title": "Accept exile to preserve Dasharatha’s word",
+          "marker": "Kaikeyi",
+          "cue": "Stand before Kaikeyi and choose duty over anger.",
+          "actionLabel": "Accept the exile",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "Mother, the forest will receive me before Ayodhya sees a broken promise."
+          },
+          "target": 1,
+          "position": {
+            "x": -2,
+            "y": 0.6,
+            "z": -4.4
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 12-14"
+        },
+        {
+          "id": "speak-to-sita",
+          "type": "talk",
+          "title": "Speak with Sita before leaving the palace",
+          "marker": "Sita",
+          "cue": "Share the decision with Sita and hear her resolve.",
+          "actionLabel": "Speak with Sita",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "I was not made only for palace lamps. I will walk beside you under forest stars."
+          },
+          "target": 1,
+          "position": {
+            "x": 4.5,
+            "y": 0.6,
+            "z": -1.5
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 73-76"
+        },
+        {
+          "id": "dasharatha-death",
+          "type": "witness",
+          "title": "Witness Dasharatha’s death from a broken heart",
+          "marker": "Dasharatha",
+          "cue": "The king who loved his son more than his kingdom cannot survive the separation.",
+          "actionLabel": "Witness passing",
+          "completedLine": {
+            "speaker": "Dasharatha",
+            "text": "Rama... my eyes cannot find you... the light of my house departs... and I am left in darkness."
+          },
+          "target": 1,
+          "position": {
+            "x": -7,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 12-14"
+        },
+        {
+          "id": "bharata-refusal",
+          "type": "witness",
+          "title": "Witness Bharata refuse the throne and keep Rama’s sandals",
+          "marker": "Throne room",
+          "cue": "Witness Bharata’s loyalty and the symbol of righteous rule.",
+          "actionLabel": "Witness refusal",
+          "completedLine": {
+            "speaker": "Bharata",
+            "text": "I will not sit where my brother belongs. These sandals shall rule Ayodhya until Rama returns."
+          },
+          "target": 1,
+          "position": {
+            "x": -7,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 71-77"
+        },
+        {
+          "id": "cross-ganga",
+          "type": "travel",
+          "title": "Cross the Ganga river with Guha the boatman king",
+          "marker": "River crossing",
+          "cue": "The Ganga separates civilization from wilderness. Guha waits with his boat.",
+          "actionLabel": "Cross the river",
+          "completedLine": {
+            "speaker": "Guha",
+            "text": "I am a king of boatmen, but you treat me brother. The river bows to dharma, not to kings."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 6
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 49-53"
+        },
+        {
+          "id": "leave-ayodhya",
+          "type": "travel",
+          "title": "Leave Ayodhya for the forest path",
+          "marker": "Forest gate",
+          "cue": "Walk through the southern gate and begin the exile.",
+          "actionLabel": "Leave Ayodhya",
+          "completedLine": {
+            "speaker": "Lakshmana",
+            "text": "The city falls behind us, but the path ahead is guarded by purpose."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 9
+          },
+          "citation": "Valmiki Ramayana (specific sarga not cited — verify in standard recension)"
+        },
+        {
+          "id": "citizens-follow",
+          "type": "witness",
+          "title": "Witness the citizens of Ayodhya follow Rama into exile",
+          "marker": "Citizens",
+          "cue": "The people of Ayodhya refuse to let their prince walk alone. They follow him to the forest edge.",
+          "actionLabel": "Witness devotion",
+          "completedLine": {
+            "speaker": "Citizen",
+            "text": "We will not return. Where dharma walks, the people of Ayodhya walk."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": 3
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 30-31"
+        },
+        {
+          "id": "nandigram-rule",
+          "type": "witness",
+          "title": "Witness Bharata rule from Nandigram in Rama’s name",
+          "marker": "Nandigram",
+          "cue": "Bharata refuses the palace. He lives in a hut, ruling’s proxy, the sandals on the throne.",
+          "actionLabel": "Witness Nandigram",
+          "completedLine": {
+            "speaker": "Bharata",
+            "text": "I am not king. I am a servant of the sandals that rule Ayodhya."
+          },
+          "target": 1,
+          "position": {
+            "x": 3,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 100-110"
+        },
+        {
+          "id": "sumitra-wisdom",
+          "type": "talk",
+          "title": "Hear Sumitra’s wisdom about serving Rama",
+          "marker": "Sumitra",
+          "cue": "Sumitra does not weep for Lakshmana’s departure. She sees service to Rama highest dharma.",
+          "actionLabel": "Hear wisdom",
+          "completedLine": {
+            "speaker": "Sumitra",
+            "text": "Rama is your life, Lakshmana. Serve him serve Kausalya — without expectation, without end."
+          },
+          "target": 1,
+          "position": {
+            "x": -4,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sarga 26"
+        },
+        {
+          "id": "urmila-sacrifice",
+          "type": "witness",
+          "title": "Witness Urmila choose to sleep for fourteen years",
+          "marker": "Urmila",
+          "cue": "Urmila could have followed Lakshmana. Instead, she chooses to sleep so he may serve without longing.",
+          "actionLabel": "Witness sacrifice",
+          "completedLine": {
+            "speaker": "Urmila",
+            "text": "I will sleep, and in my dreams I will walk beside you. When you return, I shall wake no time has passed."
+          },
+          "target": 1,
+          "position": {
+            "x": 4,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 27-29"
+        },
+        {
+          "id": "manthara-poison",
+          "type": "talk",
+          "title": "Witness Manthara poison Kaikeyi’s mind with ambition",
+          "marker": "Manthara",
+          "cue": "The hunchbacked maid speaks honeyed poison. She reminds Kaikeyi of her power, her beauty, her forgotten worth.",
+          "actionLabel": "Witness manipulation",
+          "completedLine": {
+            "speaker": "Manthara",
+            "text": "You saved the king’s life. Does he honor you now? No — he crowns Kausalya’s son. Claim what is yours."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 6-9"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Kaikeyi",
+          "text": "The boons your father granted me long ago must be honored today. Let Bharata be crowned and you dwell in the forest for fourteen years.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Rama",
+          "text": "Mother, I go gladly. The forest will receive me before Ayodhya sees a broken promise. A king’s word is the tapas of his people.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Dasharatha",
+          "text": "Rama, my son — the light of my house departs, and I am left in darkness.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Dasharatha",
+          "text": "The palace feels like a tomb. I who ruled three worlds am powerless against the grief of losing one son.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Sita",
+          "text": "I was not made only for palace lamps. I will walk beside you under forest stars. Where you walk, I walk. The forest is not exile if dharma is with us.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Lakshmana",
+          "text": "Then I will guard this path with you. What use is a brother who does not follow into exile?",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Manthara",
+          "text": "Kaikeyi, remember your boons. The throne belongs to Bharata. Let Rama rot in the forest while your son rules.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Bharata",
+          "text": "Brother, I kept your sandals on the throne. Ayodhya never accepted another king while you lived. I am merely the keeper of your seat.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        },
+        {
+          "speaker": "Guha",
+          "text": "I am Guha, king of the boatmen. I have prepared my finest boat for you, Rama. The river bows to dharma, not to crowns.",
+          "voice": "kathaka",
+          "citation": "Ayodhya Kanda, Sargas 9-31"
+        }
+      ],
+      "reward": {
+        "badge": "Dharma Chosen",
+        "lore": "Ayodhyakanda and the meaning of royal duty",
+        "dharma": 25
+      },
+      "valmiki_citation": "Ayodhya Kanda, Sargas 9-31"
+    },
+    {
+      "actId": "panchavati-golden-deer",
+      "actNumber": 3,
+      "title": "Aranyakanda: Forest Life",
+      "location": "Panchavati Forest",
+      "scene": "panchavati",
+      "setup": "In exile at Panchavati near Nashik, Rama, Sita, and Lakshmana live in peace. They meet Shabari, the ascetic woman who feeds Rama tasted berries. The demoness Shurpanakha tries to seduce Rama and Lakshmana, loses her nose and ears, and incites her brothers Khara and Dushana to attack with fourteen thousand demons. All are killed. Shurpanakha goes to Lanka and tells Ravana about Sita. Ravana, with Maricha transformed golden deer, distracts Rama. Lakshmana is drawn away. Ravana arrives hermit, crosses the Lakshmana Rekha, and abducts Sita. Jatayu tries to rescue her but is mortally wounded.",
+      "lesson": "Attachment and desire create openings for deception. Ravana exploits Rama’s protective instinct toward Sita, using illusion to separate them.",
+      "playerRole": "Rama",
+      "objectives": [
+        {
+          "id": "meet-shabari",
+          "type": "talk",
+          "title": "Meet Shabari and taste her berries",
+          "marker": "Shabari",
+          "cue": "The ascetic woman has waited her whole life to serve Rama.",
+          "actionLabel": "Meet Shabari",
+          "completedLine": {
+            "speaker": "Shabari",
+            "text": "I tasted each berry to give you only the sweet ones. My guru said Rama would come to my hut. Today I am complete."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sarga 74"
+        },
+        {
+          "id": "track-deer",
+          "type": "travel",
+          "title": "Track the golden deer through the forest",
+          "marker": "Golden trail",
+          "cue": "Follow the glowing trail before the illusion slips away.",
+          "actionLabel": "Track the deer",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "The deer shines with wonder, but wonder can also be a mask. Maricha is no stranger to deception."
+          },
+          "target": 1,
+          "position": {
+            "x": -7,
+            "y": 0.6,
+            "z": -5
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 43-44"
+        },
+        {
+          "id": "shoot-maricha",
+          "type": "combat",
+          "title": "Fire arrows at Maricha disguised among deer illusions",
+          "marker": "Maricha",
+          "cue": "Three deer appear. Click the real one to fire an arrow.",
+          "actionLabel": "Fire arrow",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "The illusion falls. Maricha’s last breath calls my name, and Lakshmana is drawn away from Sita."
+          },
+          "target": 1,
+          "position": {
+            "x": -7,
+            "y": 0.6,
+            "z": -5
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 43-44"
+        },
+        {
+          "id": "jatayu-death",
+          "type": "witness",
+          "title": "Perform Jatayu’s last rites after he falls defending Sita",
+          "marker": "Jatayu",
+          "cue": "The vulture king gave his life. Honor him with proper rites.",
+          "actionLabel": "Honor Jatayu",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "You gave your wings for my wife, old friend. I shall name a kingdom after your sacrifice."
+          },
+          "target": 1,
+          "position": {
+            "x": 2,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 49-52"
+        },
+        {
+          "id": "jatayu-rites",
+          "type": "use",
+          "title": "Perform Jatayu’s last rites and free his spirit",
+          "marker": "Jatayu",
+          "cue": "The vulture king gave his life for Sita. Honor him with proper funeral rites.",
+          "actionLabel": "Perform rites",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "You gave your wings for my wife, old friend. I name this kingdom after your sacrifice. Your spirit is free."
+          },
+          "target": 1,
+          "position": {
+            "x": 2,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 49-52"
+        },
+        {
+          "id": "meet-kabandha",
+          "type": "talk",
+          "title": "Meet Kabandha and help him find redemption",
+          "marker": "Kabandha",
+          "cue": "The cursed demon waits in the forest. Rama’s touch can free him.",
+          "actionLabel": "Speak with Kabandha",
+          "completedLine": {
+            "speaker": "Kabandha",
+            "text": "You have buried my cursed body. Now I am free to tell you — go to Sugriva at Rishyamuka. He will help you find Sita."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": 3
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 68-69"
+        },
+        {
+          "id": "witness-abduction",
+          "type": "witness",
+          "title": "Witness Sita’s abduction by Ravana",
+          "marker": "Battle memory",
+          "cue": "The moment adharma struck. Remember it.",
+          "actionLabel": "Witness abduction",
+          "completedLine": {
+            "speaker": "Ravana",
+            "text": "I take what weakness leaves unguarded. The forest is no place for a queen."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 7
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 49-50"
+        },
+        {
+          "id": "shurpanakha-confrontation",
+          "type": "combat",
+          "title": "Confront Shurpanakha when she tries to seduce Rama",
+          "marker": "Shurpanakha",
+          "cue": "Ravana’s sister approaches with desire in her eyes. Her pride will cost her dearly.",
+          "actionLabel": "Confront demoness",
+          "completedLine": {
+            "speaker": "Lakshmana",
+            "text": "You came with ill intent. Your nose and ears are the price of your impudence."
+          },
+          "target": 1,
+          "position": {
+            "x": 3,
+            "y": 0.6,
+            "z": 2
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 17-18"
+        },
+        {
+          "id": "khara-battle",
+          "type": "combat",
+          "title": "Defeat Khara and Dushana’s army of fourteen thousand demons",
+          "marker": "Demon army",
+          "cue": "The forest trembles. Fourteen thousand demons march under Khara and Dushana. Stand firm.",
+          "actionLabel": "Defeat army",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "Not one arrow was wasted. Dharma does not count enemies; it counts only rightness."
+          },
+          "target": 1,
+          "position": {
+            "x": -8,
+            "y": 0.6,
+            "z": 8
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 22-29"
+        },
+        {
+          "id": "draw-lakshmana-rekha",
+          "type": "witness",
+          "title": "Witness Lakshmana draw the protective line around Sita",
+          "marker": "Sacred line",
+          "cue": "Lakshmana traces a line of power around the hut. Beyond it, no evil may cross.",
+          "actionLabel": "Witness line",
+          "completedLine": {
+            "speaker": "Lakshmana",
+            "text": "Sister, do not cross this line. As long stay within, no power on earth can harm you."
+          },
+          "target": 1,
+          "position": {
+            "x": 1,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 73-76"
+        },
+        {
+          "id": "chitrakuta-stay",
+          "type": "travel",
+          "title": "Stay at Chitrakuta before moving deeper into the forest",
+          "marker": "Chitrakuta peak",
+          "cue": "The mountain of Chitrakuta offers shelter. Here Bharata came to beg Rama back.",
+          "actionLabel": "Settle at Chitrakuta",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "This mountain remembers Bharata’s tears. We shall rest here before the deeper forest."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sarga 56 (later: Aranya to Kishkindha transition)"
+        },
+        {
+          "id": "atri-ashram",
+          "type": "talk",
+          "title": "Visit Atri and Anasuya’s ashram and receive their blessings",
+          "marker": "Anasuya",
+          "cue": "The sage Atri and his wife Anasuya dwell here. She has divine garments and wisdom for Sita.",
+          "actionLabel": "Receive blessings",
+          "completedLine": {
+            "speaker": "Anasuya",
+            "text": "I give you these garments, Sita. They will never soil, never tear. A wife’s dharma is her true ornament."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sarga 60"
+        },
+        {
+          "id": "sugriva-first-meeting",
+          "type": "talk",
+          "title": "Meet Sugriva for the first time at Rishyamuka",
+          "marker": "Sugriva",
+          "cue": "A wounded king of monkeys hides in these hills. His name is Sugriva, and his brother has stolen everything.",
+          "actionLabel": "Meet Sugriva",
+          "completedLine": {
+            "speaker": "Sugriva",
+            "text": "Vali took my throne and my wife. I have only Hanuman and these rocks. Will you help me?"
+          },
+          "target": 1,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 5-26"
+        },
+        {
+          "id": "jambavan-remembers",
+          "type": "talk",
+          "title": "Witness Jambavan remind Hanuman of his divine powers",
+          "marker": "Jambavan",
+          "cue": "Hanuman has forgotten his own strength. Jambavan, oldest of the vanaras, remembers what the wind-god’s son can do.",
+          "actionLabel": "Witness reminder",
+          "completedLine": {
+            "speaker": "Jambavan",
+            "text": "You are the son of Vayu. You leaped child to swallow the sun. Remember who you are, Hanuman."
+          },
+          "target": 1,
+          "position": {
+            "x": -6,
+            "y": 0.6,
+            "z": 6
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sarga 65"
+        },
+        {
+          "id": "trijata-dream",
+          "type": "witness",
+          "title": "Witness Trijata’s prophetic dream of Rama’s victory",
+          "marker": "Trijata",
+          "cue": "In Lanka, a demoness named Trijata dreams of Rama’s triumph. She tells Sita what she saw.",
+          "actionLabel": "Witness dream",
+          "completedLine": {
+            "speaker": "Trijata",
+            "text": "I saw Rama on a white chariot, Ravana fallen, and you returning home. The dream was truth, not illusion."
+          },
+          "target": 1,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sargas 24-25 (the dream that gives Sita hope)"
+        },
+        {
+          "id": "sarama-kindness",
+          "type": "talk",
+          "title": "Witness Sarama bring comfort to Sita in Ashok Vatika",
+          "marker": "Sarama",
+          "cue": "Vibhishana’s wife Sarama risks Ravana’s wrath to bring Sita news of Rama’s approach.",
+          "actionLabel": "Witness kindness",
+          "completedLine": {
+            "speaker": "Sarama",
+            "text": "My husband serves dharma, not Ravana. Take heart, queen. Rama has crossed the ocean. He is coming."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sarga 23 (Sarama the vulture-kind mother of Jatayu)"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Shabari",
+          "text": "I am old and low-born, but my guru said Rama would come to my hut. I have tasted each berry to give you only the sweet ones.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Rama",
+          "text": "Your devotion is greater than any birth. The forest has no caste, and dharma accepts all who serve it.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Anasuya",
+          "text": "I am Anasuya, wife of Atri. Sita, take this celestial garment. It will never soil, for purity is its own protection.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Kabandha",
+          "text": "I was cursed to become this headless form. Only one who knows his true self can free me. Bury my body, and I shall reveal what I know.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Sita",
+          "text": "That deer shines with wonder, but wonder can also be a mask. Do not follow it too far, Rama. I fear what lies behind such beauty.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Lakshmana",
+          "text": "Brother, I hear your call in the distance. But I swore not to leave Sita. The line I drew around our hut — let it protect her.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Ravana",
+          "text": "Alms, noble lady. A hermit seeks only what the forest gives freely. Step beyond that line, and I shall reveal what this forest truly holds.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Jatayu",
+          "text": "Ravana! You shall not take her while I yet breathe. I am old, but my wings still remember the sky.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Rama",
+          "text": "You gave your wings for my wife, old friend. I shall name a kingdom after your sacrifice. Your spirit is free now.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Jambavan",
+          "text": "I am older than the mountains. I have seen ages rise and fall. But I have never seen a devotion like yours, Rama.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        },
+        {
+          "speaker": "Trijata",
+          "text": "I am a demoness, but my dreams are not. I saw Rama victorious, and I saw you returning to Ayodhya. Believe me.",
+          "voice": "kathaka",
+          "citation": "Aranya Kanda, Sargas 17-50"
+        }
+      ],
+      "reward": {
+        "badge": "Golden Pursuit",
+        "lore": "Aranyakanda and the cost of illusion",
+        "dharma": 20
+      },
+      "valmiki_citation": "Aranya Kanda, Sargas 17-50"
+    },
+    {
+      "actId": "kishkindha-alliance",
+      "actNumber": 4,
+      "title": "Kishkindhakanda: Alliance",
+      "location": "Kishkindha",
+      "scene": "kishkindha",
+      "setup": "Rama and Lakshmana reach Kishkindha and form an alliance with the exiled monkey king Sugriva. Rama kills Vali and restores Sugriva’s throne. In return, Sugriva sends his vanara army to search for Sita. Hanuman, son of the wind, leaps across the ocean to Lanka.",
+      "lesson": "True devotion knows no boundaries. Hanuman’s leap demonstrates that faith and service can overcome impossible obstacles.",
+      "playerRole": "Rama",
+      "objectives": [
+        {
+          "id": "kill-vali",
+          "type": "combat",
+          "title": "Confront Vali and restore Sugriva’s throne",
+          "marker": "Vali",
+          "cue": "Vali is cursed — half his strength goes to his opponent in combat. Choose how to approach.",
+          "actionLabel": "Confront Vali",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "I struck from hiding, hunter strikes a deer. Vali, you were my friend’s enemy, and I chose dharma over glory."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 5-26"
+        },
+        {
+          "id": "mourn-tara",
+          "type": "witness",
+          "title": "Witness Tara’s mourning for Vali",
+          "marker": "Tara",
+          "cue": "Tara mourns her husband. Witness her grief.",
+          "actionLabel": "Witness mourning",
+          "completedLine": {
+            "speaker": "Tara",
+            "text": "My husband was mighty, but his pride was mightier. I warned him. Now I mourn him."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": -2
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 11-19"
+        },
+        {
+          "id": "form-alliance",
+          "type": "talk",
+          "title": "Form alliance with Sugriva and the vanaras",
+          "marker": "Sugriva",
+          "cue": "Sugriva promises his army in exchange for his throne.",
+          "actionLabel": "Form alliance",
+          "completedLine": {
+            "speaker": "Sugriva",
+            "text": "Rama, I too have lost my kingdom to my brother. Let us help each other."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 41-44"
+        },
+        {
+          "id": "coronation-sugriva",
+          "type": "witness",
+          "title": "Witness Sugriva’s coronation of Kishkindha",
+          "marker": "Throne",
+          "cue": "The exile becomes king. Dharma restores what was stolen.",
+          "actionLabel": "Witness coronation",
+          "completedLine": {
+            "speaker": "Sugriva",
+            "text": "Rama, I am king because of your arrow. My throne is yours. My army is yours. My life is yours."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": -2
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 128-130"
+        },
+        {
+          "id": "send-search",
+          "type": "travel",
+          "title": "Send the vanara search parties in four directions",
+          "marker": "Search beacon",
+          "cue": "The search begins. Sita will be found.",
+          "actionLabel": "Send search",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "I am small before Rama, but his name makes the impossible crossable. I shall leap across the ocean and find Sita."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 7
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 41-62 (the monkey search begins)"
+        },
+        {
+          "id": "monsoon-delay",
+          "type": "witness",
+          "title": "Endure the four-month monsoon delay before the search",
+          "marker": "Rain clouds",
+          "cue": "The monsoon arrives. The vanaras cannot cross rivers in flood. Patience becomes the only weapon.",
+          "actionLabel": "Wait out rains",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "Even the rain serves dharma. When the waters recede, the search will resume with greater strength."
+          },
+          "target": 1,
+          "position": {
+            "x": -6,
+            "y": 0.6,
+            "z": 6
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 28-30"
+        },
+        {
+          "id": "lakshmana-anger",
+          "type": "witness",
+          "title": "Witness Lakshmana’s anger at Sugriva’s forgetfulness",
+          "marker": "Lakshmana",
+          "cue": "Sugriva has forgotten his promise, lost in wine and women. Lakshmana storms the gates.",
+          "actionLabel": "Witness anger",
+          "completedLine": {
+            "speaker": "Lakshmana",
+            "text": "We gave you a kingdom and you repay us with forgetfulness? My brother’s sorrow is not a season to be waited out."
+          },
+          "target": 1,
+          "position": {
+            "x": 3,
+            "y": 0.6,
+            "z": 3
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 5-26"
+        },
+        {
+          "id": "angada-diplomacy",
+          "type": "talk",
+          "title": "Send Angada on a diplomatic mission to Ravana",
+          "marker": "Angada",
+          "cue": "Before war, a final word of peace. Angada carries the message of dharma to Ravana’s court.",
+          "actionLabel": "Send diplomat",
+          "completedLine": {
+            "speaker": "Angada",
+            "text": "Ravana laughed at our offer of peace. He has chosen war. We have chosen dharma."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 46-50"
+        },
+        {
+          "id": "sampati-revelation",
+          "type": "talk",
+          "title": "Hear Sampati reveal Sita’s location in Lanka",
+          "marker": "Sampati",
+          "cue": "Jatayu’s brother Sampati, old and wingless, saw Ravana carry Sita southward. His memory is the map.",
+          "actionLabel": "Hear revelation",
+          "completedLine": {
+            "speaker": "Sampati",
+            "text": "I saw the demon king fly south with a woman in his chariot. She wept Rama’s name across the sky."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": -5
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 56-62"
+        },
+        {
+          "id": "hanuman-doubt-ocean",
+          "type": "witness",
+          "title": "Witness Hanuman doubt his ability to cross the ocean",
+          "marker": "Hanuman",
+          "cue": "Even the son of the wind hesitates before the infinite ocean. Jambavan must remind him of his birthright.",
+          "actionLabel": "Witness doubt",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "The ocean is vast, and I am small. How can I cross what the gods themselves fear?"
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 1-4"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sugriva",
+          "text": "Rama, I too have lost my kingdom to my brother Vali. Let us help each other — you help me reclaim Kishkindha, and my vanaras shall help you find Sita.",
+          "voice": "kathaka",
+          "citation": "Kishkindha Kanda, Sargas 1-62"
+        },
+        {
+          "speaker": "Vali",
+          "text": "You challenge me, stranger? I have defeated demons and gods alike. No one who faces me survives.",
+          "voice": "kathaka",
+          "citation": "Kishkindha Kanda, Sargas 1-62"
+        },
+        {
+          "speaker": "Tara",
+          "text": "My husband was mighty, but his pride was mightier. I warned him not to trust the stranger in the forest.",
+          "voice": "kathaka",
+          "citation": "Kishkindha Kanda, Sargas 1-62"
+        },
+        {
+          "speaker": "Jambavan",
+          "text": "Hanuman, son of the wind, your time has come. Leap across the ocean and find the queen of Ayodhya.",
+          "voice": "kathaka",
+          "citation": "Kishkindha Kanda, Sargas 1-62"
+        },
+        {
+          "speaker": "Sampati",
+          "text": "I am Jatayu’s brother. I saw Ravana carry Sita southward, toward Lanka. That is where you must search.",
+          "voice": "kathaka",
+          "citation": "Kishkindha Kanda, Sargas 1-62"
+        }
+      ],
+      "reward": {
+        "badge": "Vanara Alliance",
+        "lore": "Kishkindhakanda and the bond of exile",
+        "dharma": 25
+      },
+      "valmiki_citation": "Kishkindha Kanda, Sargas 1-62"
+    },
+    {
+      "actId": "sundarakanda-leap",
+      "actNumber": 5,
+      "title": "Sundarakanda: Ocean Leaper",
+      "location": "Ocean and Lanka",
+      "scene": "ocean",
+      "setup": "Hanuman, son of the wind, leaps across the ocean to Lanka. He meets Mount Mainaka, which rises from the sea to offer rest. He defeats the sea serpent Surasa. He finds Sita in Ashok Vatika, delivers Rama’s ring, and receives her chudamani. When captured, his tail is set on fire, and he burns Lanka before escaping.",
+      "lesson": "Devotion makes the impossible possible. Hanuman’s leap is not just physical — it is the leap of faith across any divide.",
+      "playerRole": "Hanuman",
+      "objectives": [
+        {
+          "id": "leap-ocean",
+          "type": "travel",
+          "title": "Leap across the ocean to Lanka",
+          "marker": "Ocean edge",
+          "cue": "Take the leap that no other being dares.",
+          "actionLabel": "Leap across",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "The ocean is vast, but Rama’s name makes me light feather. I see Lanka on the horizon."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 9
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 49-53"
+        },
+        {
+          "id": "burn-lanka",
+          "type": "use",
+          "title": "Burn Lanka with your flaming tail",
+          "marker": "Lanka city",
+          "cue": "The demons set your tail on fire. Turn their weapon against them.",
+          "actionLabel": "Burn Lanka",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "You lit my tail to humiliate me. Now watch your city burn. This is what happens when you touch what belongs to Rama."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sargas 12-58"
+        },
+        {
+          "id": "surasa-test",
+          "type": "combat",
+          "title": "Pass Surasa’s test by showing your true form",
+          "marker": "Surasa",
+          "cue": "The sea serpent opens her jaws. Expand to match her size.",
+          "actionLabel": "Pass the test",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "I grew to fill your mouth, then shrank to escape. Size is illusion. Purpose is real."
+          },
+          "target": 1,
+          "position": {
+            "x": -6,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sargas 5-7"
+        },
+        {
+          "id": "exchange-ring",
+          "type": "talk",
+          "title": "Give Rama’s ring to Sita and receive her chudamani",
+          "marker": "Sita",
+          "cue": "The ring is proof. The chudamani is hope.",
+          "actionLabel": "Exchange tokens",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "This ring carries Rama’s promise. Take my chudamani and tell him I wait, unbroken, in Ashok Vatika."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sarga 36"
+        },
+        {
+          "id": "tail-fire-escape",
+          "type": "travel",
+          "title": "Escape Ravana’s court after your tail is set on fire",
+          "marker": "Lanka gate",
+          "cue": "They bound you and lit your tail. Now burn their city and leap free.",
+          "actionLabel": "Leap to freedom",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "You lit my tail to shame me. Now watch Lanka burn. This is the price of touching what belongs to Rama."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 8
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 46-50"
+        },
+        {
+          "id": "explore-lanka-night",
+          "type": "travel",
+          "title": "Explore Lanka under cover of darkness to find Sita",
+          "marker": "Lanka gate",
+          "cue": "The city sleeps, but its demons do not. Move through the shadows and find the queen.",
+          "actionLabel": "Enter city",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "I have seen Lanka’s walls, its gardens, and its throne. Now I must find where Sita waits."
+          },
+          "target": 1,
+          "position": {
+            "x": -4,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sargas 12-25"
+        },
+        {
+          "id": "simhika-battle",
+          "type": "combat",
+          "title": "Defeat Simhika, the shadow demoness who swallows the wind",
+          "marker": "Simhika",
+          "cue": "A shadow opens its jaws in mid-air. Simhika reaches for your shadow before you can escape.",
+          "actionLabel": "Defeat shadow",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "You tried to swallow my shadow, but my shadow is’s name."
+          },
+          "target": 1,
+          "position": {
+            "x": 4,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sargas 8-9"
+        },
+        {
+          "id": "destroy-ashok-grove",
+          "type": "combat",
+          "title": "Destroy the Ashok Vatika grove after giving Sita hope",
+          "marker": "Ashok grove",
+          "cue": "The demons attack after you deliver Rama’s ring. Let the grove feel your wrath.",
+          "actionLabel": "Destroy grove",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "I came messenger, but adharma turned me into a storm. Let Lanka remember this day."
+          },
+          "target": 1,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sargas 22-23 (and 30-35 for the meeting)"
+        },
+        {
+          "id": "return-to-rama",
+          "type": "talk",
+          "title": "Return to Rama and bring word that Sita has been found",
+          "marker": "Rama",
+          "cue": "The ocean must be crossed again, but this time carrying hope instead of doubt.",
+          "actionLabel": "Report to Rama",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "You have seen her? She lives? Then the sun has risen again in my heart."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": -8
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 121-128 (the return to Ayodhya)"
+        },
+        {
+          "id": "brahmastra-capture",
+          "type": "witness",
+          "title": "Witness Hanuman captured by Indrajit’s Brahmastra",
+          "marker": "Brahmastra bonds",
+          "cue": "Indrajit’s divine weapon binds Hanuman. Even the son of the wind cannot escape the laws of the creator.",
+          "actionLabel": "Witness capture",
+          "completedLine": {
+            "speaker": "Indrajit",
+            "text": "You thought fire could not be bound? The Brahmastra answers to Brahma alone."
+          },
+          "target": 1,
+          "position": {
+            "x": 4,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sarga 107 (the release of the brahmastra)"
+        },
+        {
+          "id": "vibhishana-house-spared",
+          "type": "witness",
+          "title": "Witness Vibhishana’s house spared during the burning of Lanka",
+          "marker": "Vibhishana’s house",
+          "cue": "The city burns, but one house stands untouched. Hanuman knows the difference between enemy and ally.",
+          "actionLabel": "Witness mercy",
+          "completedLine": {
+            "speaker": "Vibhishana",
+            "text": "You burned Lanka but spared my home. This is the discernment of dharma — to destroy adharma, not the righteous."
+          },
+          "target": 1,
+          "position": {
+            "x": -4,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 17-20 (and throughout the war)"
+        },
+        {
+          "id": "hanuman-shrinks",
+          "type": "witness",
+          "title": "Witness Hanuman shrink to the size of a cat to enter Lanka",
+          "marker": "Tiny form",
+          "cue": "The son of the wind can be smaller than a spark. He shrinks to slip past Lanka’s gates unseen.",
+          "actionLabel": "Witness transformation",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "I am smaller than a cat, lighter than a thought. Lanka’s walls are mountains to others, but a crack to me."
+          },
+          "target": 1,
+          "position": {
+            "x": 3,
+            "y": 0.6,
+            "z": 3
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 1-4"
+        },
+        {
+          "id": "hanuman-grows",
+          "type": "witness",
+          "title": "Witness Hanuman grow to the size of a mountain to defeat guards",
+          "marker": "Giant form",
+          "cue": "When the demons attack, Hanuman remembers his true size. He becomes a mountain with teeth.",
+          "actionLabel": "Witness growth",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "You wanted to see my true form? Here it is. I am the son of Vayu, and your city is my playground."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 1-4"
+        },
+        {
+          "id": "sita-chudamani-gift",
+          "type": "talk",
+          "title": "Witness Sita give her chudamani to Hanuman",
+          "marker": "Sita",
+          "cue": "Sita has kept Rama’s ring. Now she gives her own jewel — the chudamani that marked her’s daughter.",
+          "actionLabel": "Witness exchange",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "Take this chudamani. It has adorned my head since my wedding day. Let it tell Rama I have kept my vows."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sarga 36"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Mainaka",
+          "text": "Son of the wind, rest upon me. The ocean is long and you have far to go.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        },
+        {
+          "speaker": "Surasa",
+          "text": "The gods have sent me to test you. Only one who knows his true size can pass.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        },
+        {
+          "speaker": "Simhika",
+          "text": "I am the shadow that swallows the wind itself. No one escapes my darkness.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        },
+        {
+          "speaker": "Hanuman",
+          "text": "I am small before Rama, but his name makes the impossible crossable. I shall write his name upon every stone.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        },
+        {
+          "speaker": "Sita",
+          "text": "This ring carries Rama’s promise. Hope has reached Lanka before the army. Tell him I wait, unbroken, in Ashok Vatika.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        },
+        {
+          "speaker": "Ravana",
+          "text": "A monkey in my city? Guards, bind him. We shall teach him the price of trespass.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        },
+        {
+          "speaker": "Trijata",
+          "text": "Do not fear, Sita. I watch over you. Even in Ravana’s garden, kindness finds a way.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        },
+        {
+          "speaker": "Sarama",
+          "text": "Sita, my husband Vibhishana speaks for your return. Take heart. Rama is coming.",
+          "voice": "kathaka",
+          "citation": "Sundara Kanda, Sargas 1-68"
+        }
+      ],
+      "reward": {
+        "badge": "Ocean Leaper",
+        "lore": "Sundarakanda and devotion in action",
+        "dharma": 30
+      },
+      "valmiki_citation": "Sundara Kanda, Sargas 1-68"
+    },
+    {
+      "actId": "yuddhakanda-war",
+      "actNumber": 6,
+      "title": "Yuddhakanda: Bridge and War",
+      "location": "Rama Setu and Lanka",
+      "scene": "setu",
+      "setup": "Rama’s army reaches the southern ocean. Nala and Nila, sons of the divine architect Vishvakarma, direct the vanaras to build a bridge of stones across the sea. Each stone is inscribed with Rama’s name. The army crosses into Lanka. The great battle lasts ten days. Kumbhakarna is awakened and killed. Indrajit uses maya warfare but is defeated. Lakshmana is struck down and revived by Sanjeevani. Rama duels Ravana and defeats him. Sita undergoes Agni Pariksha — the trial by fire — and emerges unharmed.",
+      "lesson": "Justice requires both patience and strength. Rama offers Ravana every chance to return Sita peacefully before resorting to war.",
+      "playerRole": "Rama",
+      "objectives": [
+        {
+          "id": "collect-stones",
+          "type": "collect",
+          "title": "Collect bridge stones for the vanara builders",
+          "marker": "Bridge stones",
+          "cue": "Gather eight stones so the bridge can begin.",
+          "actionLabel": "Collect stone",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "One stone is small. Many small vows become a road across the sea."
+          },
+          "target": 8,
+          "position": {
+            "x": -6,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 21-23 (the bridge of stones)"
+        },
+        {
+          "id": "place-stones",
+          "type": "use",
+          "title": "Place stones into the ocean path",
+          "marker": "Setu foundation",
+          "cue": "Place the gathered stones and watch the path take shape.",
+          "actionLabel": "Place stone",
+          "completedLine": {
+            "speaker": "Nala",
+            "text": "The bridge rises because every hand remembers why it works."
+          },
+          "target": 8,
+          "position": {
+            "x": 2,
+            "y": 0.6,
+            "z": 1
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 21-23 (the bridge of stones)"
+        },
+        {
+          "id": "cross-setu",
+          "type": "travel",
+          "title": "Cross Rama Setu toward Lanka",
+          "marker": "Lanka gate",
+          "cue": "Cross the completed bridge and carry the vow into battle.",
+          "actionLabel": "Cross the Setu",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "The ocean has become a path. Now justice must become action."
+          },
+          "target": 1,
+          "position": {
+            "x": 8,
+            "y": 0.6,
+            "z": 7
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sarga 23 (the crossing)"
+        },
+        {
+          "id": "battle-kumbhakarna",
+          "type": "combat",
+          "title": "Defeat Kumbhakarna, the giant brother of Ravana",
+          "marker": "Kumbhakarna",
+          "cue": "The giant has been awakened. He devours armies whole.",
+          "actionLabel": "Attack giant",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "Even a mountain must fall when dharma stands against it."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 56-60 (Kumbhakarna's last battle)"
+        },
+        {
+          "id": "defeat-indrajit",
+          "type": "combat",
+          "title": "Defeat Indrajit, master of illusion warfare",
+          "marker": "Indrajit",
+          "cue": "He uses maya to strike from shadows. Find the real one.",
+          "actionLabel": "Dispel illusion",
+          "completedLine": {
+            "speaker": "Lakshmana",
+            "text": "The illusion falls. Now we face the real enemy."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": -2
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 78-83 (the duel and fall of Indrajit)"
+        },
+        {
+          "id": "duel-ravana",
+          "type": "combat",
+          "title": "Duel Ravana in the final battle",
+          "marker": "Ravana",
+          "cue": "The ten-headed king stands before you. Choose your moment.",
+          "actionLabel": "Duel Ravana",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "I gave you every chance to return Sita. Now your pride meets its end."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 95-108"
+        },
+        {
+          "id": "lakshmana-falls",
+          "type": "witness",
+          "title": "Witness Lakshmana fall to Indrajit’s Nagapasha serpent arrows",
+          "marker": "Lakshmana",
+          "cue": "The serpent arrows strike. Lakshmana collapses.",
+          "actionLabel": "Witness fall",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "My brother lies still. The serpent venom courses through him. Hanuman, fly. Bring the mountain of healing."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": 2
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 45-83"
+        },
+        {
+          "id": "fetch-sanjeevani",
+          "type": "travel",
+          "title": "Fetch the Sanjeevani mountain to revive Lakshmana",
+          "marker": "Mountain peak",
+          "cue": "The mountain of healing grows in the Himalayas. Carry it whole.",
+          "actionLabel": "Fetch mountain",
+          "completedLine": {
+            "speaker": "Sushena",
+            "text": "Hanuman has brought the entire mountain. From its herbs, we brew the cure. Lakshmana shall rise again."
+          },
+          "target": 1,
+          "position": {
+            "x": -7,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana (specific sarga not cited — verify in standard recension)"
+        },
+        {
+          "id": "coronation-lanka",
+          "type": "witness",
+          "title": "Witness Vibhishana crowned king of Lanka",
+          "marker": "Lanka throne",
+          "cue": "Adharma has fallen. Dharma must now rule Lanka.",
+          "actionLabel": "Witness coronation",
+          "completedLine": {
+            "speaker": "Vibhishana",
+            "text": "I did not seek this throne. But dharma must have a seat in Lanka. I shall rule by righteousness."
+          },
+          "target": 1,
+          "position": {
+            "x": 2,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 17-20 (and throughout the war)"
+        },
+        {
+          "id": "agni-pariksha",
+          "type": "witness",
+          "title": "Witness Sita’s trial by fire",
+          "marker": "Sacred fire",
+          "cue": "The fire must testify. Witness the truth.",
+          "actionLabel": "Witness trial",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "I call upon Agni himself. If I am pure, let him protect me. If not, let me burn."
+          },
+          "target": 1,
+          "position": {
+            "x": 3,
+            "y": 0.6,
+            "z": 3
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 110-115"
+        },
+        {
+          "id": "ask-ocean-passage",
+          "type": "choice",
+          "title": "Ask the ocean for passage to Lanka",
+          "marker": "Ocean shore",
+          "cue": "The sea stands between you and justice. Ask it to yield, or force it to part.",
+          "actionLabel": "Confront ocean",
+          "completedLine": {
+            "speaker": "Varuna",
+            "text": "I yield, Rama. Nala and Nila shall build your bridge. My waters will hold the stones that bear your name."
+          },
+          "target": 1,
+          "position": {
+            "x": -9,
+            "y": 0.6,
+            "z": 9
+          },
+          "citation": "Valmiki Ramayana, Sundara Kanda, Sargas 5-10"
+        },
+        {
+          "id": "lakshmana-kills-indrajit",
+          "type": "combat",
+          "title": "Lakshmana defeats Indrajit using the Aindra weapon",
+          "marker": "Indrajit",
+          "cue": "The son of Ravana hides in illusion. Only one who has conquered sleep can strike the true form.",
+          "actionLabel": "Strike Indrajit",
+          "completedLine": {
+            "speaker": "Lakshmana",
+            "text": "Your maya falls before the Aindra weapon. The shadows cannot hide you from dharma."
+          },
+          "target": 1,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 45-83"
+        },
+        {
+          "id": "rama-name-stones",
+          "type": "use",
+          "title": "Inscribe Rama’s name on the bridge stones",
+          "marker": "Bridge stones",
+          "cue": "Nala and Nila place the stones, but only Rama’s name makes them float. Write upon each one.",
+          "actionLabel": "Inscribe name",
+          "completedLine": {
+            "speaker": "Nala",
+            "text": "The stones bear your name and they float. The ocean itself bows to the power of faith."
+          },
+          "target": 8,
+          "position": {
+            "x": -2,
+            "y": 0.6,
+            "z": 2
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 21-23 (the bridge of stones)"
+        },
+        {
+          "id": "shuka-sarana-spies",
+          "type": "choice",
+          "title": "Capture and release Ravana’s spies Shuka and Sarana",
+          "marker": "Captured spies",
+          "cue": "Ravana’s spies have been caught in the camp. Choose their fate — mercy or punishment.",
+          "actionLabel": "Judge spies",
+          "completedLine": {
+            "speaker": "Shuka",
+            "text": "You feed us and send us back to our master with truth. This is the kingship of Rama."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 45-49 (Indrajit's nagapasha)"
+        },
+        {
+          "id": "kumbhakarna-tragedy",
+          "type": "witness",
+          "title": "Witness Kumbhakarna’s tragic loyalty before battle",
+          "marker": "Kumbhakarna",
+          "cue": "Kumbhakarna knows Ravana is wrong, but blood binds him. His sleep has been his only escape from sorrow.",
+          "actionLabel": "Witness tragedy",
+          "completedLine": {
+            "speaker": "Kumbhakarna",
+            "text": "I told him to return Sita. He did not listen. Now I must fight for a brother I cannot save from himself."
+          },
+          "target": 1,
+          "position": {
+            "x": -4,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 50-60"
+        },
+        {
+          "id": "mandodari-final-plea",
+          "type": "talk",
+          "title": "Witness Mandodari’s final plea to Ravana",
+          "marker": "Mandodari",
+          "cue": "Ravana’s wife Mandodari has warned him a hundred times. This is her last attempt before the city burns.",
+          "actionLabel": "Witness plea",
+          "completedLine": {
+            "speaker": "Mandodari",
+            "text": "Husband, I have been your wife for ten thousand years. I beg you — return her. Do not make me a widow."
+          },
+          "target": 1,
+          "position": {
+            "x": 4,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sarga 103 (Mandodari's final plea)"
+        },
+        {
+          "id": "vibhishana-defection-formal",
+          "type": "witness",
+          "title": "Witness Vibhishana formally defect to Rama’s side",
+          "marker": "Vibhishana",
+          "cue": "Vibhishana has warned Ravana ten times. Now he kneels before Rama, offering Lanka’s secrets and his life.",
+          "actionLabel": "Witness defection",
+          "completedLine": {
+            "speaker": "Vibhishana",
+            "text": "I am no traitor. I am a man who chose dharma over blood. Use my knowledge, Rama. Save Sita."
+          },
+          "target": 1,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": 6
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 17-20 (and throughout the war)"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rama",
+          "text": "Each stone carries a name, each name carries faith, and faith becomes the bridge. The ocean itself shall yield to dharma.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Hanuman",
+          "text": "I shall write Rama’s name upon every stone. No force in the three worlds can break such a bridge.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Nala",
+          "text": "I am the son of Vishvakarma, the divine architect. Under my direction, these stones shall hold firm.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Kumbhakarna",
+          "text": "Brother, you should have listened to Vibhishana. But I am bound by blood. Let me sleep again after this battle.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Indrajit",
+          "text": "I have defeated Indra himself. What chance do mortals have against my maya?",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Vibhishana",
+          "text": "Brother, return Sita. Dharma is not defeated by strength of arms. Even the gods tremble before adharma.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Ravana",
+          "text": "You come to my city with an army of monkeys and expect to leave with what I have taken? I am Ravana — scholar of the Vedas, devotee of Shiva, king of the three worlds.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Mandodari",
+          "text": "Husband, the omens are against us. Return the queen of Ayodhya before our city is ash.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Nila",
+          "text": "I am Nala, son of Vishvakarma. With Nala beside me, these stones will hold itself.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        },
+        {
+          "speaker": "Kumbhakarna",
+          "text": "I told my brother to return Sita. He would not listen. Now I must fight for a king I cannot save.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 1-128"
+        }
+      ],
+      "reward": {
+        "badge": "Bridge Builder",
+        "lore": "Rama Setu and the vanara army",
+        "dharma": 25
+      },
+      "valmiki_citation": "Yuddha Kanda, Sargas 1-128"
+    },
+    {
+      "actId": "return-ayodhya",
+      "actNumber": 7,
+      "title": "Uttarakanda: Return and Rule",
+      "location": "Ayodhya",
+      "scene": "return",
+      "setup": "After Ravana’s defeat, Rama, Sita, Lakshmana, and Hanuman return to Ayodhya in the Pushpaka Vimana. Bharata joyfully returns the kingdom. But Rama’s subjects doubt Sita’s purity. Though she proved herself through Agni Pariksha, Rama banishes pregnant Sita to the forest to satisfy public opinion. She lives with Valmiki, bears twins Lava and Kusha, who later defeat Rama’s army unintentionally.",
+      "lesson": "Victory is not conquest alone; it is the restoration of justice. Rama Rajya represents the ideal where the king serves dharma above all.",
+      "playerRole": "Rama",
+      "objectives": [
+        {
+          "id": "witness-victory",
+          "type": "witness",
+          "title": "Witness the fall of Ravana and the end of adharma",
+          "marker": "Battle memory",
+          "cue": "Stand before the battle memory and witness adharma fall.",
+          "actionLabel": "Witness victory",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "Power without righteousness collapses beneath its own weight."
+          },
+          "target": 1,
+          "position": {
+            "x": -7,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 108-115 (after Ravana's fall)"
+        },
+        {
+          "id": "return-city",
+          "type": "travel",
+          "title": "Return to Ayodhya in the Pushpaka Vimana",
+          "marker": "City gate",
+          "cue": "Return to Ayodhya, where duty must become public care.",
+          "actionLabel": "Return to Ayodhya",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "The road returns us home, but exile has taught us how to see the kingdom."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 7
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 121-128 (the return to Ayodhya)"
+        },
+        {
+          "id": "light-lamps",
+          "type": "use",
+          "title": "Light the lamps of Ayodhya",
+          "marker": "Festival lamps",
+          "cue": "Light fourteen lamps for the years of exile and the return of justice.",
+          "actionLabel": "Light lamp",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "Where these lamps are lit, the story will continue to serve."
+          },
+          "target": 14,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sarga 121 (the city lit with lamps)"
+        },
+        {
+          "id": "banish-sita",
+          "type": "choice",
+          "title": "The painful decision regarding Sita",
+          "marker": "Palace court",
+          "cue": "The people doubt. Dharma demands the king be above reproach. Choose.",
+          "actionLabel": "Face the court",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "I know your purity, Sita. But the king must be above suspicion. The forest will shelter you where the palace cannot."
+          },
+          "target": 1,
+          "position": {
+            "x": -2,
+            "y": 0.6,
+            "z": -2
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 73-76"
+        },
+        {
+          "id": "ashvamedha-horse",
+          "type": "combat",
+          "title": "Capture the Ashvamedha horse sent by Rama",
+          "marker": "Sacred horse",
+          "cue": "The horse of the great sacrifice roams free. The twins guard it.",
+          "actionLabel": "Capture horse",
+          "completedLine": {
+            "speaker": "Lava",
+            "text": "This horse is ours now. Whoever seeks it must first answer to our swords."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Uttara Kanda, Sargas 14-19 (the horse sacrifice)"
+        },
+        {
+          "id": "meet-twins",
+          "type": "talk",
+          "title": "Meet Lava and Kusha in Valmiki’s ashram",
+          "marker": "Valmiki",
+          "cue": "Your sons have grown in the forest. Hear them sing your story.",
+          "actionLabel": "Meet the twins",
+          "completedLine": {
+            "speaker": "Valmiki",
+            "text": "These boys know the Ramayana song. They have defeated your army without knowing whose sons they are."
+          },
+          "target": 1,
+          "position": {
+            "x": 4,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Uttara Kanda, Sargas 12-13, 27-35 (Lava and Kusha)"
+        },
+        {
+          "id": "rama-coronation",
+          "type": "witness",
+          "title": "Witness Rama’s coronation of Ayodhya",
+          "marker": "Coronation dais",
+          "cue": "The ideal king takes the throne. Rama Rajya begins.",
+          "actionLabel": "Witness coronation",
+          "completedLine": {
+            "speaker": "Vasishtha",
+            "text": "Rama is crowned. Not by power, but by dharma. Let all kingdoms learn from this day."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": -2
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 128-130"
+        },
+        {
+          "id": "birth-twins",
+          "type": "witness",
+          "title": "Witness the birth of Lava and Kusha in Valmiki’s ashram",
+          "marker": "Valmiki’s ashram",
+          "cue": "In the forest where Sita was sent, two sons are born. The Ramayana begins again in their cries.",
+          "actionLabel": "Witness birth",
+          "completedLine": {
+            "speaker": "Valmiki",
+            "text": "These children are the sons of dharma itself. I shall teach them the story their father lived."
+          },
+          "target": 1,
+          "position": {
+            "x": -6,
+            "y": 0.6,
+            "z": 3
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 15-20"
+        },
+        {
+          "id": "rama-meets-sita",
+          "type": "talk",
+          "title": "Witness Rama and Sita’s reunion in the forest",
+          "marker": "Forest clearing",
+          "cue": "After years of separation, the king meets his queen again where the forest meets the river.",
+          "actionLabel": "Witness reunion",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "I have waited, not in sorrow but in silence. The earth knows my truth, and that is enough."
+          },
+          "target": 1,
+          "position": {
+            "x": 3,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 73-76"
+        },
+        {
+          "id": "twins-defeat-army",
+          "type": "combat",
+          "title": "Witness Lava and Kusha defeat Rama’s army",
+          "marker": "Battlefield",
+          "cue": "The boys trained in Valmiki’s ashram have grown into warriors. They stand against Ayodhya’s army.",
+          "actionLabel": "Witness battle",
+          "completedLine": {
+            "speaker": "Lava",
+            "text": "We do not know whose sons we are. But we know the Ramayana, and that is enough to defeat any army."
+          },
+          "target": 1,
+          "position": {
+            "x": -6,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana, Uttara Kanda, Sargas 12-13, 27-35 (Lava and Kusha)"
+        },
+        {
+          "id": "hanuman-recognizes-twins",
+          "type": "witness",
+          "title": "Witness Hanuman recognize Rama’s sons in the battlefield",
+          "marker": "Hanuman",
+          "cue": "Hanuman sees himself in these boys — the same devotion, the same fire. He knows whose blood they carry.",
+          "actionLabel": "Witness recognition",
+          "completedLine": {
+            "speaker": "Hanuman",
+            "text": "I see Rama’s eyes in you both. The same steadiness, the same sorrow. You are your father’s sons."
+          },
+          "target": 1,
+          "position": {
+            "x": 6,
+            "y": 0.6,
+            "z": 6
+          },
+          "citation": "Valmiki Ramayana, Kishkindha Kanda, Sargas 1-4"
+        },
+        {
+          "id": "division-kingdom",
+          "type": "witness",
+          "title": "Witness Rama divide the kingdom between Lava and Kusha",
+          "marker": "Throne",
+          "cue": "Before departing, the ideal king ensures his legacy. Lava receives the north, Kusha the south.",
+          "actionLabel": "Witness division",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "Lava, the north is yours. Kusha, the south is yours. Rule not by power, but by the dharma I tried to live."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": -6
+          },
+          "citation": "Valmiki Ramayana, Uttara Kanda, Sargas 38-44 (the kingdom divided)"
+        },
+        {
+          "id": "shatrughna-lavana",
+          "type": "combat",
+          "title": "Witness Shatrughna defeat the demon Lavana of Madhupura",
+          "marker": "Lavana",
+          "cue": "While Rama ruled, Shatrughna guarded the borders. The demon Lavana of Madhupura demanded tribute.",
+          "actionLabel": "Witness battle",
+          "completedLine": {
+            "speaker": "Shatrughna",
+            "text": "You demanded tribute from Rama’s kingdom? I am the fourth brother, and I do not bargain with demons."
+          },
+          "target": 1,
+          "position": {
+            "x": -5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Uttara Kanda, Sargas 36-40 (Shatrughna's victory over Lavanasura)"
+        },
+        {
+          "id": "rama-rajya-witness",
+          "type": "witness",
+          "title": "Witness the golden age of Rama Rajya",
+          "marker": "Ayodhya throne",
+          "cue": "For ten thousand years, Rama ruled. No child died young, no crop failed, no lie was spoken in his kingdom.",
+          "actionLabel": "Witness golden age",
+          "completedLine": {
+            "speaker": "Citizen",
+            "text": "In Rama Rajya, the rain came when it should, the harvest was always enough, and no door needed a lock."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": -7
+          },
+          "citation": "Valmiki Ramayana, Aranya Kanda, Sargas 43-44"
+        },
+        {
+          "id": "public-whispers",
+          "type": "witness",
+          "title": "Witness the citizens whisper doubts about Sita’s purity",
+          "marker": "Citizens",
+          "cue": "Even in Rama Rajya, doubt finds a way. The people whisper behind closed doors about the queen who lived in Lanka.",
+          "actionLabel": "Witness whispers",
+          "completedLine": {
+            "speaker": "Citizen",
+            "text": "She lived in Ravana’s house for months. How can we call her pure, even if the fire said so?"
+          },
+          "target": 1,
+          "position": {
+            "x": 7,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 30-31"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rama",
+          "text": "A kingdom is not won by power alone. It is held by justice. Let all beings know — Rama Rajya is not rule by force, but by dharma.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Sita",
+          "text": "Fourteen years in the forest taught me more than fourteen years in the palace. The kingdom looks different from the ground than from the throne.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Hanuman",
+          "text": "Where Rama’s story is remembered, service never ends. I shall live name is spoken.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Bharata",
+          "text": "Brother, I kept your sandals on the throne. Ayodhya never accepted another king while you lived.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Vasishtha",
+          "text": "The ideal king has returned. Let the people know that dharma itself now walks among them.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Valmiki",
+          "text": "Sita dwells in my ashram. She has borne you two sons. They sing the Ramayana song, not knowing they are its heroes.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Lava",
+          "text": "We are the sons of the forest. Our mother is the earth, our father is the wind, and our guru is Valmiki.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Urmila",
+          "text": "I have slept for fourteen years so my husband could serve without longing. I wake now, and the world is new.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        },
+        {
+          "speaker": "Mandavi",
+          "text": "Bharata ruled from a hut, wearing bark. I ruled beside him in silence. That is the dharma of a wife.",
+          "voice": "kathaka",
+          "citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+        }
+      ],
+      "reward": {
+        "badge": "Rama Rajya",
+        "lore": "Uttarakanda and the price of kingship",
+        "dharma": 30
+      },
+      "valmiki_citation": "Yuddha Kanda, Sargas 121-128 (return & coronation)"
+    },
+    {
+      "actId": "uttara-earth-return",
+      "actNumber": 8,
+      "title": "Uttarakanda: Return to Earth",
+      "location": "Ayodhya and the Earth",
+      "scene": "earth-return",
+      "setup": "Sita is called to prove her purity once more before the court of Ayodhya. She calls upon her mother, the Earth goddess Prithvi. The earth opens and receives her. Rama rules for many years but eventually follows her, departing from the world. The Ramayana becomes the song of the ages.",
+      "lesson": "Sita’s return to Earth teaches that the ideal and the real cannot always coexist. Dharma demands sacrifice from those who uphold it most purely.",
+      "playerRole": "Rama",
+      "objectives": [
+        {
+          "id": "second-ordeal",
+          "type": "witness",
+          "title": "Witness Sita’s second trial before the court",
+          "marker": "Sacred ground",
+          "cue": "Sita must prove herself again. The earth itself will testify.",
+          "actionLabel": "Witness ordeal",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "I have proved myself once before Agni. Now I call upon my mother, the Earth. If I am pure, let her receive me."
+          },
+          "target": 1,
+          "position": {
+            "x": -3,
+            "y": 0.6,
+            "z": -3
+          },
+          "citation": "Valmiki Ramayana, Bala Kanda, Sargas 73-76"
+        },
+        {
+          "id": "sita-return",
+          "type": "witness",
+          "title": "Witness Sita’s return to Earth",
+          "marker": "Earth fissure",
+          "cue": "The earth opens. Sita returns to her mother.",
+          "actionLabel": "Witness return",
+          "completedLine": {
+            "speaker": "Prithvi",
+            "text": "My daughter, come home. You have suffered enough for this world."
+          },
+          "target": 1,
+          "position": {
+            "x": 0,
+            "y": 0.6,
+            "z": 0
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 121-128 (the return to Ayodhya)"
+        },
+        {
+          "id": "rama-departure",
+          "type": "witness",
+          "title": "Witness Rama’s departure from the world",
+          "marker": "Sarayu river",
+          "cue": "The king who was more than a king returns to the source.",
+          "actionLabel": "Witness departure",
+          "completedLine": {
+            "speaker": "Rama",
+            "text": "I came to establish dharma. Now I return to where I came from. The story continues in those who remember it."
+          },
+          "target": 1,
+          "position": {
+            "x": 5,
+            "y": 0.6,
+            "z": 5
+          },
+          "citation": "Valmiki Ramayana, Ayodhya Kanda, Sargas 30-31"
+        },
+        {
+          "id": "valmiki-teaches-twins",
+          "type": "witness",
+          "title": "Witness Valmiki teach Lava and Kusha the Ramayana",
+          "marker": "Valmiki",
+          "cue": "In the forest ashram, Valmiki composes the epic in verse. The twins learn it song, not knowing they are its heroes.",
+          "actionLabel": "Witness teaching",
+          "completedLine": {
+            "speaker": "Valmiki",
+            "text": "Sing this song, children. Let the meter carry the meaning. The story must live in the heart, not just the ear."
+          },
+          "target": 1,
+          "position": {
+            "x": -4,
+            "y": 0.6,
+            "z": 4
+          },
+          "citation": "Valmiki Ramayana, Uttara Kanda, Sargas 12-13, 27-35 (Lava and Kusha)"
+        },
+        {
+          "id": "sita-final-blessing",
+          "type": "witness",
+          "title": "Witness Sita bless the earth before returning to her mother",
+          "marker": "Sacred ground",
+          "cue": "Before the earth opens, Sita turns to the world one last time. Her blessing becomes the harvest.",
+          "actionLabel": "Witness blessing",
+          "completedLine": {
+            "speaker": "Sita",
+            "text": "I have loved this earth, its rivers, its people. May those who remember me find strength in their own purity."
+          },
+          "target": 1,
+          "position": {
+            "x": 4,
+            "y": 0.6,
+            "z": -4
+          },
+          "citation": "Valmiki Ramayana, Yuddha Kanda, Sargas 121-128 (the return to Ayodhya)"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Sita",
+          "text": "I have proved myself once before Agni. Now I call upon my mother, the Earth. If I am pure, let her receive me. If not, let me be swallowed.",
+          "voice": "kathaka",
+          "citation": "Uttara Kanda, Sargas 1-111"
+        },
+        {
+          "speaker": "Prithvi",
+          "text": "My daughter, come home. You have suffered enough for this world. I bore you for the sake of dharma, and now I reclaim you.",
+          "voice": "kathaka",
+          "citation": "Uttara Kanda, Sargas 1-111"
+        },
+        {
+          "speaker": "Rama",
+          "text": "I came to establish dharma. Now I return to where I came from. The story continues in those who remember it. Teach your children.",
+          "voice": "kathaka",
+          "citation": "Uttara Kanda, Sargas 1-111"
+        },
+        {
+          "speaker": "Valmiki",
+          "text": "Thus ends the Ramayana of Valmiki. Rama is dharma. Sita is the earth. Lakshmana is devotion. Hanuman is service. The story never ends.",
+          "voice": "kathaka",
+          "citation": "Uttara Kanda, Sargas 1-111"
+        }
+      ],
+      "reward": {
+        "badge": "Ramayana Complete",
+        "lore": "The full journey from birth to return",
+        "dharma": 50
+      },
+      "valmiki_citation": "Uttara Kanda, Sargas 1-111"
+    }
+  ],
+  "corpus_meta": {
+    "version": "2.1",
+    "scope": "Curated Ramayana pilot — 98 objectives across 8 acts (7 kāṇḍas + return)",
+    "approach": "Each objective is original English paraphrase, not a translation of any particular published edition of the Valmiki Ramayana. Each objective carries a `citation` field pointing to the sarga(s) of the standard recension where the event is located, so a reader can cross-reference. Sanskrit shlokas are not included — those would require a real source text (Bibek Debroy, Griffith, Shastri, or similar). Use this for gameplay/UX; for source-faithful textual study, please use a published translation.",
+    "sarga_numbering_note": "Sarga numbers are based on the standard critical recension. Some recensions (e.g. the Vulgate / Southern recension) renumber certain sargas. Treat these as approximate pointers, not absolute line numbers.",
+    "generated": "2026-07-02",
+    "warning": "Dialogue text in `completedLine.text` and `dialogue[*].text` is original paraphrase. It conveys the dramatic meaning of the event but is not a literal translation of any Sanskrit verse. The Valmiki Ramayana is the intellectual source for the *sequence of events* and the *characters*, but the words are not from Valmiki's text.",
+    "sarga_count_estimate": "Valmiki Ramayana total sargas: ~500 across 7 kāṇḍas",
+    "objectives_count": 98,
+    "dialogue_count": 66
+  }
+}

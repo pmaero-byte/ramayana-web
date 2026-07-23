@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Rāmāyaṇa — Web</title>
+  <link rel="stylesheet" href="css/game.css?v=24" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="c"></canvas>
+    <div id="letterbox" class="letterbox" aria-hidden="true">
+      <div class="bar top"></div>
+      <div class="bar bot"></div>
+    </div>
+    <div id="hud" class="hud" data-role="hud">
+      <div id="hud-title" class="hud-title">Yuddha Kāṇḍa</div>
+      <div id="hud-obj" class="hud-obj">—</div>
+      <div id="hud-wave" class="hud-wave">Wave —</div>
+      <div id="hp-wrap" class="hp-wrap" aria-label="Health">
+        <div id="hp-label" class="hp-label">HP 5/5</div>
+        <div class="hp-track"><div id="hp-fill" class="hp-fill"></div></div>
+      </div>
+      <canvas id="minimap" class="minimap" width="160" height="160"></canvas>
+      <div id="objective-card" class="objective-card" data-role="hud" aria-live="polite">
+        <div class="objective-card-label">MISSION</div>
+        <div id="objective-card-text" class="objective-card-text">Surveying the battlefield…</div>
+      </div>
+      <div id="hud-hint" class="hud-hint">WASD · Shift run · RMB orbit · Auto-bow · Esc menu</div>
+    </div>
+    <div class="chrome" data-role="hud">
+      <button type="button" id="btn-save" class="chrome-btn" title="Save">💾</button>
+      <button type="button" id="btn-slots-hud" class="chrome-btn" title="Save slots">📂</button>
+      <button type="button" id="btn-locale" class="chrome-btn" title="Language">अ/En</button>
+      <button type="button" id="btn-menu" class="chrome-btn" title="Kāṇḍa menu">☰</button>
+      <button type="button" id="btn-fullscreen" class="chrome-btn" title="Fullscreen">⛶</button>
+    </div>
+    <div id="dialogue" class="dialogue hidden" data-role="hud">
+      <div class="accent"></div>
+      <img id="dlg-portrait" class="portrait" alt="" />
+      <div class="dlg-text">
+        <div id="dlg-speaker" class="speaker"></div>
+        <div id="dlg-line" class="line"></div>
+      </div>
+    </div>
+    <div id="title" class="title-screen" data-role="hud">
+      <div class="title-inner">
+        <h1>RĀMĀYAṆA</h1>
+        <p class="sub">Browser action slice · open stack · no Unity</p>
+        <div class="char-section-title">Choose your avatar</div>
+        <div id="char-grid"></div>
+        <div class="char-section-title">Choose your kāṇḍa</div>
+        <div id="act-list" class="act-list"></div>
+        <button id="btn-start" class="btn-start" type="button">Begin Yuddha</button>
+        <button id="btn-continue" class="btn-start btn-continue" type="button" style="display:none">▶ Continue</button>
+        <button id="btn-delete-save" class="btn-start btn-delete" type="button" style="display:none">✕ Delete Save</button>
+        <button id="btn-slots" class="btn-start" type="button">📂 Save Slots</button>
+        <p id="high-score" class="high-score"></p>
+        <p class="fine">Three.js + vanilla JS · corpus-driven · WASD / touch</p>
+      </div>
+    </div>
+    <div id="slots-panel" class="hidden" data-role="hud">
+      <h2>SAVE SLOTS</h2>
+      <div id="slot-list" class="slot-list"></div>
+      <button id="btn-slots-close" class="btn-start" type="button">Close</button>
+    </div>
+    <div id="death-overlay" class="death-overlay hidden" data-role="hud">
+      <div class="death-inner">
+        <div class="death-sanskrit">क्षणं शिरः क्रियताम्</div>
+        <h2>YOU FELL</h2>
+        <p class="death-stats" id="death-stats">— slain · wave —</p>
+        <button id="btn-retry" class="btn-start" type="button">⚔ Retry</button>
+        <button id="btn-return" class="btn-start btn-delete" type="button">Return to Kāṇḍa</button>
+      </div>
+    </div>
+  </div>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.160.0"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js?v=66"></script>
+  <script>window.RAMA_BOOT = { loaded: false }; setTimeout(() => { if (!window.RAMA_BOOT.loaded && !window.RamaWeb) { const t = document.getElementById('hud-obj'); if (t) t.textContent = 'Boot failed — check console (need http, not file://)'; console.error('RamaWeb boot did not complete in 3s'); } }, 3000); </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/obj/Debug/netstandard2.1/RamayanaPS5.csproj.AssemblyReference.cache
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/obj/Debug/netstandard2.1/RamayanaPS5.GeneratedMSBuildEditorConfig.editorconfig
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/obj/Debug/netstandard2.1/RamayanaPS5.AssemblyInfoInputs.cache
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/obj/Debug/netstandard2.1/RamayanaPS5.AssemblyInfo.cs
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/obj/Debug/netstandard2.1/RamayanaPS5.csproj.CoreCompileInputs.cache
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/bin/Debug/netstandard2.1/RamayanaPS5.deps.json
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/bin/Debug/netstandard2.1/RamayanaPS5.dll
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/bin/Debug/netstandard2.1/RamayanaPS5.pdb
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/obj/Debug/netstandard2.1/RamayanaPS5.dll
+/Users/prabaharan/Aerospace_projects/RamayanaPS5/obj/Debug/netstandard2.1/RamayanaPS5.pdb

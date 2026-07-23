@@ -1,0 +1,719 @@
+{
+  "project": "Ramayana PS5 — ELGODS Bala Kanda moment corpus",
+  "version": "day12-v1",
+  "sourceProject": "ELGODS (jambudweep/ELGODS)",
+  "sourceFile": "src/game/ramayana/characterStoryArcs.ts",
+  "exportedAt": "2026-07-21",
+  "designPillars": [
+    "36 Bala Kanda-grounded moments (sarga 1-73)",
+    "Cross-references Day 11 character roster (26) + 10 Bala Kanda additions = 36 total whitelist",
+    "Kid-friendly narrative retellings, no graphic violence (slay→faced, demons→troublesome spirits)",
+    "Valmiki sarga citations preserved per moment",
+    "Voice cue IDs reserved for Day 13 (vc_bala_<verb>_<id>)",
+    "Duration 12-22 seconds per moment for kid pacing"
+  ],
+  "characterWhitelist": [
+    "agastya",
+    "angada",
+    "bharata",
+    "brahma",
+    "dasharatha",
+    "guha",
+    "hanuman",
+    "indrajit",
+    "jambavan",
+    "janaka",
+    "jatayu",
+    "kaikeyi",
+    "kausalya",
+    "kumbhakarna",
+    "lakshmana",
+    "mandavi",
+    "mandodari",
+    "mariachi",
+    "menaka",
+    "narada",
+    "nila",
+    "rama",
+    "ravana",
+    "shabari",
+    "sita",
+    "sugriva",
+    "sumitra",
+    "tadaka",
+    "tara",
+    "trijata",
+    "trishanku",
+    "urmila",
+    "valmiki",
+    "vasishtha",
+    "vibhishana",
+    "vishwamitra"
+  ],
+  "kanda": "bala-kanda",
+  "moments": [
+    {
+      "momentId": "laksh-origins",
+      "kanda": "bala-kanda",
+      "adhyaya": 5,
+      "verb": "appear",
+      "protagonist": "lakshmana",
+      "voiceCueId": "vc_bala_appear_laksh_origins",
+      "narrative": "I am Lakshmana. Born of Sumitra, twin to Shatrughna, half-brother to Rama and Bharata.",
+      "moralLesson": "Valmiki describes the four sons of Dasharatha: Rama (of Kausalya), Bharata (of Kaikeyi), and the twins Lakshmana and Shatrughna (of Sumitra)",
+      "characters": [
+        "lakshmana",
+        "sumitra"
+      ],
+      "durationSec": 18,
+      "sargaStart": 18,
+      "sargaEnd": 18
+    },
+    {
+      "momentId": "bharata-origins",
+      "kanda": "bala-kanda",
+      "adhyaya": 5,
+      "verb": "appear",
+      "protagonist": "bharata",
+      "voiceCueId": "vc_bala_appear_bharata_origins",
+      "narrative": "I am Bharata. Son of Kaikeyi, the warrior-queen who saved my father's life in challenges.",
+      "moralLesson": "Valmiki describes Bharata as second only to Rama in virtue and skill",
+      "characters": [
+        "bharata",
+        "kaikeyi"
+      ],
+      "durationSec": 18,
+      "sargaStart": 18,
+      "sargaEnd": 18
+    },
+    {
+      "momentId": "bharata-mother-leaves",
+      "kanda": "bala-kanda",
+      "adhyaya": 8,
+      "verb": "appear",
+      "protagonist": "bharata",
+      "voiceCueId": "vc_bala_appear_bharata_mother_leaves",
+      "narrative": "When I was a child, my mother Kaikeyi saved King Dasharatha in challenges — her chariot was drawn by eight wild horses, and the wheels broke on uneven ground. She fought the troublesome spirits with her bare hands.",
+      "moralLesson": "The famous chariot scene where Kaikeyi saves Dasharatha from the demons Sambara and others",
+      "characters": [
+        "bharata",
+        "kaikeyi",
+        "dasharatha"
+      ],
+      "durationSec": 18,
+      "sargaStart": 41,
+      "sargaEnd": 41
+    },
+    {
+      "momentId": "kai-origins",
+      "kanda": "bala-kanda",
+      "adhyaya": 8,
+      "verb": "appear",
+      "protagonist": "kaikeyi",
+      "voiceCueId": "vc_bala_appear_kai_origins",
+      "narrative": "I am Kaikeyi. Daughter of the king of Kekaya, the warrior-kingdom in the northwest.",
+      "moralLesson": "Kaikeyi's origins in Kekaya (modern Gandhara / parts of Punjab and Afghanistan)",
+      "characters": [
+        "kaikeyi"
+      ],
+      "durationSec": 18,
+      "sargaStart": 41,
+      "sargaEnd": 41
+    },
+    {
+      "momentId": "kai-chariot",
+      "kanda": "bala-kanda",
+      "adhyaya": 8,
+      "verb": "appear",
+      "protagonist": "kaikeyi",
+      "voiceCueId": "vc_bala_appear_kai_chariot",
+      "narrative": "The troublesome spirits attacked at dawn. I was in my chariot.",
+      "moralLesson": "Kaikeyi saves Dasharatha in battle against the demon Sambara",
+      "characters": [
+        "kaikeyi",
+        "dasharatha"
+      ],
+      "durationSec": 18,
+      "sargaStart": 41,
+      "sargaEnd": 44
+    },
+    {
+      "momentId": "vishw-kshatriya",
+      "kanda": "bala-kanda",
+      "adhyaya": 9,
+      "verb": "appear",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_appear_vishw_kshatriya",
+      "narrative": "I am Vishwamitra, son of the kshatriya king of Kanyakubja, born in the dynasty of Kusha. I am a king.",
+      "moralLesson": "Vishwamitra begins as King Kaushika",
+      "characters": [
+        "vishwamitra"
+      ],
+      "durationSec": 18,
+      "sargaStart": 51,
+      "sargaEnd": 51
+    },
+    {
+      "momentId": "vishw-tapas",
+      "kanda": "bala-kanda",
+      "adhyaya": 9,
+      "verb": "appear",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_appear_vishw_tapas",
+      "narrative": "I ate only forest roots. I drank only rainwater.",
+      "moralLesson": "The tapas of Vishwamitra is described in several stages",
+      "characters": [
+        "vishwamitra"
+      ],
+      "durationSec": 18,
+      "sargaStart": 51,
+      "sargaEnd": 56
+    },
+    {
+      "momentId": "vishw-vasishtha",
+      "kanda": "bala-kanda",
+      "adhyaya": 9,
+      "verb": "appear",
+      "protagonist": "vasishtha",
+      "voiceCueId": "vc_bala_appear_vishw_vasishtha",
+      "narrative": "Kaushika, you have done great tapas. But a brahmarshi is not made by tapas alone.",
+      "moralLesson": "Vasishtha, who had been Vishwamitra's rival and then his teacher, refuses to accept him as a *brahmarshi*",
+      "characters": [
+        "vishwamitra",
+        "vasishtha"
+      ],
+      "durationSec": 18,
+      "sargaStart": 51,
+      "sargaEnd": 52
+    },
+    {
+      "momentId": "vishw-trishanku",
+      "kanda": "bala-kanda",
+      "adhyaya": 9,
+      "verb": "appear",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_appear_vishw_trishanku",
+      "narrative": "A king of the Ikshvaku dynasty, Trishanku, asked me to perform a sacrifice to send him to heaven in his own body. The rishis at the sacrifice refused to chant.",
+      "moralLesson": "The Trishanku episode",
+      "characters": [
+        "vishwamitra",
+        "trishanku"
+      ],
+      "durationSec": 18,
+      "sargaStart": 56,
+      "sargaEnd": 58
+    },
+    {
+      "momentId": "vishw-mena-ambrosia",
+      "kanda": "bala-kanda",
+      "adhyaya": 9,
+      "verb": "appear",
+      "protagonist": "menaka",
+      "voiceCueId": "vc_bala_appear_vishw_mena_ambrosia",
+      "narrative": "Great sage, I was sent by Indra to distract you. I have spent a year with you, in your ashram, as your companion.",
+      "moralLesson": "The apsara Menaka was sent by Indra to break Vishwamitra's tapas",
+      "characters": [
+        "vishwamitra",
+        "menaka"
+      ],
+      "durationSec": 18,
+      "sargaStart": 54,
+      "sargaEnd": 55
+    },
+    {
+      "momentId": "vishw-accepts-rama",
+      "kanda": "bala-kanda",
+      "adhyaya": 5,
+      "verb": "speak",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_speak_vishw_accepts_rama",
+      "narrative": "King Dasharatha. I have come to your court to ask for your eldest son, Rama.",
+      "moralLesson": "The arrival of Vishwamitra at Dasharatha's court",
+      "characters": [
+        "vishwamitra",
+        "dasharatha",
+        "rama"
+      ],
+      "durationSec": 12,
+      "sargaStart": 18,
+      "sargaEnd": 20
+    },
+    {
+      "momentId": "vishw-protects-tadaka",
+      "kanda": "bala-kanda",
+      "adhyaya": 5,
+      "verb": "face-challenge",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_face-challenge_vishw_protects_tadaka",
+      "narrative": "Rama. This is your first challenges.",
+      "moralLesson": "The slaying of Tadaka",
+      "characters": [
+        "vishwamitra",
+        "rama",
+        "tadaka"
+      ],
+      "durationSec": 20,
+      "sargaStart": 20,
+      "sargaEnd": 24
+    },
+    {
+      "momentId": "vishw-prints-mariachi",
+      "kanda": "bala-kanda",
+      "adhyaya": 6,
+      "verb": "face-challenge",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_face-challenge_vishw_prints_mariachi",
+      "narrative": "Rama. The other rakshasis of the forest have come to avenge Tadaka.",
+      "moralLesson": "The slaying of Mariachi",
+      "characters": [
+        "vishwamitra",
+        "rama",
+        "mariachi"
+      ],
+      "durationSec": 20,
+      "sargaStart": 25,
+      "sargaEnd": 26
+    },
+    {
+      "momentId": "vishw-siddhashrama",
+      "kanda": "bala-kanda",
+      "adhyaya": 6,
+      "verb": "appear",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_appear_vishw_siddhashrama",
+      "narrative": "Rama. Lakshmana.",
+      "moralLesson": "The *divya-astra* transmission",
+      "characters": [
+        "vishwamitra",
+        "rama",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 28,
+      "sargaEnd": 29
+    },
+    {
+      "momentId": "vishw-prints-rama",
+      "kanda": "bala-kanda",
+      "adhyaya": 9,
+      "verb": "appear",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_appear_vishw_prints_rama",
+      "narrative": "The thousand-year tapas is complete. The gods gather.",
+      "moralLesson": "The *brahmarshi-abhiseka* — the moment Vishwamitra is recognized as a *brahmarshi*",
+      "characters": [
+        "vishwamitra"
+      ],
+      "durationSec": 18,
+      "sargaStart": 52,
+      "sargaEnd": 54
+    },
+    {
+      "momentId": "vishw-mithila",
+      "kanda": "bala-kanda",
+      "adhyaya": 11,
+      "verb": "appear",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_appear_vishw_mithila",
+      "narrative": "Rama, the kings of Mithila are gathering. Janaka, the great king, has declared: whoever can string the bow of Shiva — the Pinaka — will marry his daughter, Sita.",
+      "moralLesson": "The journey to Mithila",
+      "characters": [
+        "vishwamitra",
+        "rama",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 67,
+      "sargaEnd": 71
+    },
+    {
+      "momentId": "vishw-witnesses-wedding",
+      "kanda": "bala-kanda",
+      "adhyaya": 12,
+      "verb": "appear",
+      "protagonist": "vishwamitra",
+      "voiceCueId": "vc_bala_appear_vishw_witnesses_wedding",
+      "narrative": "Rama lifts the bow. He draws it.",
+      "moralLesson": "The breaking of the bow of Shiva",
+      "characters": [
+        "vishwamitra",
+        "rama",
+        "sita",
+        "janaka"
+      ],
+      "durationSec": 18,
+      "sargaStart": 71,
+      "sargaEnd": 73
+    },
+    {
+      "momentId": "agastya-punarvasu",
+      "kanda": "bala-kanda",
+      "adhyaya": 2,
+      "verb": "appear",
+      "protagonist": "agastya",
+      "voiceCueId": "vc_bala_appear_agastya_punarvasu",
+      "narrative": "The day Rama was born — under the star Punarvasu, in the month of Chaitra, on the ninth day — I was the first to see it. From the southern peak of the Sahyadri mountains, I saw the sky light up.",
+      "moralLesson": "The birth of Rama is announced",
+      "characters": [
+        "agastya"
+      ],
+      "durationSec": 18,
+      "sargaStart": 4,
+      "sargaEnd": 5
+    },
+    {
+      "momentId": "nar-vina",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "narada",
+      "voiceCueId": "vc_bala_appear_nar_vina",
+      "narrative": "This is my vina. The strings are made of the breath of the wind.",
+      "moralLesson": "The vina of Narada",
+      "characters": [
+        "narada"
+      ],
+      "durationSec": 18,
+      "sargaStart": 1,
+      "sargaEnd": 1
+    },
+    {
+      "momentId": "nar-shruti",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "speak",
+      "protagonist": "narada",
+      "voiceCueId": "vc_bala_speak_nar_shruti",
+      "narrative": "I am the keeper of shruti. Shruti is what is heard.",
+      "moralLesson": "The *shruti* tradition",
+      "characters": [
+        "narada"
+      ],
+      "durationSec": 12,
+      "sargaStart": 1,
+      "sargaEnd": 1
+    },
+    {
+      "momentId": "nar-reports-to-brahma",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "narada",
+      "voiceCueId": "vc_bala_appear_nar_reports_to_brahma",
+      "narrative": "Brahma, I have come to report. I have traveled the three worlds.",
+      "moralLesson": "The report to Brahma",
+      "characters": [
+        "narada",
+        "brahma"
+      ],
+      "durationSec": 18,
+      "sargaStart": 1,
+      "sargaEnd": 1
+    },
+    {
+      "momentId": "nar-warns-dasharatha",
+      "kanda": "bala-kanda",
+      "adhyaya": 5,
+      "verb": "appear",
+      "protagonist": "narada",
+      "voiceCueId": "vc_bala_appear_nar_warns_dasharatha",
+      "narrative": "King Dasharatha. I am Narada, the devarishi.",
+      "moralLesson": "The celestial *payasa*",
+      "characters": [
+        "narada",
+        "dasharatha"
+      ],
+      "durationSec": 18,
+      "sargaStart": 18,
+      "sargaEnd": 18
+    },
+    {
+      "momentId": "nar-bala-visit",
+      "kanda": "bala-kanda",
+      "adhyaya": 4,
+      "verb": "witness",
+      "protagonist": "narada",
+      "voiceCueId": "vc_bala_witness_nar_bala_visit",
+      "narrative": "Dasharatha's court. The great hall of the kings of Kosala.",
+      "moralLesson": "The visit to Dasharatha's court",
+      "characters": [
+        "narada",
+        "dasharatha"
+      ],
+      "durationSec": 20,
+      "sargaStart": 17,
+      "sargaEnd": 18
+    },
+    {
+      "momentId": "nar-consecrates-rama",
+      "kanda": "bala-kanda",
+      "adhyaya": 5,
+      "verb": "appear",
+      "protagonist": "narada",
+      "voiceCueId": "vc_bala_appear_nar_consecrates_rama",
+      "narrative": "Rama. I am Narada.",
+      "moralLesson": "The consecration of the newborn",
+      "characters": [
+        "narada",
+        "rama",
+        "kausalya"
+      ],
+      "durationSec": 18,
+      "sargaStart": 18,
+      "sargaEnd": 20
+    },
+    {
+      "momentId": "nar-witnesses-ravana",
+      "kanda": "bala-kanda",
+      "adhyaya": 10,
+      "verb": "appear",
+      "protagonist": "narada",
+      "voiceCueId": "vc_bala_appear_nar_witnesses_ravana",
+      "narrative": "Brahma. The play has begun.",
+      "moralLesson": "The cosmic threat",
+      "characters": [
+        "narada",
+        "brahma"
+      ],
+      "durationSec": 18,
+      "sargaStart": 60,
+      "sargaEnd": 60
+    },
+    {
+      "momentId": "valm-origins",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "valmiki",
+      "voiceCueId": "vc_bala_appear_valm_origins",
+      "narrative": "Once there was a highwayman named Ratnakara. He lived in the forest.",
+      "moralLesson": "The birth of Valmiki",
+      "characters": [
+        "valmiki"
+      ],
+      "durationSec": 18,
+      "sargaStart": 1,
+      "sargaEnd": 2
+    },
+    {
+      "momentId": "valm-curse-brahma",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "valmiki",
+      "voiceCueId": "vc_bala_appear_valm_curse_brahma",
+      "narrative": "Brahma appeared before me. He said: \"Ratnakara, you are a highwayman.",
+      "moralLesson": "The curse and the blessing",
+      "characters": [
+        "valmiki",
+        "brahma"
+      ],
+      "durationSec": 18,
+      "sargaStart": 2,
+      "sargaEnd": 2
+    },
+    {
+      "momentId": "valm-sage-born",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "valmiki",
+      "voiceCueId": "vc_bala_appear_valm_sage_born",
+      "narrative": "I am no longer Ratnakara. I am no longer the highwayman.",
+      "moralLesson": "The birth of the sage",
+      "characters": [
+        "valmiki"
+      ],
+      "durationSec": 18,
+      "sargaStart": 2,
+      "sargaEnd": 2
+    },
+    {
+      "momentId": "valm-mantra-shloka",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "chant",
+      "protagonist": "valmiki",
+      "voiceCueId": "vc_bala_chant_valm_mantra_shloka",
+      "narrative": "I am sitting by the Tamasa river. I have finished my tapas.",
+      "moralLesson": "The first shloka",
+      "characters": [
+        "valmiki"
+      ],
+      "durationSec": 20,
+      "sargaStart": 2,
+      "sargaEnd": 2
+    },
+    {
+      "momentId": "valm-narada-visit",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "speak",
+      "protagonist": "valmiki",
+      "voiceCueId": "vc_bala_speak_valm_narada_visit",
+      "narrative": "Narada has come to my ashram. Narada — the devarishi — has come to the valmika.",
+      "moralLesson": "The visit of Narada",
+      "characters": [
+        "valmiki",
+        "narada"
+      ],
+      "durationSec": 12,
+      "sargaStart": 2,
+      "sargaEnd": 3
+    },
+    {
+      "momentId": "valm-clears-forest",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "valmiki",
+      "voiceCueId": "vc_bala_appear_valm_clears_forest",
+      "narrative": "I am meditating. I am doing tapas.",
+      "moralLesson": "The *tapas* of Valmiki",
+      "characters": [
+        "valmiki"
+      ],
+      "durationSec": 18,
+      "sargaStart": 2,
+      "sargaEnd": 3
+    },
+    {
+      "momentId": "valm-ashram",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "valmiki",
+      "voiceCueId": "vc_bala_appear_valm_ashram",
+      "narrative": "My ashram is on the bank of the Tamasa river. The river is a tributary of the Ganga.",
+      "moralLesson": "The ashram of Valmiki",
+      "characters": [
+        "valmiki"
+      ],
+      "durationSec": 18,
+      "sargaStart": 2,
+      "sargaEnd": 3
+    },
+    {
+      "momentId": "valm-brahma-command",
+      "kanda": "bala-kanda",
+      "adhyaya": 1,
+      "verb": "appear",
+      "protagonist": "brahma",
+      "voiceCueId": "vc_bala_appear_valm_brahma_command",
+      "narrative": "Valmiki. I am Brahma.",
+      "moralLesson": "The command of Brahma",
+      "characters": [
+        "valmiki",
+        "brahma"
+      ],
+      "durationSec": 18,
+      "sargaStart": 2,
+      "sargaEnd": 3
+    },
+    {
+      "momentId": "urm-origins",
+      "kanda": "bala-kanda",
+      "adhyaya": 10,
+      "verb": "appear",
+      "protagonist": "urmila",
+      "voiceCueId": "vc_bala_appear_urm_origins",
+      "narrative": "I am Urmila. I am the daughter of King Janaka.",
+      "moralLesson": "The marriage of Urmila",
+      "characters": [
+        "urmila",
+        "sita",
+        "janaka",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 65,
+      "sargaEnd": 67
+    },
+    {
+      "momentId": "urm-mithila",
+      "kanda": "bala-kanda",
+      "adhyaya": 11,
+      "verb": "appear",
+      "protagonist": "urmila",
+      "voiceCueId": "vc_bala_appear_urm_mithila",
+      "narrative": "I am the wife of Lakshmana. I am the sister of Sita.",
+      "moralLesson": "Urmila at Mithila",
+      "characters": [
+        "urmila",
+        "sita",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 67,
+      "sargaEnd": 70
+    },
+    {
+      "momentId": "mand-origins",
+      "kanda": "bala-kanda",
+      "adhyaya": 10,
+      "verb": "appear",
+      "protagonist": "mandavi",
+      "voiceCueId": "vc_bala_appear_mand_origins",
+      "narrative": "I am Mandavi. I am the daughter of King Kushadhwaja — Janaka's younger brother.",
+      "moralLesson": "The marriage of Mandavi",
+      "characters": [
+        "mandavi",
+        "sita",
+        "bharata",
+        "janaka"
+      ],
+      "durationSec": 18,
+      "sargaStart": 65,
+      "sargaEnd": 67
+    }
+  ],
+  "_meta": {
+    "schemaVersion": "day12-v1",
+    "kanda": "bala-kanda",
+    "momentsTotal": 36,
+    "adhyayasCovered": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "charactersTotal": 36,
+    "charactersAdditions": [
+      "vasishtha",
+      "dasharatha",
+      "mariachi",
+      "brahma",
+      "sumitra",
+      "menaka",
+      "kausalya",
+      "tadaka",
+      "janaka",
+      "trishanku"
+    ],
+    "protagonists": [
+      "agastya",
+      "bharata",
+      "brahma",
+      "kaikeyi",
+      "lakshmana",
+      "mandavi",
+      "menaka",
+      "narada",
+      "urmila",
+      "valmiki",
+      "vasishtha",
+      "vishwamitra"
+    ],
+    "sargaRange": [
+      1,
+      73
+    ],
+    "notes": "Day 12 Bala Kanda corpus. 36 moments grounded in Valmiki sarga 1-73, covering Narada's opening, Valmiki's composition origins, Dasharatha's court, Vishwamitra's tapas and Tataka, the journey to Mithila, and the swayamvar. Day 13 will register voice cue content for the voiceCueId placeholders."
+  }
+}

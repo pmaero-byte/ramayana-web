@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_3_panchavati-golden-deer
+  m_EditorClassIdentifier: 
+  actId: "panchavati-golden-deer"
+  actNumber: 3
+  title: "Aranyakanda: Forest Life"
+  location: "Panchavati Forest"
+  scene: 1
+  setup: "In exile at Panchavati near Nashik, Rama, Sita, and Lakshmana live in peace. They meet Shabari, the ascetic woman who feeds Rama tasted berries. The demoness Shurpanakha tries to seduce Rama and Lakshmana, loses her nose and ears, and incites her brothers Khara and Dushana to attack with fourteen thousand demons. All are killed. Shurpanakha goes to Lanka and tells Ravana about Sita. Ravana, with Maricha transformed golden deer, distracts Rama. Lakshmana is drawn away. Ravana arrives hermit, crosses the Lakshmana Rekha, and abducts Sita. Jatayu tries to rescue her but is mortally wounded."
+  lesson: "Attachment and desire create openings for deception. Ravana exploits Rama’s protective instinct toward Sita, using illusion to separate them."
+  playerRole: "Rama"
+  objectives:
+  - id: "meet-shabari"
+    type: 1
+    title: "Meet Shabari and taste her berries"
+    marker: "Shabari"
+    cue: "The ascetic woman has waited her whole life to serve Rama."
+    actionLabel: "Meet Shabari"
+    completedLine: {speaker: "Shabari", text: "I tasted each berry to give you only the sweet ones. My guru said Rama would come to my hut. Today I am complete."}
+    target: 1
+    position: {x: -5, y: 0.6, z: -3}
+  - id: "track-deer"
+    type: 2
+    title: "Track the golden deer through the forest"
+    marker: "Golden trail"
+    cue: "Follow the glowing trail before the illusion slips away."
+    actionLabel: "Track the deer"
+    completedLine: {speaker: "Rama", text: "The deer shines with wonder, but wonder can also be a mask. Maricha is no stranger to deception."}
+    target: 1
+    position: {x: -7, y: 0.6, z: -5}
+  - id: "shoot-maricha"
+    type: 6
+    title: "Fire arrows at Maricha disguised among deer illusions"
+    marker: "Maricha"
+    cue: "Three deer appear. Click the real one to fire an arrow."
+    actionLabel: "Fire arrow"
+    completedLine: {speaker: "Rama", text: "The illusion falls. Maricha’s last breath calls my name, and Lakshmana is drawn away from Sita."}
+    target: 1
+    position: {x: -7, y: 0.6, z: -5}
+  - id: "jatayu-death"
+    type: 5
+    title: "Perform Jatayu’s last rites after he falls defending Sita"
+    marker: "Jatayu"
+    cue: "The vulture king gave his life. Honor him with proper rites."
+    actionLabel: "Honor Jatayu"
+    completedLine: {speaker: "Rama", text: "You gave your wings for my wife, old friend. I shall name a kingdom after your sacrifice."}
+    target: 1
+    position: {x: 2, y: 0.6, z: 4}
+  - id: "jatayu-rites"
+    type: 4
+    title: "Perform Jatayu’s last rites and free his spirit"
+    marker: "Jatayu"
+    cue: "The vulture king gave his life for Sita. Honor him with proper funeral rites."
+    actionLabel: "Perform rites"
+    completedLine: {speaker: "Rama", text: "You gave your wings for my wife, old friend. I name this kingdom after your sacrifice. Your spirit is free."}
+    target: 1
+    position: {x: 2, y: 0.6, z: 4}
+  - id: "meet-kabandha"
+    type: 1
+    title: "Meet Kabandha and help him find redemption"
+    marker: "Kabandha"
+    cue: "The cursed demon waits in the forest. Rama’s touch can free him."
+    actionLabel: "Speak with Kabandha"
+    completedLine: {speaker: "Kabandha", text: "You have buried my cursed body. Now I am free to tell you — go to Sugriva at Rishyamuka. He will help you find Sita."}
+    target: 1
+    position: {x: -3, y: 0.6, z: 3}
+  - id: "witness-abduction"
+    type: 5
+    title: "Witness Sita’s abduction by Ravana"
+    marker: "Battle memory"
+    cue: "The moment adharma struck. Remember it."
+    actionLabel: "Witness abduction"
+    completedLine: {speaker: "Ravana", text: "I take what weakness leaves unguarded. The forest is no place for a queen."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 7}
+  - id: "shurpanakha-confrontation"
+    type: 6
+    title: "Confront Shurpanakha when she tries to seduce Rama"
+    marker: "Shurpanakha"
+    cue: "Ravana’s sister approaches with desire in her eyes. Her pride will cost her dearly."
+    actionLabel: "Confront demoness"
+    completedLine: {speaker: "Lakshmana", text: "You came with ill intent. Your nose and ears are the price of your impudence."}
+    target: 1
+    position: {x: 3, y: 0.6, z: 2}
+  - id: "khara-battle"
+    type: 6
+    title: "Defeat Khara and Dushana’s army of fourteen thousand demons"
+    marker: "Demon army"
+    cue: "The forest trembles. Fourteen thousand demons march under Khara and Dushana. Stand firm."
+    actionLabel: "Defeat army"
+    completedLine: {speaker: "Rama", text: "Not one arrow was wasted. Dharma does not count enemies; it counts only rightness."}
+    target: 1
+    position: {x: -8, y: 0.6, z: 8}
+  - id: "draw-lakshmana-rekha"
+    type: 5
+    title: "Witness Lakshmana draw the protective line around Sita"
+    marker: "Sacred line"
+    cue: "Lakshmana traces a line of power around the hut. Beyond it, no evil may cross."
+    actionLabel: "Witness line"
+    completedLine: {speaker: "Lakshmana", text: "Sister, do not cross this line. As long stay within, no power on earth can harm you."}
+    target: 1
+    position: {x: 1, y: 0.6, z: 5}
+  - id: "chitrakuta-stay"
+    type: 2
+    title: "Stay at Chitrakuta before moving deeper into the forest"
+    marker: "Chitrakuta peak"
+    cue: "The mountain of Chitrakuta offers shelter. Here Bharata came to beg Rama back."
+    actionLabel: "Settle at Chitrakuta"
+    completedLine: {speaker: "Rama", text: "This mountain remembers Bharata’s tears. We shall rest here before the deeper forest."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 5}
+  - id: "atri-ashram"
+    type: 1
+    title: "Visit Atri and Anasuya’s ashram and receive their blessings"
+    marker: "Anasuya"
+    cue: "The sage Atri and his wife Anasuya dwell here. She has divine garments and wisdom for Sita."
+    actionLabel: "Receive blessings"
+    completedLine: {speaker: "Anasuya", text: "I give you these garments, Sita. They will never soil, never tear. A wife’s dharma is her true ornament."}
+    target: 1
+    position: {x: -5, y: 0.6, z: 5}
+  - id: "sugriva-first-meeting"
+    type: 1
+    title: "Meet Sugriva for the first time at Rishyamuka"
+    marker: "Sugriva"
+    cue: "A wounded king of monkeys hides in these hills. His name is Sugriva, and his brother has stolen everything."
+    actionLabel: "Meet Sugriva"
+    completedLine: {speaker: "Sugriva", text: "Vali took my throne and my wife. I have only Hanuman and these rocks. Will you help me?"}
+    target: 1
+    position: {x: 6, y: 0.6, z: -6}
+  - id: "jambavan-remembers"
+    type: 1
+    title: "Witness Jambavan remind Hanuman of his divine powers"
+    marker: "Jambavan"
+    cue: "Hanuman has forgotten his own strength. Jambavan, oldest of the vanaras, remembers what the wind-god’s son can do."
+    actionLabel: "Witness reminder"
+    completedLine: {speaker: "Jambavan", text: "You are the son of Vayu. You leaped child to swallow the sun. Remember who you are, Hanuman."}
+    target: 1
+    position: {x: -6, y: 0.6, z: 6}
+  - id: "trijata-dream"
+    type: 5
+    title: "Witness Trijata’s prophetic dream of Rama’s victory"
+    marker: "Trijata"
+    cue: "In Lanka, a demoness named Trijata dreams of Rama’s triumph. She tells Sita what she saw."
+    actionLabel: "Witness dream"
+    completedLine: {speaker: "Trijata", text: "I saw Rama on a white chariot, Ravana fallen, and you returning home. The dream was truth, not illusion."}
+    target: 1
+    position: {x: 6, y: 0.6, z: -6}
+  - id: "sarama-kindness"
+    type: 1
+    title: "Witness Sarama bring comfort to Sita in Ashok Vatika"
+    marker: "Sarama"
+    cue: "Vibhishana’s wife Sarama risks Ravana’s wrath to bring Sita news of Rama’s approach."
+    actionLabel: "Witness kindness"
+    completedLine: {speaker: "Sarama", text: "My husband serves dharma, not Ravana. Take heart, queen. Rama has crossed the ocean. He is coming."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 5}
+  dialogue:
+  - speaker: "Shabari"
+    text: "I am old and low-born, but my guru said Rama would come to my hut. I have tasted each berry to give you only the sweet ones."
+    voice: 10
+  - speaker: "Rama"
+    text: "Your devotion is greater than any birth. The forest has no caste, and dharma accepts all who serve it."
+    voice: 10
+  - speaker: "Anasuya"
+    text: "I am Anasuya, wife of Atri. Sita, take this celestial garment. It will never soil, for purity is its own protection."
+    voice: 10
+  - speaker: "Kabandha"
+    text: "I was cursed to become this headless form. Only one who knows his true self can free me. Bury my body, and I shall reveal what I know."
+    voice: 10
+  - speaker: "Sita"
+    text: "That deer shines with wonder, but wonder can also be a mask. Do not follow it too far, Rama. I fear what lies behind such beauty."
+    voice: 10
+  - speaker: "Lakshmana"
+    text: "Brother, I hear your call in the distance. But I swore not to leave Sita. The line I drew around our hut — let it protect her."
+    voice: 10
+  - speaker: "Ravana"
+    text: "Alms, noble lady. A hermit seeks only what the forest gives freely. Step beyond that line, and I shall reveal what this forest truly holds."
+    voice: 10
+  - speaker: "Jatayu"
+    text: "Ravana! You shall not take her while I yet breathe. I am old, but my wings still remember the sky."
+    voice: 10
+  - speaker: "Rama"
+    text: "You gave your wings for my wife, old friend. I shall name a kingdom after your sacrifice. Your spirit is free now."
+    voice: 10
+  - speaker: "Jambavan"
+    text: "I am older than the mountains. I have seen ages rise and fall. But I have never seen a devotion like yours, Rama."
+    voice: 10
+  - speaker: "Trijata"
+    text: "I am a demoness, but my dreams are not. I saw Rama victorious, and I saw you returning to Ayodhya. Believe me."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_8_uttara-earth-return
+  m_EditorClassIdentifier: 
+  actId: "uttara-earth-return"
+  actNumber: 8
+  title: "Uttarakanda: Return to Earth"
+  location: "Ayodhya and the Earth"
+  scene: 11
+  setup: "Sita is called to prove her purity once more before the court of Ayodhya. She calls upon her mother, the Earth goddess Prithvi. The earth opens and receives her. Rama rules for many years but eventually follows her, departing from the world. The Ramayana becomes the song of the ages."
+  lesson: "Sita’s return to Earth teaches that the ideal and the real cannot always coexist. Dharma demands sacrifice from those who uphold it most purely."
+  playerRole: "Rama"
+  objectives:
+  - id: "second-ordeal"
+    type: 5
+    title: "Witness Sita’s second trial before the court"
+    marker: "Sacred ground"
+    cue: "Sita must prove herself again. The earth itself will testify."
+    actionLabel: "Witness ordeal"
+    completedLine: {speaker: "Sita", text: "I have proved myself once before Agni. Now I call upon my mother, the Earth. If I am pure, let her receive me."}
+    target: 1
+    position: {x: -3, y: 0.6, z: -3}
+  - id: "sita-return"
+    type: 5
+    title: "Witness Sita’s return to Earth"
+    marker: "Earth fissure"
+    cue: "The earth opens. Sita returns to her mother."
+    actionLabel: "Witness return"
+    completedLine: {speaker: "Prithvi", text: "My daughter, come home. You have suffered enough for this world."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 0}
+  - id: "rama-departure"
+    type: 5
+    title: "Witness Rama’s departure from the world"
+    marker: "Sarayu river"
+    cue: "The king who was more than a king returns to the source."
+    actionLabel: "Witness departure"
+    completedLine: {speaker: "Rama", text: "I came to establish dharma. Now I return to where I came from. The story continues in those who remember it."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 5}
+  - id: "valmiki-teaches-twins"
+    type: 5
+    title: "Witness Valmiki teach Lava and Kusha the Ramayana"
+    marker: "Valmiki"
+    cue: "In the forest ashram, Valmiki composes the epic in verse. The twins learn it song, not knowing they are its heroes."
+    actionLabel: "Witness teaching"
+    completedLine: {speaker: "Valmiki", text: "Sing this song, children. Let the meter carry the meaning. The story must live in the heart, not just the ear."}
+    target: 1
+    position: {x: -4, y: 0.6, z: 4}
+  - id: "sita-final-blessing"
+    type: 5
+    title: "Witness Sita bless the earth before returning to her mother"
+    marker: "Sacred ground"
+    cue: "Before the earth opens, Sita turns to the world one last time. Her blessing becomes the harvest."
+    actionLabel: "Witness blessing"
+    completedLine: {speaker: "Sita", text: "I have loved this earth, its rivers, its people. May those who remember me find strength in their own purity."}
+    target: 1
+    position: {x: 4, y: 0.6, z: -4}
+  dialogue:
+  - speaker: "Sita"
+    text: "I have proved myself once before Agni. Now I call upon my mother, the Earth. If I am pure, let her receive me. If not, let me be swallowed."
+    voice: 10
+  - speaker: "Prithvi"
+    text: "My daughter, come home. You have suffered enough for this world. I bore you for the sake of dharma, and now I reclaim you."
+    voice: 10
+  - speaker: "Rama"
+    text: "I came to establish dharma. Now I return to where I came from. The story continues in those who remember it. Teach your children."
+    voice: 10
+  - speaker: "Valmiki"
+    text: "Thus ends the Ramayana of Valmiki. Rama is dharma. Sita is the earth. Lakshmana is devotion. Hanuman is service. The story never ends."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

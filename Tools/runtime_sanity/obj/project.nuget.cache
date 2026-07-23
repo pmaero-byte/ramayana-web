@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "fBcWRzD1h3U=",
+  "success": true,
+  "projectFilePath": "/Users/prabaharan/Aerospace_projects/RamayanaPS5/Tools/runtime_sanity/SanityCheck.csproj",
+  "expectedPackageFiles": [
+    "/Users/prabaharan/.nuget/packages/system.text.json/9.0.0/system.text.json.9.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

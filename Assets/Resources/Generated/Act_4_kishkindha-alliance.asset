@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_4_kishkindha-alliance
+  m_EditorClassIdentifier: 
+  actId: "kishkindha-alliance"
+  actNumber: 4
+  title: "Kishkindhakanda: Alliance"
+  location: "Kishkindha"
+  scene: 2
+  setup: "Rama and Lakshmana reach Kishkindha and form an alliance with the exiled monkey king Sugriva. Rama kills Vali and restores Sugriva’s throne. In return, Sugriva sends his vanara army to search for Sita. Hanuman, son of the wind, leaps across the ocean to Lanka."
+  lesson: "True devotion knows no boundaries. Hanuman’s leap demonstrates that faith and service can overcome impossible obstacles."
+  playerRole: "Rama"
+  objectives:
+  - id: "kill-vali"
+    type: 6
+    title: "Confront Vali and restore Sugriva’s throne"
+    marker: "Vali"
+    cue: "Vali is cursed — half his strength goes to his opponent in combat. Choose how to approach."
+    actionLabel: "Confront Vali"
+    completedLine: {speaker: "Rama", text: "I struck from hiding, hunter strikes a deer. Vali, you were my friend’s enemy, and I chose dharma over glory."}
+    target: 1
+    position: {x: -5, y: 0.6, z: -3}
+  - id: "mourn-tara"
+    type: 5
+    title: "Witness Tara’s mourning for Vali"
+    marker: "Tara"
+    cue: "Tara mourns her husband. Witness her grief."
+    actionLabel: "Witness mourning"
+    completedLine: {speaker: "Tara", text: "My husband was mighty, but his pride was mightier. I warned him. Now I mourn him."}
+    target: 1
+    position: {x: -3, y: 0.6, z: -2}
+  - id: "form-alliance"
+    type: 1
+    title: "Form alliance with Sugriva and the vanaras"
+    marker: "Sugriva"
+    cue: "Sugriva promises his army in exchange for his throne."
+    actionLabel: "Form alliance"
+    completedLine: {speaker: "Sugriva", text: "Rama, I too have lost my kingdom to my brother. Let us help each other."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 0}
+  - id: "coronation-sugriva"
+    type: 5
+    title: "Witness Sugriva’s coronation of Kishkindha"
+    marker: "Throne"
+    cue: "The exile becomes king. Dharma restores what was stolen."
+    actionLabel: "Witness coronation"
+    completedLine: {speaker: "Sugriva", text: "Rama, I am king because of your arrow. My throne is yours. My army is yours. My life is yours."}
+    target: 1
+    position: {x: 5, y: 0.6, z: -2}
+  - id: "send-search"
+    type: 2
+    title: "Send the vanara search parties in four directions"
+    marker: "Search beacon"
+    cue: "The search begins. Sita will be found."
+    actionLabel: "Send search"
+    completedLine: {speaker: "Hanuman", text: "I am small before Rama, but his name makes the impossible crossable. I shall leap across the ocean and find Sita."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 7}
+  - id: "monsoon-delay"
+    type: 5
+    title: "Endure the four-month monsoon delay before the search"
+    marker: "Rain clouds"
+    cue: "The monsoon arrives. The vanaras cannot cross rivers in flood. Patience becomes the only weapon."
+    actionLabel: "Wait out rains"
+    completedLine: {speaker: "Rama", text: "Even the rain serves dharma. When the waters recede, the search will resume with greater strength."}
+    target: 1
+    position: {x: -6, y: 0.6, z: 6}
+  - id: "lakshmana-anger"
+    type: 5
+    title: "Witness Lakshmana’s anger at Sugriva’s forgetfulness"
+    marker: "Lakshmana"
+    cue: "Sugriva has forgotten his promise, lost in wine and women. Lakshmana storms the gates."
+    actionLabel: "Witness anger"
+    completedLine: {speaker: "Lakshmana", text: "We gave you a kingdom and you repay us with forgetfulness? My brother’s sorrow is not a season to be waited out."}
+    target: 1
+    position: {x: 3, y: 0.6, z: 3}
+  - id: "angada-diplomacy"
+    type: 1
+    title: "Send Angada on a diplomatic mission to Ravana"
+    marker: "Angada"
+    cue: "Before war, a final word of peace. Angada carries the message of dharma to Ravana’s court."
+    actionLabel: "Send diplomat"
+    completedLine: {speaker: "Angada", text: "Ravana laughed at our offer of peace. He has chosen war. We have chosen dharma."}
+    target: 1
+    position: {x: -3, y: 0.6, z: -3}
+  - id: "sampati-revelation"
+    type: 1
+    title: "Hear Sampati reveal Sita’s location in Lanka"
+    marker: "Sampati"
+    cue: "Jatayu’s brother Sampati, old and wingless, saw Ravana carry Sita southward. His memory is the map."
+    actionLabel: "Hear revelation"
+    completedLine: {speaker: "Sampati", text: "I saw the demon king fly south with a woman in his chariot. She wept Rama’s name across the sky."}
+    target: 1
+    position: {x: -5, y: 0.6, z: -5}
+  - id: "hanuman-doubt-ocean"
+    type: 5
+    title: "Witness Hanuman doubt his ability to cross the ocean"
+    marker: "Hanuman"
+    cue: "Even the son of the wind hesitates before the infinite ocean. Jambavan must remind him of his birthright."
+    actionLabel: "Witness doubt"
+    completedLine: {speaker: "Hanuman", text: "The ocean is vast, and I am small. How can I cross what the gods themselves fear?"}
+    target: 1
+    position: {x: 5, y: 0.6, z: 5}
+  dialogue:
+  - speaker: "Sugriva"
+    text: "Rama, I too have lost my kingdom to my brother Vali. Let us help each other — you help me reclaim Kishkindha, and my vanaras shall help you find Sita."
+    voice: 10
+  - speaker: "Vali"
+    text: "You challenge me, stranger? I have defeated demons and gods alike. No one who faces me survives."
+    voice: 10
+  - speaker: "Tara"
+    text: "My husband was mighty, but his pride was mightier. I warned him not to trust the stranger in the forest."
+    voice: 10
+  - speaker: "Jambavan"
+    text: "Hanuman, son of the wind, your time has come. Leap across the ocean and find the queen of Ayodhya."
+    voice: 10
+  - speaker: "Sampati"
+    text: "I am Jatayu’s brother. I saw Ravana carry Sita southward, toward Lanka. That is where you must search."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

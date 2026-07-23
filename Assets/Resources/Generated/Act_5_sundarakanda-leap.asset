@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_5_sundarakanda-leap
+  m_EditorClassIdentifier: 
+  actId: "sundarakanda-leap"
+  actNumber: 5
+  title: "Sundarakanda: Ocean Leaper"
+  location: "Ocean and Lanka"
+  scene: 9
+  setup: "Hanuman, son of the wind, leaps across the ocean to Lanka. He meets Mount Mainaka, which rises from the sea to offer rest. He defeats the sea serpent Surasa. He finds Sita in Ashok Vatika, delivers Rama’s ring, and receives her chudamani. When captured, his tail is set on fire, and he burns Lanka before escaping."
+  lesson: "Devotion makes the impossible possible. Hanuman’s leap is not just physical — it is the leap of faith across any divide."
+  playerRole: "Hanuman"
+  objectives:
+  - id: "leap-ocean"
+    type: 2
+    title: "Leap across the ocean to Lanka"
+    marker: "Ocean edge"
+    cue: "Take the leap that no other being dares."
+    actionLabel: "Leap across"
+    completedLine: {speaker: "Hanuman", text: "The ocean is vast, but Rama’s name makes me light feather. I see Lanka on the horizon."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 9}
+  - id: "burn-lanka"
+    type: 4
+    title: "Burn Lanka with your flaming tail"
+    marker: "Lanka city"
+    cue: "The demons set your tail on fire. Turn their weapon against them."
+    actionLabel: "Burn Lanka"
+    completedLine: {speaker: "Hanuman", text: "You lit my tail to humiliate me. Now watch your city burn. This is what happens when you touch what belongs to Rama."}
+    target: 1
+    position: {x: -5, y: 0.6, z: -3}
+  - id: "surasa-test"
+    type: 6
+    title: "Pass Surasa’s test by showing your true form"
+    marker: "Surasa"
+    cue: "The sea serpent opens her jaws. Expand to match her size."
+    actionLabel: "Pass the test"
+    completedLine: {speaker: "Hanuman", text: "I grew to fill your mouth, then shrank to escape. Size is illusion. Purpose is real."}
+    target: 1
+    position: {x: -6, y: 0.6, z: -4}
+  - id: "exchange-ring"
+    type: 1
+    title: "Give Rama’s ring to Sita and receive her chudamani"
+    marker: "Sita"
+    cue: "The ring is proof. The chudamani is hope."
+    actionLabel: "Exchange tokens"
+    completedLine: {speaker: "Sita", text: "This ring carries Rama’s promise. Take my chudamani and tell him I wait, unbroken, in Ashok Vatika."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 0}
+  - id: "tail-fire-escape"
+    type: 2
+    title: "Escape Ravana’s court after your tail is set on fire"
+    marker: "Lanka gate"
+    cue: "They bound you and lit your tail. Now burn their city and leap free."
+    actionLabel: "Leap to freedom"
+    completedLine: {speaker: "Hanuman", text: "You lit my tail to shame me. Now watch Lanka burn. This is the price of touching what belongs to Rama."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 8}
+  - id: "explore-lanka-night"
+    type: 2
+    title: "Explore Lanka under cover of darkness to find Sita"
+    marker: "Lanka gate"
+    cue: "The city sleeps, but its demons do not. Move through the shadows and find the queen."
+    actionLabel: "Enter city"
+    completedLine: {speaker: "Hanuman", text: "I have seen Lanka’s walls, its gardens, and its throne. Now I must find where Sita waits."}
+    target: 1
+    position: {x: -4, y: 0.6, z: 4}
+  - id: "simhika-battle"
+    type: 6
+    title: "Defeat Simhika, the shadow demoness who swallows the wind"
+    marker: "Simhika"
+    cue: "A shadow opens its jaws in mid-air. Simhika reaches for your shadow before you can escape."
+    actionLabel: "Defeat shadow"
+    completedLine: {speaker: "Hanuman", text: "You tried to swallow my shadow, but my shadow is’s name."}
+    target: 1
+    position: {x: 4, y: 0.6, z: -4}
+  - id: "destroy-ashok-grove"
+    type: 6
+    title: "Destroy the Ashok Vatika grove after giving Sita hope"
+    marker: "Ashok grove"
+    cue: "The demons attack after you deliver Rama’s ring. Let the grove feel your wrath."
+    actionLabel: "Destroy grove"
+    completedLine: {speaker: "Hanuman", text: "I came messenger, but adharma turned me into a storm. Let Lanka remember this day."}
+    target: 1
+    position: {x: 6, y: 0.6, z: -6}
+  - id: "return-to-rama"
+    type: 1
+    title: "Return to Rama and bring word that Sita has been found"
+    marker: "Rama"
+    cue: "The ocean must be crossed again, but this time carrying hope instead of doubt."
+    actionLabel: "Report to Rama"
+    completedLine: {speaker: "Rama", text: "You have seen her? She lives? Then the sun has risen again in my heart."}
+    target: 1
+    position: {x: 0, y: 0.6, z: -8}
+  - id: "brahmastra-capture"
+    type: 5
+    title: "Witness Hanuman captured by Indrajit’s Brahmastra"
+    marker: "Brahmastra bonds"
+    cue: "Indrajit’s divine weapon binds Hanuman. Even the son of the wind cannot escape the laws of the creator."
+    actionLabel: "Witness capture"
+    completedLine: {speaker: "Indrajit", text: "You thought fire could not be bound? The Brahmastra answers to Brahma alone."}
+    target: 1
+    position: {x: 4, y: 0.6, z: 4}
+  - id: "vibhishana-house-spared"
+    type: 5
+    title: "Witness Vibhishana’s house spared during the burning of Lanka"
+    marker: "Vibhishana’s house"
+    cue: "The city burns, but one house stands untouched. Hanuman knows the difference between enemy and ally."
+    actionLabel: "Witness mercy"
+    completedLine: {speaker: "Vibhishana", text: "You burned Lanka but spared my home. This is the discernment of dharma — to destroy adharma, not the righteous."}
+    target: 1
+    position: {x: -4, y: 0.6, z: -4}
+  - id: "hanuman-shrinks"
+    type: 5
+    title: "Witness Hanuman shrink to the size of a cat to enter Lanka"
+    marker: "Tiny form"
+    cue: "The son of the wind can be smaller than a spark. He shrinks to slip past Lanka’s gates unseen."
+    actionLabel: "Witness transformation"
+    completedLine: {speaker: "Hanuman", text: "I am smaller than a cat, lighter than a thought. Lanka’s walls are mountains to others, but a crack to me."}
+    target: 1
+    position: {x: 3, y: 0.6, z: 3}
+  - id: "hanuman-grows"
+    type: 5
+    title: "Witness Hanuman grow to the size of a mountain to defeat guards"
+    marker: "Giant form"
+    cue: "When the demons attack, Hanuman remembers his true size. He becomes a mountain with teeth."
+    actionLabel: "Witness growth"
+    completedLine: {speaker: "Hanuman", text: "You wanted to see my true form? Here it is. I am the son of Vayu, and your city is my playground."}
+    target: 1
+    position: {x: -3, y: 0.6, z: -3}
+  - id: "sita-chudamani-gift"
+    type: 1
+    title: "Witness Sita give her chudamani to Hanuman"
+    marker: "Sita"
+    cue: "Sita has kept Rama’s ring. Now she gives her own jewel — the chudamani that marked her’s daughter."
+    actionLabel: "Witness exchange"
+    completedLine: {speaker: "Sita", text: "Take this chudamani. It has adorned my head since my wedding day. Let it tell Rama I have kept my vows."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 0}
+  dialogue:
+  - speaker: "Mainaka"
+    text: "Son of the wind, rest upon me. The ocean is long and you have far to go."
+    voice: 10
+  - speaker: "Surasa"
+    text: "The gods have sent me to test you. Only one who knows his true size can pass."
+    voice: 10
+  - speaker: "Simhika"
+    text: "I am the shadow that swallows the wind itself. No one escapes my darkness."
+    voice: 10
+  - speaker: "Hanuman"
+    text: "I am small before Rama, but his name makes the impossible crossable. I shall write his name upon every stone."
+    voice: 10
+  - speaker: "Sita"
+    text: "This ring carries Rama’s promise. Hope has reached Lanka before the army. Tell him I wait, unbroken, in Ashok Vatika."
+    voice: 10
+  - speaker: "Ravana"
+    text: "A monkey in my city? Guards, bind him. We shall teach him the price of trespass."
+    voice: 10
+  - speaker: "Trijata"
+    text: "Do not fear, Sita. I watch over you. Even in Ravana’s garden, kindness finds a way."
+    voice: 10
+  - speaker: "Sarama"
+    text: "Sita, my husband Vibhishana speaks for your return. Take heart. Rama is coming."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

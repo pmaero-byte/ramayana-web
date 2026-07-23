@@ -1,0 +1,195 @@
+{
+  "project": "Ramayana PS5 \u2014 ELGODS Yuddha Kanda moment corpus",
+  "version": "day29-v1",
+  "sourceProject": "ELGODS (jambudweep/ELGODS)",
+  "sourceFile": "src/game/ramayana/characterStoryArcs.ts",
+  "exportedAt": "2026-07-22",
+  "designPillars": [
+    "10 Yuddha Kanda moments derived from ELGODS source citations",
+    "Event-summary shape: narrative + moralLesson only",
+    "Cross-references Day 11 character roster (whitelist only)",
+    "Valmiki sarga citations preserved per moment",
+    "Voice cue IDs follow Day 13 register pattern vc_yuddha_<verb>_<id>"
+  ],
+  "kanda": "yuddha-kanda",
+  "moments": [
+    {
+      "momentId": "vibh-lakshmana-doubt",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 1,
+      "verb": "defect",
+      "protagonist": "vibhishana",
+      "voiceCueId": "vc_yuddha_defect_vibhishana",
+      "narrative": "Vibhishana reveals Ravana's secrets. Every secret is a knife in his brother's back. He crosses the ocean to Rama's camp. Lakshmana doubts him. Rama embraces him. Dharma chooses the righteous, not the kin.",
+      "moralLesson": "When dharma and family collide, dharma must win",
+      "characters": [
+        "vibhishana",
+        "ravana",
+        "rama",
+        "lakshmana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 8,
+      "sargaEnd": 12
+    },
+    {
+      "momentId": "test-hanuman",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 1,
+      "verb": "test",
+      "protagonist": "hanuman",
+      "voiceCueId": "vc_yuddha_test_hanuman",
+      "narrative": "Rama sends a ring as proof. Hanuman arrives. As a child you mistook the sun for a fruit. Indra struck you down. The gods gave you powers but curbed your pride. Now you fly. Now you remember. The tests of the past become the weapons of the war.",
+      "moralLesson": "Childhood courage, tempered by wisdom, becomes heroism",
+      "characters": [
+        "hanuman",
+        "rama",
+        "vishwamitra"
+      ],
+      "durationSec": 18,
+      "sargaStart": 1,
+      "sargaEnd": 5
+    },
+    {
+      "momentId": "kumbhakarna-wake",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 2,
+      "verb": "wake",
+      "protagonist": "kumbhakarna",
+      "voiceCueId": "vc_yuddha_wake_kumbhakarna",
+      "narrative": "Ravana wakes Kumbhakarna from his six-month sleep. The giant rises, shakes the palace, and asks why he was disturbed. He asks for food \u2014 thousands of buffalo gallons of honey, ghee, and meat. Then he marches to the battlefield and charges the vanara army.",
+      "moralLesson": "A sleeping giant can be more dangerous than an angry one",
+      "characters": [
+        "kumbhakarna",
+        "ravana",
+        "hanuman"
+      ],
+      "durationSec": 18,
+      "sargaStart": 18,
+      "sargaEnd": 22
+    },
+    {
+      "momentId": "laksh-war",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 2,
+      "verb": "fight",
+      "protagonist": "lakshmana",
+      "voiceCueId": "vc_yuddha_fight_laksh",
+      "narrative": "Indrajit's arrows strike Lakshmana. He falls. Hanuman carries the mountain from the Himalayas. Lakshmana rises. The war resumes with equal fury. Ravana's greatest weapon is matched by Rama's most faithful brother.",
+      "moralLesson": "Brotherhood can turn defeat into a second beginning",
+      "characters": [
+        "lakshmana",
+        "indrajit",
+        "hanuman"
+      ],
+      "durationSec": 18,
+      "sargaStart": 15,
+      "sargaEnd": 20
+    },
+    {
+      "momentId": "tara",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 2,
+      "verb": "counsel",
+      "protagonist": "tara",
+      "voiceCueId": "vc_yuddha_counsel_tara",
+      "narrative": "Tara speaks into the war council. Her voice is quiet but every head turns. Sugriva looks at her. Vali's legacy \u2014 and Sugriva's honor \u2014 are both hers to shape. Lanka hears her counsel before it hears the drum.",
+      "moralLesson": "Wisdom in a war room can save an army",
+      "characters": [
+        "tara",
+        "sugriva",
+        "hanuman"
+      ],
+      "durationSec": 18,
+      "sargaStart": 5,
+      "sargaEnd": 8
+    },
+    {
+      "momentId": "mando-fight-on",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 3,
+      "verb": "resolve",
+      "protagonist": "mandodari",
+      "voiceCueId": "vc_yuddha_resolve_mandodari",
+      "narrative": "Rama walks past Hanuman, past Vibhishana, past Lakshmana. He stops before Mandodari. He bends his head. I have lost my son. But Lanka still has a queen. She stands. The war council watches. The war continues.",
+      "moralLesson": "Grief can harden into resolve",
+      "characters": [
+        "mandodari",
+        "rama",
+        "hanuman"
+      ],
+      "durationSec": 18,
+      "sargaStart": 25,
+      "sargaEnd": 29
+    },
+    {
+      "momentId": "mando-hold-son",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 3,
+      "verb": "mourn",
+      "protagonist": "mandodari",
+      "voiceCueId": "vc_yuddha_mourn_mandodari",
+      "narrative": "My son. My Meghanada. They brought his body on a golden bier. Lakshmana killed him \u2014 by a trick, a holy trick, sanctioned by the gods. She holds the body and refuses to let go until dawn.",
+      "moralLesson": "A mother's grief has its own dharma",
+      "characters": [
+        "mandodari",
+        "indrajit",
+        "ravana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 22,
+      "sargaEnd": 25
+    },
+    {
+      "momentId": "sita-ravana-visit",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 4,
+      "verb": "tempt",
+      "protagonist": "ravana",
+      "voiceCueId": "vc_yuddha_tempt_ravana",
+      "narrative": "Thirteen months, Sita. Thirteen months I have asked. Be my queen. Half of Lanka is yours. Ravana visits her in the Ashoka grove one last time. She refuses without looking. The king of Lanka who moved the earth cannot move one woman's heart.",
+      "moralLesson": "Power cannot purchase love",
+      "characters": [
+        "sita",
+        "ravana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 30,
+      "sargaEnd": 35
+    },
+    {
+      "momentId": "ravana-warning",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 4,
+      "verb": "warn",
+      "protagonist": "vibhishana",
+      "voiceCueId": "vc_yuddha_warn_ravana",
+      "narrative": "Brother, return Sita. Lanka will burn. Vibhishana stands in Ravana's court and names the omens. The rains fail. The cows give blood instead of milk. The drums sound without hands. Lanka is already burning.",
+      "moralLesson": "A warning unheeded becomes a prophecy",
+      "characters": [
+        "ravana",
+        "vibhishana"
+      ],
+      "durationSec": 18,
+      "sargaStart": 28,
+      "sargaEnd": 32
+    },
+    {
+      "momentId": "bharata-return",
+      "kanda": "yuddha-kanda",
+      "adhyaya": 5,
+      "verb": "return",
+      "protagonist": "bharata",
+      "voiceCueId": "vc_yuddha_return_bharata",
+      "narrative": "After 14 years, Rama returns. Bharata falls at his feet. The throne was always yours. I kept it safe. The crowns, the sandals, the kingdom \u2014 all returned. Ayodhya lights up with a million lamps. The exile is over.",
+      "moralLesson": "Loyalty kept through hardship is the strongest dharma",
+      "characters": [
+        "bharata",
+        "rama"
+      ],
+      "durationSec": 18,
+      "sargaStart": 36,
+      "sargaEnd": 40
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_7_return-ayodhya
+  m_EditorClassIdentifier: 
+  actId: "return-ayodhya"
+  actNumber: 7
+  title: "Uttarakanda: Return and Rule"
+  location: "Ayodhya"
+  scene: 5
+  setup: "After Ravana’s defeat, Rama, Sita, Lakshmana, and Hanuman return to Ayodhya in the Pushpaka Vimana. Bharata joyfully returns the kingdom. But Rama’s subjects doubt Sita’s purity. Though she proved herself through Agni Pariksha, Rama banishes pregnant Sita to the forest to satisfy public opinion. She lives with Valmiki, bears twins Lava and Kusha, who later defeat Rama’s army unintentionally."
+  lesson: "Victory is not conquest alone; it is the restoration of justice. Rama Rajya represents the ideal where the king serves dharma above all."
+  playerRole: "Rama"
+  objectives:
+  - id: "witness-victory"
+    type: 5
+    title: "Witness the fall of Ravana and the end of adharma"
+    marker: "Battle memory"
+    cue: "Stand before the battle memory and witness adharma fall."
+    actionLabel: "Witness victory"
+    completedLine: {speaker: "Rama", text: "Power without righteousness collapses beneath its own weight."}
+    target: 1
+    position: {x: -7, y: 0.6, z: -4}
+  - id: "return-city"
+    type: 2
+    title: "Return to Ayodhya in the Pushpaka Vimana"
+    marker: "City gate"
+    cue: "Return to Ayodhya, where duty must become public care."
+    actionLabel: "Return to Ayodhya"
+    completedLine: {speaker: "Sita", text: "The road returns us home, but exile has taught us how to see the kingdom."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 7}
+  - id: "light-lamps"
+    type: 4
+    title: "Light the lamps of Ayodhya"
+    marker: "Festival lamps"
+    cue: "Light fourteen lamps for the years of exile and the return of justice."
+    actionLabel: "Light lamp"
+    completedLine: {speaker: "Hanuman", text: "Where these lamps are lit, the story will continue to serve."}
+    target: 14
+    position: {x: 6, y: 0.6, z: 0}
+  - id: "banish-sita"
+    type: 0
+    title: "The painful decision regarding Sita"
+    marker: "Palace court"
+    cue: "The people doubt. Dharma demands the king be above reproach. Choose."
+    actionLabel: "Face the court"
+    completedLine: {speaker: "Rama", text: "I know your purity, Sita. But the king must be above suspicion. The forest will shelter you where the palace cannot."}
+    target: 1
+    position: {x: -2, y: 0.6, z: -2}
+  - id: "ashvamedha-horse"
+    type: 6
+    title: "Capture the Ashvamedha horse sent by Rama"
+    marker: "Sacred horse"
+    cue: "The horse of the great sacrifice roams free. The twins guard it."
+    actionLabel: "Capture horse"
+    completedLine: {speaker: "Lava", text: "This horse is ours now. Whoever seeks it must first answer to our swords."}
+    target: 1
+    position: {x: -5, y: 0.6, z: -3}
+  - id: "meet-twins"
+    type: 1
+    title: "Meet Lava and Kusha in Valmiki’s ashram"
+    marker: "Valmiki"
+    cue: "Your sons have grown in the forest. Hear them sing your story."
+    actionLabel: "Meet the twins"
+    completedLine: {speaker: "Valmiki", text: "These boys know the Ramayana song. They have defeated your army without knowing whose sons they are."}
+    target: 1
+    position: {x: 4, y: 0.6, z: 4}
+  - id: "rama-coronation"
+    type: 5
+    title: "Witness Rama’s coronation of Ayodhya"
+    marker: "Coronation dais"
+    cue: "The ideal king takes the throne. Rama Rajya begins."
+    actionLabel: "Witness coronation"
+    completedLine: {speaker: "Vasishtha", text: "Rama is crowned. Not by power, but by dharma. Let all kingdoms learn from this day."}
+    target: 1
+    position: {x: 0, y: 0.6, z: -2}
+  - id: "birth-twins"
+    type: 5
+    title: "Witness the birth of Lava and Kusha in Valmiki’s ashram"
+    marker: "Valmiki’s ashram"
+    cue: "In the forest where Sita was sent, two sons are born. The Ramayana begins again in their cries."
+    actionLabel: "Witness birth"
+    completedLine: {speaker: "Valmiki", text: "These children are the sons of dharma itself. I shall teach them the story their father lived."}
+    target: 1
+    position: {x: -6, y: 0.6, z: 3}
+  - id: "rama-meets-sita"
+    type: 1
+    title: "Witness Rama and Sita’s reunion in the forest"
+    marker: "Forest clearing"
+    cue: "After years of separation, the king meets his queen again where the forest meets the river."
+    actionLabel: "Witness reunion"
+    completedLine: {speaker: "Sita", text: "I have waited, not in sorrow but in silence. The earth knows my truth, and that is enough."}
+    target: 1
+    position: {x: 3, y: 0.6, z: -6}
+  - id: "twins-defeat-army"
+    type: 6
+    title: "Witness Lava and Kusha defeat Rama’s army"
+    marker: "Battlefield"
+    cue: "The boys trained in Valmiki’s ashram have grown into warriors. They stand against Ayodhya’s army."
+    actionLabel: "Witness battle"
+    completedLine: {speaker: "Lava", text: "We do not know whose sons we are. But we know the Ramayana, and that is enough to defeat any army."}
+    target: 1
+    position: {x: -6, y: 0.6, z: -6}
+  - id: "hanuman-recognizes-twins"
+    type: 5
+    title: "Witness Hanuman recognize Rama’s sons in the battlefield"
+    marker: "Hanuman"
+    cue: "Hanuman sees himself in these boys — the same devotion, the same fire. He knows whose blood they carry."
+    actionLabel: "Witness recognition"
+    completedLine: {speaker: "Hanuman", text: "I see Rama’s eyes in you both. The same steadiness, the same sorrow. You are your father’s sons."}
+    target: 1
+    position: {x: 6, y: 0.6, z: 6}
+  - id: "division-kingdom"
+    type: 5
+    title: "Witness Rama divide the kingdom between Lava and Kusha"
+    marker: "Throne"
+    cue: "Before departing, the ideal king ensures his legacy. Lava receives the north, Kusha the south."
+    actionLabel: "Witness division"
+    completedLine: {speaker: "Rama", text: "Lava, the north is yours. Kusha, the south is yours. Rule not by power, but by the dharma I tried to live."}
+    target: 1
+    position: {x: 0, y: 0.6, z: -6}
+  - id: "shatrughna-lavana"
+    type: 6
+    title: "Witness Shatrughna defeat the demon Lavana of Madhupura"
+    marker: "Lavana"
+    cue: "While Rama ruled, Shatrughna guarded the borders. The demon Lavana of Madhupura demanded tribute."
+    actionLabel: "Witness battle"
+    completedLine: {speaker: "Shatrughna", text: "You demanded tribute from Rama’s kingdom? I am the fourth brother, and I do not bargain with demons."}
+    target: 1
+    position: {x: -5, y: 0.6, z: 5}
+  - id: "rama-rajya-witness"
+    type: 5
+    title: "Witness the golden age of Rama Rajya"
+    marker: "Ayodhya throne"
+    cue: "For ten thousand years, Rama ruled. No child died young, no crop failed, no lie was spoken in his kingdom."
+    actionLabel: "Witness golden age"
+    completedLine: {speaker: "Citizen", text: "In Rama Rajya, the rain came when it should, the harvest was always enough, and no door needed a lock."}
+    target: 1
+    position: {x: 0, y: 0.6, z: -7}
+  - id: "public-whispers"
+    type: 5
+    title: "Witness the citizens whisper doubts about Sita’s purity"
+    marker: "Citizens"
+    cue: "Even in Rama Rajya, doubt finds a way. The people whisper behind closed doors about the queen who lived in Lanka."
+    actionLabel: "Witness whispers"
+    completedLine: {speaker: "Citizen", text: "She lived in Ravana’s house for months. How can we call her pure, even if the fire said so?"}
+    target: 1
+    position: {x: 7, y: 0.6, z: 0}
+  dialogue:
+  - speaker: "Rama"
+    text: "A kingdom is not won by power alone. It is held by justice. Let all beings know — Rama Rajya is not rule by force, but by dharma."
+    voice: 10
+  - speaker: "Sita"
+    text: "Fourteen years in the forest taught me more than fourteen years in the palace. The kingdom looks different from the ground than from the throne."
+    voice: 10
+  - speaker: "Hanuman"
+    text: "Where Rama’s story is remembered, service never ends. I shall live name is spoken."
+    voice: 10
+  - speaker: "Bharata"
+    text: "Brother, I kept your sandals on the throne. Ayodhya never accepted another king while you lived."
+    voice: 10
+  - speaker: "Vasishtha"
+    text: "The ideal king has returned. Let the people know that dharma itself now walks among them."
+    voice: 10
+  - speaker: "Valmiki"
+    text: "Sita dwells in my ashram. She has borne you two sons. They sing the Ramayana song, not knowing they are its heroes."
+    voice: 10
+  - speaker: "Lava"
+    text: "We are the sons of the forest. Our mother is the earth, our father is the wind, and our guru is Valmiki."
+    voice: 10
+  - speaker: "Urmila"
+    text: "I have slept for fourteen years so my husband could serve without longing. I wake now, and the world is new."
+    voice: 10
+  - speaker: "Mandavi"
+    text: "Bharata ruled from a hut, wearing bark. I ruled beside him in silence. That is the dharma of a wife."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

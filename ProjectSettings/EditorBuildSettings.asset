@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Bootstrap.unity
+    guid: c7d4e7d15ed09437a8ddc8fce8e3c396
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: c7b2beb5e73c9428f9d7c7b48dd14519
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 7a2e819aba6ae4167bd4afad6d9ec8c9
+  - enabled: 1
+    path: Assets/Scenes/BalaKanda.unity
+    guid: 0f66a24c77ce44560abe9636772610ca
+  - enabled: 1
+    path: Assets/Scenes/AyodhyaKanda.unity
+    guid: d7ab6301ba4924c6bb30c20054521fe0
+  - enabled: 1
+    path: Assets/Scenes/AranyaKanda.unity
+    guid: 89cac331b531e4c1a97f8e187fa671bf
+  - enabled: 1
+    path: Assets/Scenes/KishkindhaKanda.unity
+    guid: 4203fa4f5a6524929b31b8d8fe383702
+  - enabled: 1
+    path: Assets/Scenes/SundaraKanda.unity
+    guid: ba0beb3440c424627bf810b1e19c1436
+  - enabled: 1
+    path: Assets/Scenes/YuddhaKanda.unity
+    guid: b060812ea0a4c4a8abe3e0bf1b252b36
+  - enabled: 1
+    path: Assets/Scenes/UttaraKanda.unity
+    guid: 282682db9ffda47dca8b838d10730e97
+  - enabled: 1
+    path: Assets/Scenes/ReturnKanda.unity
+    guid: 76fb4c9634a1a4e57977ad79b3e7d44a
+  m_ConfigObjects: {}
+  m_UseUCBPForAssetBundles: 0
