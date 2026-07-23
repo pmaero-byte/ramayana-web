@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <RootNamespace>Jambudweep.Ramayana</RootNamespace>
+    <AssemblyName>RamayanaPS5</AssemblyName>
+    <OutputType>Library</OutputType>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>0168;0169;0414;0649;8632;CS1591</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DefineConstants>UNITY_2022_3;UNITY_2022_3_15F1;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- All our actual source files -->
+    <Compile Include="Assets/Scripts/**/*.cs" />
+    <!-- Unity reference assembly stubs (compile-only — ignored when Unity opens project) -->
+    <Compile Include="ReferenceAssemblies/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>

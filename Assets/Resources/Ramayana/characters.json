@@ -1,0 +1,390 @@
+{
+  "project": "Ramayana PS5 — ELGODS character roster import",
+  "version": "elgods-port-v1",
+  "sourceProject": "ELGODS (jambudweep/ELGODS)",
+  "sourceFile": "src/game/ramayana/characterStoryArcs.ts",
+  "exportedAt": "2026-07-20",
+  "designPillars": [
+    "26 canonical Ramayana characters (Valmiki Ramayana canon)",
+    "5 character groups for selection screen (Heroes/Lanka/Sages/Women/Allies)",
+    "11 alankarashastra voice registers mapped per character",
+    "Color/icon/alignment per character for cinematic staging",
+    "Tamil + Sanskrit names preserved alongside English"
+  ],
+  "groups": [
+    {
+      "id": "heroes",
+      "name": "The Heroes",
+      "description": "The noble princes and their devoted allies",
+      "characters": [
+        "rama",
+        "sita",
+        "lakshmana",
+        "hanuman",
+        "bharata"
+      ],
+      "charactersTotal": 5
+    },
+    {
+      "id": "lanka",
+      "name": "The Court of Lanka",
+      "description": "The complex figures of Ravana's kingdom",
+      "characters": [
+        "ravana",
+        "vibhishana",
+        "mandodari",
+        "indrajit",
+        "kumbhakarna",
+        "trijata"
+      ],
+      "charactersTotal": 6
+    },
+    {
+      "id": "sages",
+      "name": "The Sages & Divine",
+      "description": "The wise beings who guide the epic",
+      "characters": [
+        "valmiki",
+        "vishwamitra",
+        "narada",
+        "shabari",
+        "jatayu",
+        "jambavan",
+        "agastya"
+      ],
+      "charactersTotal": 7
+    },
+    {
+      "id": "women",
+      "name": "The Women of Ramayana",
+      "description": "The strong women who shape the epic",
+      "characters": [
+        "sita",
+        "kaikeyi",
+        "tara",
+        "urmila",
+        "mandavi",
+        "mandodari"
+      ],
+      "charactersTotal": 6
+    },
+    {
+      "id": "allies",
+      "name": "Allies & Guardians",
+      "description": "Those who stood with Rama",
+      "characters": [
+        "sugriva",
+        "angada",
+        "nila",
+        "guha"
+      ],
+      "charactersTotal": 4
+    }
+  ],
+  "characters": {
+    "rama": {
+      "id": "rama",
+      "name": "Rama",
+      "tamilName": "ராமர்",
+      "sanskritName": "राम",
+      "role": "Seventh avatar of Vishnu",
+      "voice": "sloka",
+      "color": "#4f8cff",
+      "icon": "🏹",
+      "alignment": "hero"
+    },
+    "sita": {
+      "id": "sita",
+      "name": "Sita",
+      "tamilName": "சீதா",
+      "sanskritName": "सीता",
+      "role": "Daughter of the Earth, Princess of Mithila",
+      "voice": "praarthana",
+      "color": "#f0bd5e",
+      "icon": "🪷",
+      "alignment": "hero"
+    },
+    "hanuman": {
+      "id": "hanuman",
+      "name": "Hanuman",
+      "tamilName": "அனுமன்",
+      "sanskritName": "हनुमान्",
+      "role": "Son of Vayu, the Wind God",
+      "voice": "vaachaka",
+      "color": "#e46445",
+      "icon": "🙏",
+      "alignment": "divine"
+    },
+    "ravana": {
+      "id": "ravana",
+      "name": "Ravana",
+      "tamilName": "ராவணன்",
+      "sanskritName": "रावण",
+      "role": "King of Lanka, Scholar of the Vedas",
+      "voice": "shastriya",
+      "color": "#6c4dc2",
+      "icon": "👑",
+      "alignment": "tragic"
+    },
+    "lakshmana": {
+      "id": "lakshmana",
+      "name": "Lakshmana",
+      "tamilName": "லட்சுமணன்",
+      "sanskritName": "लक्ष्मण",
+      "role": "hero",
+      "voice": "sheershata",
+      "color": "#5fd1a5",
+      "icon": "🛡️",
+      "alignment": "hero"
+    },
+    "bharata": {
+      "id": "bharata",
+      "name": "Bharata",
+      "tamilName": "பரதன்",
+      "sanskritName": "भरत",
+      "role": "hero",
+      "voice": "vairagya",
+      "color": "#5d6fb7",
+      "icon": "🪔",
+      "alignment": "hero"
+    },
+    "vibhishana": {
+      "id": "vibhishana",
+      "name": "Vibhishana",
+      "tamilName": "விபீஷணன்",
+      "sanskritName": "विभीषण",
+      "role": "supporting",
+      "voice": "niti",
+      "color": "#4a6a8a",
+      "icon": "🤝",
+      "alignment": "supporting"
+    },
+    "kaikeyi": {
+      "id": "kaikeyi",
+      "name": "Kaikeyi",
+      "tamilName": "கைகேயி",
+      "sanskritName": "कैकेयी",
+      "role": "tragic",
+      "voice": "dainya",
+      "color": "#b85a8f",
+      "icon": "💎",
+      "alignment": "tragic"
+    },
+    "jatayu": {
+      "id": "jatayu",
+      "name": "Jatayu",
+      "tamilName": "ஜடாயு",
+      "sanskritName": "जटायु",
+      "role": "Vulture King, Friend of Dasharatha",
+      "voice": "pratishedha",
+      "color": "#8a6a3a",
+      "icon": "🦅",
+      "alignment": "hero"
+    },
+    "shabari": {
+      "id": "shabari",
+      "name": "Shabari",
+      "tamilName": "சபரி",
+      "sanskritName": "शबरी",
+      "role": "Ascetic woman, devotee of Rama",
+      "voice": "praarthana",
+      "color": "#c58a4a",
+      "icon": "🍇",
+      "alignment": "sage"
+    },
+    "sugriva": {
+      "id": "sugriva",
+      "name": "Sugriva",
+      "tamilName": "சுக்ரீவன்",
+      "sanskritName": "सुग्रीव",
+      "role": "King of the Vanaras",
+      "voice": "dainya",
+      "color": "#6aaa6a",
+      "icon": "🐒",
+      "alignment": "ally"
+    },
+    "mandodari": {
+      "id": "mandodari",
+      "name": "Mandodari",
+      "tamilName": "மண்டோதரி",
+      "sanskritName": "मंदोदरी",
+      "role": "Queen of Lanka",
+      "voice": "niti",
+      "color": "#5a3a6a",
+      "icon": "🌺",
+      "alignment": "tragic"
+    },
+    "trijata": {
+      "id": "trijata",
+      "name": "Trijata",
+      "tamilName": "திரிஜடா",
+      "sanskritName": "त्रिजटा",
+      "role": "Demoness who protected Sita",
+      "voice": "pratishedha",
+      "color": "#5a4a6a",
+      "icon": "🕯️",
+      "alignment": "supporting"
+    },
+    "indrajit": {
+      "id": "indrajit",
+      "name": "Indrajit",
+      "tamilName": "இந்திரஜித்",
+      "sanskritName": "इन्द्रजीत",
+      "role": "The scholar-warrior prince of Lanka",
+      "voice": "shastriya",
+      "color": "#4a2a5a",
+      "icon": "🏹",
+      "alignment": "villain"
+    },
+    "kumbhakarna": {
+      "id": "kumbhakarna",
+      "name": "Kumbhakarna",
+      "tamilName": "கும்பகர்ணன்",
+      "sanskritName": "कुम्भकर्ण",
+      "role": "The giant rakshasa who slept six months at a time",
+      "voice": "dainya",
+      "color": "#3a2a4a",
+      "icon": "😴",
+      "alignment": "tragic"
+    },
+    "tara": {
+      "id": "tara",
+      "name": "Tara",
+      "tamilName": "தாரா",
+      "sanskritName": "तारा",
+      "role": "supporting",
+      "voice": "dainya",
+      "color": "#7a3a5a",
+      "icon": "🌺",
+      "alignment": "supporting"
+    },
+    "urmila": {
+      "id": "urmila",
+      "name": "Urmila",
+      "tamilName": "ஊர்மிளை",
+      "sanskritName": "ऊर्मिला",
+      "role": "supporting",
+      "voice": "vairagya",
+      "color": "#8a4a6a",
+      "icon": "🌙",
+      "alignment": "supporting"
+    },
+    "mandavi": {
+      "id": "mandavi",
+      "name": "Mandavi",
+      "tamilName": "மாண்டவி",
+      "sanskritName": "माण्डवी",
+      "role": "supporting",
+      "voice": "niti",
+      "color": "#a85a3a",
+      "icon": "🌷",
+      "alignment": "supporting"
+    },
+    "angada": {
+      "id": "angada",
+      "name": "Angada",
+      "tamilName": "அங்கதன்",
+      "sanskritName": "अंगद",
+      "role": "ally",
+      "voice": "vaachaka",
+      "color": "#5a4a8a",
+      "icon": "👑",
+      "alignment": "ally"
+    },
+    "nila": {
+      "id": "nila",
+      "name": "Nila",
+      "tamilName": "நீலன்",
+      "sanskritName": "नील",
+      "role": "ally",
+      "voice": "niti",
+      "color": "#3a5a6a",
+      "icon": "⚙️",
+      "alignment": "ally"
+    },
+    "guha": {
+      "id": "guha",
+      "name": "Guha",
+      "tamilName": "குகன்",
+      "sanskritName": "गुह",
+      "role": "ally",
+      "voice": "sheershata",
+      "color": "#5a6a3a",
+      "icon": "⛵",
+      "alignment": "ally"
+    },
+    "vishwamitra": {
+      "id": "vishwamitra",
+      "name": "Vishwamitra",
+      "tamilName": "விஸ்வாமித்திரர்",
+      "sanskritName": "विश्वामित्र",
+      "role": "Former warrior-king turned brahmarshi",
+      "voice": "shastriya",
+      "color": "#7a4a8a",
+      "icon": "🔥",
+      "alignment": "sage"
+    },
+    "agastya": {
+      "id": "agastya",
+      "name": "Agastya",
+      "tamilName": "அகஸ்தியர்",
+      "sanskritName": "अगस्त्य",
+      "role": "The short sage of the South",
+      "voice": "shastriya",
+      "color": "#8a4a3a",
+      "icon": "🌿",
+      "alignment": "sage"
+    },
+    "jambavan": {
+      "id": "jambavan",
+      "name": "Jambavan",
+      "tamilName": "ஜாம்பவான்",
+      "sanskritName": "जाम्बवान्",
+      "role": "The bear-king, son of Brahma",
+      "voice": "pratishedha",
+      "color": "#4a3a2a",
+      "icon": "🐻",
+      "alignment": "sage"
+    },
+    "narada": {
+      "id": "narada",
+      "name": "Narada",
+      "tamilName": "நாரதர்",
+      "sanskritName": "नारद",
+      "role": "The divine messenger, the celestial sage",
+      "voice": "kathaka",
+      "color": "#5a3a8a",
+      "icon": "🎵",
+      "alignment": "sage"
+    },
+    "valmiki": {
+      "id": "valmiki",
+      "name": "Valmiki",
+      "tamilName": "வால்மீகி",
+      "sanskritName": "वाल्मीकि",
+      "role": "The original composer of the Ramayana",
+      "voice": "kathaka",
+      "color": "#3a3a2a",
+      "icon": "📖",
+      "alignment": "sage"
+    }
+  },
+  "_meta": {
+    "schemaVersion": "elgods-port-v1",
+    "charactersTotal": 26,
+    "groupsTotal": 5,
+    "voicesUsed": [
+      "dainya",
+      "kathaka",
+      "niti",
+      "praarthana",
+      "pratishedha",
+      "shastriya",
+      "sheershata",
+      "sloka",
+      "vaachaka",
+      "vairagya"
+    ],
+    "notes": "Day 11 port of ELGODS character roster. groups filtered to only include profiles present in the characters object (5 names — shatrughna/kausalya/sumitra/nala/sampati — appear in ELGODS as referenced names but lack full CHARACTER_PROFILES entries)."
+  }
+}

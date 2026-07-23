@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8b1a1a">
+  <meta name="description" content="The Ramayana — interactive story player with AI-generated painterly illustrations. 8 acts, 50 characters, 4,500 years of Indian heritage.">
+  <title>The Ramayana — Interactive Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="story-player.css">
+</head>
+<body>
+
+  <!-- HERMES: Loading screen -->
+  <div id="loader">
+    <div class="loader-crest">ॐ</div>
+    <h1>रामायणम्</h1>
+    <div class="loader-sub">The Story of Rama</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <div class="loader-tip" id="loader-tip">Preparing the ancient tale…</div>
+  </div>
+
+  <!-- HERMES: Title / act selector -->
+  <div id="title-screen" class="screen">
+    <div class="title-bg"></div>
+    <div class="title-content">
+      <div class="sanskrit">॥ रामायणम् ॥</div>
+      <h1>The Ramayana</h1>
+      <div class="subtitle">An Interactive Story of Dharma, Devotion, and the Triumph of Good</div>
+      <div class="act-grid" id="act-grid"></div>
+      <div class="footer">
+        <span>Valmiki · 5th century BCE</span>
+        <span class="dot">•</span>
+        <span>8 Acts · 50 Characters · 24,000 verses</span>
+        <span class="dot">•</span>
+        <span>Paintings by FLUX · Portraits by MiniMax</span>
+        <span class="dot">•</span>
+        <button id="show-cast-btn" style="background:none;border:1px solid rgba(212,168,67,0.4);color:var(--saffron);padding:6px 14px;border-radius:4px;font-family:inherit;font-size:11px;letter-spacing:2px;cursor:pointer;margin-left:12px;">VIEW ALL CHARACTERS ›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERMES: Story player -->
+  <div id="story-screen" class="screen hidden">
+    <header class="story-header">
+      <button id="back-btn" class="back-btn">← Acts</button>
+      <div class="story-meta">
+        <div class="act-num" id="act-num">Act I</div>
+        <div class="act-title" id="act-title">Balakanda: Birth and Bow</div>
+      </div>
+      <div class="story-progress"><div class="story-progress-fill" id="story-progress"></div></div>
+    </header>
+
+    <main class="story-main">
+      <!-- HERMES: Atmosphere background plate (changes per moment) -->
+      <div class="story-bg" id="story-bg"></div>
+
+      <!-- HERMES: Story moment content -->
+      <article class="moment" id="moment">
+        <div class="moment-scene" id="moment-scene">
+          <!-- Scene plate changes per act -->
+        </div>
+
+        <div class="moment-portrait" id="moment-portrait">
+          <!-- Speaker portrait from /characters/ -->
+        </div>
+
+        <div class="moment-body">
+          <div class="speaker-row">
+            <div class="speaker-name" id="speaker-name">Narrator</div>
+            <div class="speaker-tone" id="speaker-tone"></div>
+          </div>
+          <div class="moment-text" id="moment-text"></div>
+          <div class="shloka-block" id="shloka-block">
+            <div class="shloka-sanskrit" id="shloka-sanskrit"></div>
+            <div class="shloka-translit" id="shloka-translit"></div>
+            <div class="shloka-translation" id="shloka-translation"></div>
+          </div>
+          <div class="knowledge-block" id="knowledge-block">
+            <div class="knowledge-label">📜 Historical Context</div>
+            <div class="knowledge-text" id="knowledge-text"></div>
+          </div>
+          <div class="objectives" id="objectives"></div>
+        </div>
+
+        <div class="moment-actions">
+          <button id="prev-btn" class="nav-btn">‹ Previous</button>
+          <button id="next-btn" class="nav-btn primary">Next ›</button>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <!-- HERMES: Character gallery modal -->
+  <div id="character-modal" class="modal hidden">
+    <div class="modal-inner">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="character-grid" id="character-grid"></div>
+    </div>
+  </div>
+
+  <script src="story-player.js"></script>
+</body>
+</html>

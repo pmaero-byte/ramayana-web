@@ -1,0 +1,571 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   HERMES: The Ramayana — Interactive Story Player
+   Console-quality typography, atmospheric transitions, AI-generated plates.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --ink-deep: #1a0a0a;
+  --ink-mid: #2a1810;
+  --ink-warm: #3a2418;
+  --parchment: #f4e4c1;
+  --parchment-warm: #e8d4a8;
+  --saffron: #d4a843;
+  --saffron-bright: #f0d090;
+  --saffron-glow: rgba(212, 168, 67, 0.4);
+  --vermillion: #c8434a;
+  --vermillion-glow: rgba(200, 67, 74, 0.4);
+  --gold: #c9922a;
+  --gold-light: #ffd966;
+  --cream: #fff3b0;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; min-height: 100vh;
+  background: var(--ink-deep);
+  color: var(--parchment);
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.screen { display: none; width: 100%; min-height: 100vh; }
+.screen.active { display: block; }
+.hidden { display: none !important; }
+
+/* ── LOADER ───────────────────────────────────────────────────── */
+#loader {
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(212, 168, 67, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ink-deep), #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.6s ease-out;
+}
+#loader.fade-out { animation: fadeOut 0.6s ease-in forwards; }
+.loader-crest {
+  font-size: 96px;
+  color: var(--saffron-bright);
+  text-shadow: 0 0 30px var(--saffron-glow);
+  margin-bottom: 24px;
+  animation: omPulse 4s ease-in-out infinite;
+}
+@keyframes omPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.05); }
+}
+#loader h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 12px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 20px var(--saffron-glow);
+}
+.loader-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: var(--saffron);
+  font-style: italic;
+  margin-bottom: 32px;
+}
+.loader-bar {
+  width: 320px; height: 3px;
+  background: rgba(212, 168, 67, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.loader-fill {
+  width: 0%; height: 100%;
+  background: linear-gradient(90deg, var(--saffron), var(--gold-light), var(--cream));
+  box-shadow: 0 0 12px var(--saffron-glow);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.loader-tip {
+  color: var(--saffron);
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
+
+/* ── TITLE SCREEN ─────────────────────────────────────────────── */
+.title-bg {
+  position: fixed; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.85) 100%);
+  z-index: -1;
+}
+.title-bg::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url('../Assets/Illustrations/atmosphere/sky_dawn_ayodhya.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4) saturate(1.3) hue-rotate(-10deg);
+  z-index: -2;
+}
+.title-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 32px;
+  text-align: center;
+}
+.sanskrit {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: var(--saffron-bright);
+  letter-spacing: 16px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 16px var(--saffron-glow);
+}
+.title-content h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 96px;
+  font-weight: 800;
+  color: var(--gold-light);
+  letter-spacing: 12px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 32px var(--saffron-glow), 0 0 64px rgba(212, 168, 67, 0.3);
+  animation: titleShine 3s ease-in-out infinite;
+}
+@keyframes titleShine {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.15); }
+}
+.subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: var(--parchment-warm);
+  font-style: italic;
+  margin-bottom: 60px;
+}
+
+/* HERMES: Act grid (8 cards like a Netflix-style picker) */
+.act-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 60px;
+}
+.act-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(58, 36, 24, 0.7), rgba(26, 10, 10, 0.85));
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  font-family: inherit;
+  color: inherit;
+}
+.act-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(212, 168, 67, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.act-card:hover {
+  border-color: var(--saffron-bright);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(212, 168, 67, 0.3);
+}
+.act-card:hover::before { opacity: 1; }
+.act-num-badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--saffron-bright);
+  background: rgba(212, 168, 67, 0.15);
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+.act-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.act-card .act-loc {
+  font-size: 12px;
+  color: var(--saffron);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.act-card .act-lesson {
+  font-size: 14px;
+  color: var(--parchment-warm);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: rgba(212, 168, 67, 0.6);
+  letter-spacing: 2px;
+  margin-top: 40px;
+}
+.footer .dot { opacity: 0.4; }
+
+/* ── STORY PLAYER ─────────────────────────────────────────────── */
+.story-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 32px;
+  background: linear-gradient(180deg, rgba(26, 10, 10, 0.95), rgba(26, 10, 10, 0.6));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(212, 168, 67, 0.3);
+}
+.back-btn {
+  background: rgba(212, 168, 67, 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  color: var(--saffron);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  transition: all 0.2s;
+}
+.back-btn:hover {
+  background: rgba(212, 168, 67, 0.2);
+  color: var(--saffron-bright);
+}
+.story-meta { flex: 1; }
+.act-num {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--saffron);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.act-title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+}
+.story-progress {
+  width: 240px;
+  height: 4px;
+  background: rgba(212, 168, 67, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.story-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--saffron), var(--gold-light));
+  transition: width 0.4s;
+  box-shadow: 0 0 8px var(--saffron-glow);
+}
+
+.story-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+.story-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  filter: blur(2px);
+  z-index: -1;
+  transition: background-image 1s ease, opacity 1s ease;
+}
+
+/* HERMES: Story moment card */
+.moment {
+  background: linear-gradient(180deg, rgba(42, 24, 16, 0.85), rgba(26, 10, 10, 0.95));
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.moment-scene {
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ink-mid);
+  position: relative;
+  border-bottom: 2px solid var(--saffron);
+}
+.moment-scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(26, 10, 10, 0.7) 100%);
+}
+.moment-portrait {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: -80px;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 12px;
+}
+.moment-portrait img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--gold-light);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  background: var(--ink-mid);
+}
+
+.moment-body { padding: 16px 32px 32px; }
+.speaker-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.2);
+}
+.speaker-name {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+}
+.speaker-tone {
+  font-size: 11px;
+  color: var(--saffron);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+  padding: 4px 10px;
+  background: rgba(212, 168, 67, 0.15);
+  border-radius: 4px;
+}
+.moment-text {
+  font-size: 19px;
+  line-height: 1.8;
+  color: var(--parchment);
+  margin-bottom: 20px;
+}
+
+.shloka-block {
+  background: linear-gradient(180deg, rgba(212, 168, 67, 0.08), rgba(201, 146, 42, 0.05));
+  border-left: 3px solid var(--saffron);
+  border-radius: 0 4px 4px 0;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+.shloka-sanskrit {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--gold-light);
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+.shloka-translit {
+  font-size: 14px;
+  color: var(--saffron);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.shloka-translation {
+  font-size: 15px;
+  color: var(--parchment-warm);
+}
+
+.knowledge-block {
+  margin: 24px 0;
+  padding: 16px 20px;
+  background: rgba(200, 67, 74, 0.08);
+  border: 1px solid rgba(200, 67, 74, 0.3);
+  border-radius: 6px;
+}
+.knowledge-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--vermillion);
+  margin-bottom: 8px;
+}
+.knowledge-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--parchment-warm);
+}
+
+.objectives {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.objective {
+  font-size: 12px;
+  padding: 6px 12px;
+  background: rgba(212, 168, 67, 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  border-radius: 16px;
+  color: var(--saffron);
+  letter-spacing: 1px;
+}
+
+.moment-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 32px;
+  border-top: 1px solid rgba(212, 168, 67, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+}
+.nav-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+  padding: 12px 24px;
+  background: rgba(212, 168, 67, 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  color: var(--saffron);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-btn:hover {
+  background: rgba(212, 168, 67, 0.2);
+  color: var(--saffron-bright);
+  transform: translateY(-1px);
+}
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+.nav-btn.primary {
+  background: linear-gradient(135deg, var(--saffron), var(--vermillion));
+  color: #fff;
+  font-weight: 600;
+}
+.nav-btn.primary:hover {
+  background: linear-gradient(135deg, var(--saffron-bright), var(--vermillion));
+}
+
+/* ── CHARACTER GALLERY MODAL ──────────────────────────────────── */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 32px;
+}
+.modal.hidden { display: none; }
+.modal-inner {
+  position: relative;
+  background: var(--ink-deep);
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+}
+.modal-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(212, 168, 67, 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  color: var(--saffron);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 2;
+}
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.character-card {
+  background: linear-gradient(180deg, rgba(58, 36, 24, 0.7), rgba(26, 10, 10, 0.85));
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.character-card:hover {
+  border-color: var(--saffron-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(212, 168, 67, 0.3);
+}
+.character-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--ink-mid);
+}
+.character-card .char-info {
+  padding: 8px 12px;
+}
+.character-card .char-name {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 2px;
+}
+.character-card .char-title {
+  font-size: 11px;
+  color: var(--saffron);
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title-content h1 { font-size: 56px; letter-spacing: 8px; }
+  .moment-scene { height: 220px; }
+  .moment-portrait img { width: 100px; height: 100px; margin-top: -60px; }
+  .speaker-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+}

@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "purpose": "All 200 illustrations needed for Traders/Ramayana game",
+  "style_anchor": "1990s Indian animated film (Yugo Studios Ramayana aesthetic)",
+  "model": "flux_2_klein_4b_q6p.ckpt",
+  "negative_prompt": "photorealistic, 3D render, CGI, modern video game screenshot, anime cel-shading, chibi, pixel art, low resolution, blurry, jpeg artifacts, watermark, signature, text, logo, multiple subjects, busy background, modern clothing, watch, glasses, smartphone, gun, airplane, car, motor vehicle, anachronistic objects, pale skin, caucasian features",
+  "palette_anchor": "saffron indigo vermilion gold palette",
+
+  "characters": {
+    "rama": {
+      "name": "Rama",
+      "role": "hero",
+      "color": "#4f8cff",
+      "voice": "sloka",
+      "prompts": [
+        {"id": "hero_front", "view": "portrait front", "pose": "regal standing with bow, calm heroic expression"},
+        {"id": "hero_side", "view": "portrait side", "pose": "drawing bow in action stance"},
+        {"id": "hero_3quarter", "view": "3quarter", "pose": "walking through forest with bow on back"},
+        {"id": "hero_fullbody", "view": "fullbody", "pose": "standing in royal armor, sun behind"},
+        {"id": "hero_battle", "view": "fullbody action", "pose": "fighting Ravana on battlefield"}
+      ]
+    },
+    "sita": {
+      "name": "Sita",
+      "role": "heroine",
+      "color": "#f0bd5e",
+      "voice": "praarthana",
+      "prompts": [
+        {"id": "hero_front", "view": "portrait front", "pose": "gentle expression, holding lotus"},
+        {"id": "hero_side", "view": "portrait side", "pose": "seated under tree, contemplative"},
+        {"id": "hero_3quarter", "view": "3quarter", "pose": "walking in garden with veil"},
+        {"id": "hero_fullbody", "view": "fullbody", "pose": "in golden sari, fire-tending scene"}
+      ]
+    },
+    "lakshmana": {
+      "name": "Lakshmana",
+      "role": "warrior",
+      "color": "#5fd1a5",
+      "voice": "sheershata",
+      "prompts": [
+        {"id": "hero_front", "view": "portrait front", "pose": "devoted warrior stance, bow ready"},
+        {"id": "hero_side", "view": "portrait side", "pose": "alert scanning horizon"},
+        {"id": "hero_fullbody", "view": "fullbody", "pose": "following Rama, watchful"}
+      ]
+    },
+    "hanuman": {
+      "name": "Hanuman",
+      "role": "devotee",
+      "color": "#e46445",
+      "voice": "vaachaka",
+      "prompts": [
+        {"id": "hero_front", "view": "portrait front", "pose": "flying in prayer pose, mountain in hand"},
+        {"id": "hero_side", "view": "portrait side", "pose": "leaping across ocean"},
+        {"id": "hero_fullbody", "view": "fullbody", "pose": "monkey warrior with mace"},
+        {"id": "hero_battle", "view": "fullbody action", "pose": "lifting mountain of sanjeevani herb"}
+      ]
+    },
+    "ravana": {
+      "name": "Ravana",
+      "role": "villain",
+      "color": "#6c4dc2",
+      "voice": "shastriya",
+      "prompts": [
+        {"id": "hero_front", "view": "portrait front", "pose": "ten-headed demon king on throne"},
+        {"id": "hero_side", "view": "portrait side", "pose": "with ten heads and twenty arms"},
+        {"id": "hero_fullbody", "view": "fullbody", "pose": "in dark armor, lanka palace background"}
+      ]
+    },
+    "bharata": {
+      "name": "Bharata",
+      "role": "prince",
+      "color": "#5d6fb7",
+      "voice": "sheershata",
+      "prompts": [
+        {"id": "hero_front", "view": "portrait front", "pose": "royal ascetic with sandals symbol"},
+        {"id": "hero_fullbody", "view": "fullbody", "pose": "in forest garb, holding royal sandals"}
+      ]
+    }
+  },
+
+  "future_characters_to_generate": {
+    "secondary": ["kausalya", "kaikeyi", "sumitra", "manthara", "dasharatha", "shatrughna", "janaka", "vishwamitra"],
+    "sages_and_ascetics": ["shabari", "agni", "vayu_devata", "surya_devata"],
+    "rakshasas_and_allies": ["indrajit", "kumbhakarna", "vibhishana", "tataka", "kabandha", "khara", "trishira", "atikaaya", "prahasta", "kumbha", "nikumbha", "prativindhya"],
+    "vanaras": ["sugriva", "vali", "angada", "tara", "nila", "nala", "shweta", "rishabha", "mainda", "dwivida", "kesari", "gandhamadana"],
+    "rishis_and_seers": ["agastya", "atri", "anasuya", "bharadwaja", "gautama", "narada", "valmiki", "kashyapa", "vishwamitra", "rishi_yagnavalkya"],
+    "celestial_figures": ["indra", "varuna", "yama", "kuber", "agni_devata"],
+    "supporting_cast": ["shabari", "sampati", "jatayu", "sampati_wing", "trijata", "sarama", "shurpanakha"]
+  }
+}

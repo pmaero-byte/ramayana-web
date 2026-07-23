@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1",
+  "name": "ramayana-web",
+  "description": "Browser action slice of Rāmāyaṇa — vanilla ES modules + Three.js, no Unity",
+  "embed": {
+    "type": "iframe",
+    "src": "/embed.html",
+    "width": "100%",
+    "height": 640,
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  "routes": [
+    {
+      "path": "/",
+      "title": "Rāmāyaṇa — Web",
+      "file": "index.html"
+    },
+    {
+      "path": "/embed",
+      "title": "Rāmāyaṇa — Embedded",
+      "file": "embed.html",
+      "params": {
+        "locale": { "type": "string", "enum": ["en", "sa"], "default": "en" }
+      }
+    }
+  ],
+  "i18n": {
+    "default": "en",
+    "supported": ["en", "sa"],
+    "selector": ".btn-locale",
+    "api": "window.RamaWeb.setLocale"
+  },
+  "postMessage": {
+    "incoming": [{ "type": "rama-set-locale", "locale": "en | sa" }],
+    "outgoing": []
+  },
+  "assets": {
+    "three": "https://esm.sh/three@0.160.0",
+    "portraits": "assets/portraits/",
+    "corpus": "data/corpus_data.json"
+  }
+}

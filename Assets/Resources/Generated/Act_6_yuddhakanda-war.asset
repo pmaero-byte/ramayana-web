@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_6_yuddhakanda-war
+  m_EditorClassIdentifier: 
+  actId: "yuddhakanda-war"
+  actNumber: 6
+  title: "Yuddhakanda: Bridge and War"
+  location: "Rama Setu and Lanka"
+  scene: 4
+  setup: "Rama’s army reaches the southern ocean. Nala and Nila, sons of the divine architect Vishvakarma, direct the vanaras to build a bridge of stones across the sea. Each stone is inscribed with Rama’s name. The army crosses into Lanka. The great battle lasts ten days. Kumbhakarna is awakened and killed. Indrajit uses maya warfare but is defeated. Lakshmana is struck down and revived by Sanjeevani. Rama duels Ravana and defeats him. Sita undergoes Agni Pariksha — the trial by fire — and emerges unharmed."
+  lesson: "Justice requires both patience and strength. Rama offers Ravana every chance to return Sita peacefully before resorting to war."
+  playerRole: "Rama"
+  objectives:
+  - id: "collect-stones"
+    type: 3
+    title: "Collect bridge stones for the vanara builders"
+    marker: "Bridge stones"
+    cue: "Gather eight stones so the bridge can begin."
+    actionLabel: "Collect stone"
+    completedLine: {speaker: "Rama", text: "One stone is small. Many small vows become a road across the sea."}
+    target: 8
+    position: {x: -6, y: 0.6, z: -3}
+  - id: "place-stones"
+    type: 4
+    title: "Place stones into the ocean path"
+    marker: "Setu foundation"
+    cue: "Place the gathered stones and watch the path take shape."
+    actionLabel: "Place stone"
+    completedLine: {speaker: "Nala", text: "The bridge rises because every hand remembers why it works."}
+    target: 8
+    position: {x: 2, y: 0.6, z: 1}
+  - id: "cross-setu"
+    type: 2
+    title: "Cross Rama Setu toward Lanka"
+    marker: "Lanka gate"
+    cue: "Cross the completed bridge and carry the vow into battle."
+    actionLabel: "Cross the Setu"
+    completedLine: {speaker: "Rama", text: "The ocean has become a path. Now justice must become action."}
+    target: 1
+    position: {x: 8, y: 0.6, z: 7}
+  - id: "battle-kumbhakarna"
+    type: 6
+    title: "Defeat Kumbhakarna, the giant brother of Ravana"
+    marker: "Kumbhakarna"
+    cue: "The giant has been awakened. He devours armies whole."
+    actionLabel: "Attack giant"
+    completedLine: {speaker: "Rama", text: "Even a mountain must fall when dharma stands against it."}
+    target: 1
+    position: {x: -5, y: 0.6, z: -4}
+  - id: "defeat-indrajit"
+    type: 6
+    title: "Defeat Indrajit, master of illusion warfare"
+    marker: "Indrajit"
+    cue: "He uses maya to strike from shadows. Find the real one."
+    actionLabel: "Dispel illusion"
+    completedLine: {speaker: "Lakshmana", text: "The illusion falls. Now we face the real enemy."}
+    target: 1
+    position: {x: 5, y: 0.6, z: -2}
+  - id: "duel-ravana"
+    type: 6
+    title: "Duel Ravana in the final battle"
+    marker: "Ravana"
+    cue: "The ten-headed king stands before you. Choose your moment."
+    actionLabel: "Duel Ravana"
+    completedLine: {speaker: "Rama", text: "I gave you every chance to return Sita. Now your pride meets its end."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 0}
+  - id: "lakshmana-falls"
+    type: 5
+    title: "Witness Lakshmana fall to Indrajit’s Nagapasha serpent arrows"
+    marker: "Lakshmana"
+    cue: "The serpent arrows strike. Lakshmana collapses."
+    actionLabel: "Witness fall"
+    completedLine: {speaker: "Rama", text: "My brother lies still. The serpent venom courses through him. Hanuman, fly. Bring the mountain of healing."}
+    target: 1
+    position: {x: -3, y: 0.6, z: 2}
+  - id: "fetch-sanjeevani"
+    type: 2
+    title: "Fetch the Sanjeevani mountain to revive Lakshmana"
+    marker: "Mountain peak"
+    cue: "The mountain of healing grows in the Himalayas. Carry it whole."
+    actionLabel: "Fetch mountain"
+    completedLine: {speaker: "Sushena", text: "Hanuman has brought the entire mountain. From its herbs, we brew the cure. Lakshmana shall rise again."}
+    target: 1
+    position: {x: -7, y: 0.6, z: -6}
+  - id: "coronation-lanka"
+    type: 5
+    title: "Witness Vibhishana crowned king of Lanka"
+    marker: "Lanka throne"
+    cue: "Adharma has fallen. Dharma must now rule Lanka."
+    actionLabel: "Witness coronation"
+    completedLine: {speaker: "Vibhishana", text: "I did not seek this throne. But dharma must have a seat in Lanka. I shall rule by righteousness."}
+    target: 1
+    position: {x: 2, y: 0.6, z: -3}
+  - id: "agni-pariksha"
+    type: 5
+    title: "Witness Sita’s trial by fire"
+    marker: "Sacred fire"
+    cue: "The fire must testify. Witness the truth."
+    actionLabel: "Witness trial"
+    completedLine: {speaker: "Sita", text: "I call upon Agni himself. If I am pure, let him protect me. If not, let me burn."}
+    target: 1
+    position: {x: 3, y: 0.6, z: 3}
+  - id: "ask-ocean-passage"
+    type: 0
+    title: "Ask the ocean for passage to Lanka"
+    marker: "Ocean shore"
+    cue: "The sea stands between you and justice. Ask it to yield, or force it to part."
+    actionLabel: "Confront ocean"
+    completedLine: {speaker: "Varuna", text: "I yield, Rama. Nala and Nila shall build your bridge. My waters will hold the stones that bear your name."}
+    target: 1
+    position: {x: -9, y: 0.6, z: 9}
+  - id: "lakshmana-kills-indrajit"
+    type: 6
+    title: "Lakshmana defeats Indrajit using the Aindra weapon"
+    marker: "Indrajit"
+    cue: "The son of Ravana hides in illusion. Only one who has conquered sleep can strike the true form."
+    actionLabel: "Strike Indrajit"
+    completedLine: {speaker: "Lakshmana", text: "Your maya falls before the Aindra weapon. The shadows cannot hide you from dharma."}
+    target: 1
+    position: {x: 6, y: 0.6, z: -6}
+  - id: "rama-name-stones"
+    type: 4
+    title: "Inscribe Rama’s name on the bridge stones"
+    marker: "Bridge stones"
+    cue: "Nala and Nila place the stones, but only Rama’s name makes them float. Write upon each one."
+    actionLabel: "Inscribe name"
+    completedLine: {speaker: "Nala", text: "The stones bear your name and they float. The ocean itself bows to the power of faith."}
+    target: 8
+    position: {x: -2, y: 0.6, z: 2}
+  - id: "shuka-sarana-spies"
+    type: 0
+    title: "Capture and release Ravana’s spies Shuka and Sarana"
+    marker: "Captured spies"
+    cue: "Ravana’s spies have been caught in the camp. Choose their fate — mercy or punishment."
+    actionLabel: "Judge spies"
+    completedLine: {speaker: "Shuka", text: "You feed us and send us back to our master with truth. This is the kingship of Rama."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 5}
+  - id: "kumbhakarna-tragedy"
+    type: 5
+    title: "Witness Kumbhakarna’s tragic loyalty before battle"
+    marker: "Kumbhakarna"
+    cue: "Kumbhakarna knows Ravana is wrong, but blood binds him. His sleep has been his only escape from sorrow."
+    actionLabel: "Witness tragedy"
+    completedLine: {speaker: "Kumbhakarna", text: "I told him to return Sita. He did not listen. Now I must fight for a brother I cannot save from himself."}
+    target: 1
+    position: {x: -4, y: 0.6, z: 4}
+  - id: "mandodari-final-plea"
+    type: 1
+    title: "Witness Mandodari’s final plea to Ravana"
+    marker: "Mandodari"
+    cue: "Ravana’s wife Mandodari has warned him a hundred times. This is her last attempt before the city burns."
+    actionLabel: "Witness plea"
+    completedLine: {speaker: "Mandodari", text: "Husband, I have been your wife for ten thousand years. I beg you — return her. Do not make me a widow."}
+    target: 1
+    position: {x: 4, y: 0.6, z: -4}
+  - id: "vibhishana-defection-formal"
+    type: 5
+    title: "Witness Vibhishana formally defect to Rama’s side"
+    marker: "Vibhishana"
+    cue: "Vibhishana has warned Ravana ten times. Now he kneels before Rama, offering Lanka’s secrets and his life."
+    actionLabel: "Witness defection"
+    completedLine: {speaker: "Vibhishana", text: "I am no traitor. I am a man who chose dharma over blood. Use my knowledge, Rama. Save Sita."}
+    target: 1
+    position: {x: 6, y: 0.6, z: 6}
+  dialogue:
+  - speaker: "Rama"
+    text: "Each stone carries a name, each name carries faith, and faith becomes the bridge. The ocean itself shall yield to dharma."
+    voice: 10
+  - speaker: "Hanuman"
+    text: "I shall write Rama’s name upon every stone. No force in the three worlds can break such a bridge."
+    voice: 10
+  - speaker: "Nala"
+    text: "I am the son of Vishvakarma, the divine architect. Under my direction, these stones shall hold firm."
+    voice: 10
+  - speaker: "Kumbhakarna"
+    text: "Brother, you should have listened to Vibhishana. But I am bound by blood. Let me sleep again after this battle."
+    voice: 10
+  - speaker: "Indrajit"
+    text: "I have defeated Indra himself. What chance do mortals have against my maya?"
+    voice: 10
+  - speaker: "Vibhishana"
+    text: "Brother, return Sita. Dharma is not defeated by strength of arms. Even the gods tremble before adharma."
+    voice: 10
+  - speaker: "Ravana"
+    text: "You come to my city with an army of monkeys and expect to leave with what I have taken? I am Ravana — scholar of the Vedas, devotee of Shiva, king of the three worlds."
+    voice: 10
+  - speaker: "Mandodari"
+    text: "Husband, the omens are against us. Return the queen of Ayodhya before our city is ash."
+    voice: 10
+  - speaker: "Nila"
+    text: "I am Nala, son of Vishvakarma. With Nala beside me, these stones will hold itself."
+    voice: 10
+  - speaker: "Kumbhakarna"
+    text: "I told my brother to return Sita. He would not listen. Now I must fight for a king I cannot save."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

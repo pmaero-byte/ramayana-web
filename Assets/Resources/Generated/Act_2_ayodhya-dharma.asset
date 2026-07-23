@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ACTDATA_SCRIPT_GUID_PLACEHOLDER, type: 3}
+  m_Name: Act_2_ayodhya-dharma
+  m_EditorClassIdentifier: 
+  actId: "ayodhya-dharma"
+  actNumber: 2
+  title: "Ayodhyakanda: The Exile"
+  location: "Ayodhya Palace"
+  scene: 0
+  setup: "Dasharatha prepares to crown Rama, but Kaikeyi, influenced by her maid Manthara, remembers two old boons. She demands Bharata be crowned and Rama sent to the forest for fourteen years. Rama accepts exile willingly. Dasharatha dies of grief. Bharata refuses the throne and places Rama’s sandals upon it symbol."
+  lesson: "Dharma must be upheld even at great personal cost. A son’s duty to his father transcends personal ambition."
+  playerRole: "Rama"
+  objectives:
+  - id: "accept-exile"
+    type: 0
+    title: "Accept exile to preserve Dasharatha’s word"
+    marker: "Kaikeyi"
+    cue: "Stand before Kaikeyi and choose duty over anger."
+    actionLabel: "Accept the exile"
+    completedLine: {speaker: "Rama", text: "Mother, the forest will receive me before Ayodhya sees a broken promise."}
+    target: 1
+    position: {x: -2, y: 0.6, z: -4.4}
+  - id: "speak-to-sita"
+    type: 1
+    title: "Speak with Sita before leaving the palace"
+    marker: "Sita"
+    cue: "Share the decision with Sita and hear her resolve."
+    actionLabel: "Speak with Sita"
+    completedLine: {speaker: "Sita", text: "I was not made only for palace lamps. I will walk beside you under forest stars."}
+    target: 1
+    position: {x: 4.5, y: 0.6, z: -1.5}
+  - id: "dasharatha-death"
+    type: 5
+    title: "Witness Dasharatha’s death from a broken heart"
+    marker: "Dasharatha"
+    cue: "The king who loved his son more than his kingdom cannot survive the separation."
+    actionLabel: "Witness passing"
+    completedLine: {speaker: "Dasharatha", text: "Rama... my eyes cannot find you... the light of my house departs... and I am left in darkness."}
+    target: 1
+    position: {x: -7, y: 0.6, z: -3}
+  - id: "bharata-refusal"
+    type: 5
+    title: "Witness Bharata refuse the throne and keep Rama’s sandals"
+    marker: "Throne room"
+    cue: "Witness Bharata’s loyalty and the symbol of righteous rule."
+    actionLabel: "Witness refusal"
+    completedLine: {speaker: "Bharata", text: "I will not sit where my brother belongs. These sandals shall rule Ayodhya until Rama returns."}
+    target: 1
+    position: {x: -7, y: 0.6, z: -4}
+  - id: "cross-ganga"
+    type: 2
+    title: "Cross the Ganga river with Guha the boatman king"
+    marker: "River crossing"
+    cue: "The Ganga separates civilization from wilderness. Guha waits with his boat."
+    actionLabel: "Cross the river"
+    completedLine: {speaker: "Guha", text: "I am a king of boatmen, but you treat me brother. The river bows to dharma, not to kings."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 6}
+  - id: "leave-ayodhya"
+    type: 2
+    title: "Leave Ayodhya for the forest path"
+    marker: "Forest gate"
+    cue: "Walk through the southern gate and begin the exile."
+    actionLabel: "Leave Ayodhya"
+    completedLine: {speaker: "Lakshmana", text: "The city falls behind us, but the path ahead is guarded by purpose."}
+    target: 1
+    position: {x: 0, y: 0.6, z: 9}
+  - id: "citizens-follow"
+    type: 5
+    title: "Witness the citizens of Ayodhya follow Rama into exile"
+    marker: "Citizens"
+    cue: "The people of Ayodhya refuse to let their prince walk alone. They follow him to the forest edge."
+    actionLabel: "Witness devotion"
+    completedLine: {speaker: "Citizen", text: "We will not return. Where dharma walks, the people of Ayodhya walk."}
+    target: 1
+    position: {x: -3, y: 0.6, z: 3}
+  - id: "nandigram-rule"
+    type: 5
+    title: "Witness Bharata rule from Nandigram in Rama’s name"
+    marker: "Nandigram"
+    cue: "Bharata refuses the palace. He lives in a hut, ruling’s proxy, the sandals on the throne."
+    actionLabel: "Witness Nandigram"
+    completedLine: {speaker: "Bharata", text: "I am not king. I am a servant of the sandals that rule Ayodhya."}
+    target: 1
+    position: {x: 3, y: 0.6, z: -3}
+  - id: "sumitra-wisdom"
+    type: 1
+    title: "Hear Sumitra’s wisdom about serving Rama"
+    marker: "Sumitra"
+    cue: "Sumitra does not weep for Lakshmana’s departure. She sees service to Rama highest dharma."
+    actionLabel: "Hear wisdom"
+    completedLine: {speaker: "Sumitra", text: "Rama is your life, Lakshmana. Serve him serve Kausalya — without expectation, without end."}
+    target: 1
+    position: {x: -4, y: 0.6, z: 4}
+  - id: "urmila-sacrifice"
+    type: 5
+    title: "Witness Urmila choose to sleep for fourteen years"
+    marker: "Urmila"
+    cue: "Urmila could have followed Lakshmana. Instead, she chooses to sleep so he may serve without longing."
+    actionLabel: "Witness sacrifice"
+    completedLine: {speaker: "Urmila", text: "I will sleep, and in my dreams I will walk beside you. When you return, I shall wake no time has passed."}
+    target: 1
+    position: {x: 4, y: 0.6, z: -4}
+  - id: "manthara-poison"
+    type: 1
+    title: "Witness Manthara poison Kaikeyi’s mind with ambition"
+    marker: "Manthara"
+    cue: "The hunchbacked maid speaks honeyed poison. She reminds Kaikeyi of her power, her beauty, her forgotten worth."
+    actionLabel: "Witness manipulation"
+    completedLine: {speaker: "Manthara", text: "You saved the king’s life. Does he honor you now? No — he crowns Kausalya’s son. Claim what is yours."}
+    target: 1
+    position: {x: 5, y: 0.6, z: 5}
+  dialogue:
+  - speaker: "Kaikeyi"
+    text: "The boons your father granted me long ago must be honored today. Let Bharata be crowned and you dwell in the forest for fourteen years."
+    voice: 10
+  - speaker: "Rama"
+    text: "Mother, I go gladly. The forest will receive me before Ayodhya sees a broken promise. A king’s word is the tapas of his people."
+    voice: 10
+  - speaker: "Dasharatha"
+    text: "Rama, my son — the light of my house departs, and I am left in darkness."
+    voice: 10
+  - speaker: "Dasharatha"
+    text: "The palace feels like a tomb. I who ruled three worlds am powerless against the grief of losing one son."
+    voice: 10
+  - speaker: "Sita"
+    text: "I was not made only for palace lamps. I will walk beside you under forest stars. Where you walk, I walk. The forest is not exile if dharma is with us."
+    voice: 10
+  - speaker: "Lakshmana"
+    text: "Then I will guard this path with you. What use is a brother who does not follow into exile?"
+    voice: 10
+  - speaker: "Manthara"
+    text: "Kaikeyi, remember your boons. The throne belongs to Bharata. Let Rama rot in the forest while your son rules."
+    voice: 10
+  - speaker: "Bharata"
+    text: "Brother, I kept your sandals on the throne. Ayodhya never accepted another king while you lived. I am merely the keeper of your seat."
+    voice: 10
+  - speaker: "Guha"
+    text: "I am Guha, king of the boatmen. I have prepared my finest boat for you, Rama. The river bows to dharma, not to crowns."
+    voice: 10
+  consequenceEchoes: []
+  shlokaStones: []
+  hiddenCollectibles: []
+  reward: {badge: "", lore: "", dharma: 0}

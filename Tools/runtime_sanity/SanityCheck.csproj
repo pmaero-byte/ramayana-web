@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <OutputType>Exe</OutputType>
+    <Nullable>disable</Nullable>
+    <NoWarn>0168;0169;0414;0649;8632;CS1591</NoWarn>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <DefineConstants>UNITY_2022_3;UNITY_2022_3_15F1;UNITY_5_3_OR_NEWER</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="UnityAssetYaml.cs" />
+    <Compile Include="../../Assets/Scripts/**/*.cs" />
+    <Compile Include="../../ReferenceAssemblies/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>
