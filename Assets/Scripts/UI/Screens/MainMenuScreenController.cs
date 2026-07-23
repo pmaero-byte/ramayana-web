@@ -71,6 +71,13 @@ namespace Jambudweep.Ramayana.UI
             Debug.Log("[MainMenu] Build() proceeding");
             try
             {
+                if (FindObjectOfType<UnityEngine.EventSystems.EventSystem>() == null)
+                {
+                    var es = new GameObject("EventSystem");
+                    es.AddComponent<UnityEngine.EventSystems.EventSystem>();
+                    es.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+                    Debug.Log("[MainMenu] created EventSystem");
+                }
             _canvas = gameObject.GetComponent<Canvas>();
             if (_canvas == null)
             {
