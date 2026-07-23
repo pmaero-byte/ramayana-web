@@ -119,6 +119,8 @@ namespace Jambudweep.Ramayana.UI
                 new Vector2(-20f, 15f), new Vector2(300f, 30f));
             verText.text = "v0.1.0";
             verText.color = new Color(0.55f, 0.50f, 0.45f, 1f);
+
+            BuildCardList();
             Debug.Log("[MainMenu] Build() UI construction complete");
             }
             catch (System.Exception ex)
@@ -152,6 +154,7 @@ namespace Jambudweep.Ramayana.UI
 
         private void Populate()
         {
+            Debug.Log("[MainMenu] Populate() start");
             var ta = Resources.Load<TextAsset>(corpusResourcePath);
             if (ta == null)
             {
@@ -161,10 +164,12 @@ namespace Jambudweep.Ramayana.UI
             CorpusData data;
             try { data = JsonUtility.FromJson<CorpusData>(ta.text); }
             catch (Exception e) { Debug.LogError($"[MainMenu] corpus parse failed: {e.Message}"); return; }
-            if (data?.acts == null) return;
+            if (data?.acts == null) { Debug.LogWarning("[MainMenu] data.acts is null"); return; }
+            Debug.Log($"[MainMenu] corpus loaded: acts={data.acts.Count}");
 
             var list = transform.Find("KandaList");
-            if (list == null) return;
+            if (list == null) { Debug.LogWarning("[MainMenu] KandaList not found"); return; }
+            Debug.Log($"[MainMenu] KandaList found, populating {data.acts.Count} cards");
 
             foreach (var act in data.acts)
             {
