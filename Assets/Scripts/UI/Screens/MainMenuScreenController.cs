@@ -182,6 +182,12 @@ namespace Jambudweep.Ramayana.UI
         {
             var card = new GameObject($"Card_{act.actNumber}");
             card.transform.SetParent(parent, false);
+            var cardRt = card.AddComponent<RectTransform>();
+            cardRt.anchorMin = new Vector2(0f, 1f);
+            cardRt.anchorMax = new Vector2(1f, 1f);
+            cardRt.pivot = new Vector2(0.5f, 1f);
+            cardRt.anchoredPosition = new Vector2(0f, -20f);
+            cardRt.sizeDelta = new Vector2(-40f, 220f);
 
             var le = card.AddComponent<LayoutElement>();
             le.preferredHeight = 220f;
@@ -189,7 +195,20 @@ namespace Jambudweep.Ramayana.UI
             var bg = card.AddComponent<Image>();
             bg.color = cardColor;
 
-            // Add a left-side accent stripe as a child Image
+            // Transparent hit-target so Button raycasts reliably over the whole card.
+            var hit = new GameObject("HitTarget");
+            hit.transform.SetParent(card.transform, false);
+            var hitRt = hit.AddComponent<RectTransform>();
+            hitRt.anchorMin = Vector2.zero;
+            hitRt.anchorMax = Vector2.one;
+            hitRt.offsetMin = Vector2.zero;
+            hitRt.offsetMax = Vector2.zero;
+            hitRt.pivot = new Vector2(0.5f, 0.5f);
+            var hitImg = hit.AddComponent<Image>();
+            hitImg.color = new Color(0f, 0f, 0f, 0f);
+            hitImg.raycastTarget = true;
+
+            // Left accent stripe
             var stripe = new GameObject("Stripe");
             stripe.transform.SetParent(card.transform, false);
             var stripeRt = stripe.AddComponent<RectTransform>();
@@ -197,36 +216,65 @@ namespace Jambudweep.Ramayana.UI
             stripeRt.anchorMax = new Vector2(0f, 1f);
             stripeRt.pivot = new Vector2(0f, 0.5f);
             stripeRt.sizeDelta = new Vector2(8f, 0f);
-            stripeRt.anchoredPosition = new Vector2(4f, 0f);
+            stripeRt.anchoredPosition = new Vector2(12f, 0f);
             var stripeImg = stripe.AddComponent<Image>();
             stripeImg.color = cardEdgeColor;
 
-            var numText = MakeText(card.transform, "Num", 56, TextAnchor.UpperLeft,
-                new Vector2(30f, -10f), new Vector2(120f, 90f));
+            // Text helper using local card-relative anchors so text scales with card width.
+            Text MakeCardText(string name, int size, TextAnchor align, Vector2 anchorMin, Vector2 anchorMax, Vector2 offset)
+            {
+                var go = new GameObject(name);
+                go.transform.SetParent(card.transform, false);
+                var rt = go.AddComponent<RectTransform>();
+                rt.anchorMin = anchorMin;
+                rt.anchorMax = anchorMax;
+                rt.pivot = new Vector2(0.5f, 0.5f);
+                rt.offsetMin = offset;
+                rt.offsetMax = new Vector2(-offset.x, offset.y);
+                var t = go.AddComponent<Text>();
+                t.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                t.fontSize = size;
+                t.alignment = align;
+                t.color = Color.white;
+                t.horizontalOverflow = HorizontalWrapMode.Wrap;
+                t.verticalOverflow = VerticalWrapMode.Truncate;
+                return t;
+            }
+
+            var numText = MakeCardText("Num", 56, TextAnchor.MiddleLeft,
+                new Vector2(0f, 1f), new Vector2(0.18f, 1f), new Vector2(14f, -80f));
             numText.text = act.actNumber.ToString();
             numText.fontStyle = FontStyle.Bold;
             numText.color = cardEdgeColor;
 
-            var titleText = MakeText(card.transform, "Title", 30, TextAnchor.UpperLeft,
-                new Vector2(150f, -25f), new Vector2(850f, 50f));
+            var titleText = MakeCardText("Title", 30, TextAnchor.MiddleLeft,
+                new Vector2(0.18f, 1f), new Vector2(1f, 0.65f), new Vector2(-14f, -30f));
             titleText.text = act.title ?? "";
             titleText.color = new Color(0.97f, 0.86f, 0.65f, 1f);
             titleText.fontStyle = FontStyle.Bold;
 
-            var locText = MakeText(card.transform, "Location", 22, TextAnchor.UpperLeft,
-                new Vector2(150f, -75f), new Vector2(850f, 32f));
+            var locText = MakeCardText("Location", 22, TextAnchor.MiddleLeft,
+                new Vector2(0.18f, 0.65f), new Vector2(1f, 0.45f), new Vector2(-14f, 0f));
             locText.text = string.IsNullOrEmpty(act.location) ? "" : "📍 " + act.location;
             locText.color = new Color(0.80f, 0.72f, 0.62f, 1f);
 
-            var setupText = MakeText(card.transform, "Setup", 22, TextAnchor.UpperLeft,
-                new Vector2(150f, -110f), new Vector2(850f, 90f));
+            var setupText = MakeCardText("Setup", 22, TextAnchor.UpperLeft,
+                new Vector2(0.18f, 0.45f), new Vector2(1f, 0f), new Vector2(-14f, 10f));
             setupText.text = act.setup ?? "";
             setupText.color = new Color(0.86f, 0.78f, 0.70f, 1f);
             setupText.horizontalOverflow = HorizontalWrapMode.Wrap;
             setupText.verticalOverflow = VerticalWrapMode.Truncate;
 
             var btn = card.AddComponent<Button>();
-            btn.targetGraphic = bg;
+            btn.targetGraphic = hitImg;
+            btn.transition = Selectable.Transition.ColorTint;
+            btn.colors = new ColorBlock
+            {
+                normalColor = Color.white,
+                highlightedColor = new Color(1f, 0.95f, 0.8f, 1f),
+                pressedColor = new Color(0.9f, 0.8f, 0.6f, 1f),
+                colorMultiplier = 1f
+            };
             string kandaId = ResolveKandaId(act.actId);
             if (!KandaPermissions.IsUnlocked(kandaId))
             {
@@ -234,8 +282,10 @@ namespace Jambudweep.Ramayana.UI
                 titleText.color = new Color(0.55f, 0.52f, 0.50f, 1f);
                 setupText.color = new Color(0.55f, 0.52f, 0.50f, 1f);
                 numText.color = new Color(0.55f, 0.52f, 0.50f, 1f);
+                bg.color = new Color(0.25f, 0.22f, 0.20f, 1f);
             }
             btn.onClick.AddListener(() => SelectKanda(act.actId, act.title));
+            Debug.Log($"[MainMenu] card built: {act.actNumber} {act.title}");
         }
 
         private string ResolveKandaId(string actId)
