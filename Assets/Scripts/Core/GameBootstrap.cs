@@ -54,6 +54,18 @@ namespace Jambudweep.Ramayana
 
         private void OnFirstFrame()
         {
+            // Skip redirect if we're already in a real gameplay/menu scene.
+            // This prevents kanda scenes loaded from MainMenu from bouncing
+            // back to MainMenu because this bootstrap instance persists
+            // across scene loads via DontDestroyOnLoad.
+            var active = SceneManager.GetActiveScene();
+            if (!string.IsNullOrEmpty(active.name) &&
+                active.name != "Bootstrap" &&
+                active.name != firstSceneName)
+            {
+                Debug.Log("[Bootstrap] Skip redirect: already in scene " + active.name);
+                return;
+            }
             var mostRecent = SaveSystem.GetMostRecentSave();
             if (mostRecent != null && !string.IsNullOrEmpty(mostRecent.currentActId))
             {

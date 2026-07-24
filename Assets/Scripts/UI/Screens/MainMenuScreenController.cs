@@ -78,23 +78,7 @@ namespace Jambudweep.Ramayana.UI
                     es.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
                     Debug.Log("[MainMenu] created EventSystem");
                 }
-                // Global click tester to confirm EventSystem receives input.
-                var overlay = new GameObject("ClickOverlay");
-                overlay.transform.SetParent(transform, false);
-                var overlayRt = overlay.AddComponent<RectTransform>();
-                overlayRt.anchorMin = Vector2.zero;
-                overlayRt.anchorMax = Vector2.one;
-                overlayRt.offsetMin = Vector2.zero;
-                overlayRt.offsetMax = Vector2.zero;
-                var overlayImg = overlay.AddComponent<Image>();
-                overlayImg.color = new Color(0f, 0f, 0f, 0f);
-                var overlayBtn = overlay.AddComponent<Button>();
-                overlayBtn.transition = Selectable.Transition.None;
-                overlayBtn.onClick.AddListener(() =>
-                {
-                    Debug.Log("[MainMenu] overlay click fired");
-                });
-                Debug.Log("[MainMenu] ClickOverlay added");
+                // Removed debug overlay to avoid blocking card clicks.
             _canvas = gameObject.GetComponent<Canvas>();
             if (_canvas == null)
             {
@@ -216,19 +200,7 @@ namespace Jambudweep.Ramayana.UI
 
             var bg = card.AddComponent<Image>();
             bg.color = cardColor;
-
-            // Transparent hit-target so Button raycasts reliably over the whole card.
-            var hit = new GameObject("HitTarget");
-            hit.transform.SetParent(card.transform, false);
-            var hitRt = hit.AddComponent<RectTransform>();
-            hitRt.anchorMin = Vector2.zero;
-            hitRt.anchorMax = Vector2.one;
-            hitRt.offsetMin = Vector2.zero;
-            hitRt.offsetMax = Vector2.zero;
-            hitRt.pivot = new Vector2(0.5f, 0.5f);
-            var hitImg = hit.AddComponent<Image>();
-            hitImg.color = new Color(0f, 0f, 0f, 0f);
-            hitImg.raycastTarget = true;
+            bg.raycastTarget = true;
 
             // Left accent stripe
             var stripe = new GameObject("Stripe");
@@ -288,14 +260,18 @@ namespace Jambudweep.Ramayana.UI
             setupText.verticalOverflow = VerticalWrapMode.Truncate;
 
             var btn = card.AddComponent<Button>();
-            btn.targetGraphic = hitImg;
+            btn.targetGraphic = bg;
             btn.transition = Selectable.Transition.ColorTint;
+            var nav = btn.navigation;
+            nav.mode = Navigation.Mode.None;
+            btn.navigation = nav;
             btn.colors = new ColorBlock
             {
-                normalColor = Color.white,
-                highlightedColor = new Color(1f, 0.95f, 0.8f, 1f),
-                pressedColor = new Color(0.9f, 0.8f, 0.6f, 1f),
-                colorMultiplier = 1f
+                normalColor = new Color(0.12f, 0.06f, 0.18f, 1f),
+                highlightedColor = new Color(0.22f, 0.14f, 0.28f, 1f),
+                pressedColor = new Color(0.30f, 0.20f, 0.40f, 1f),
+                colorMultiplier = 1f,
+                fadeDuration = 0.12f
             };
             string kandaId = ResolveKandaId(act.actId);
             bool unlocked = KandaPermissions.IsUnlocked(kandaId);
@@ -398,6 +374,10 @@ namespace Jambudweep.Ramayana.UI
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log("[MainMenu] mouse down at " + Input.mousePosition);
+            }
+            if (Input.anyKeyDown)
+            {
+                Debug.Log("[MainMenu] anyKeyDown: " + Input.inputString);
             }
         }
     }
